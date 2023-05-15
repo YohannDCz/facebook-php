@@ -1,37 +1,36 @@
 <?php
 session_start();
 
-require_once('Database.php');
-require_once('User.php');
+require_once('../../src/model/Database.php');
+require_once('../../src/model/Users.php');
 
-$db = new Database();
-$db->getConnection();
-
-$method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
+$method = $_SERVER["REQUEST_METHOD"];
 
 if($method == "POST")
 {
-  $user = new User($db);
-  $user->login = filter_input(INPUT_POST, "login");
-  $user->password = password_hash(filter_input(INPUT_POST, "password"), PASSWORD_DEFAULT);
-  $user->first_name = filter_input(INPUT_POST, "first_name");
-  $user->last_name = filter_input(INPUT_POST, "last_name");
-  $user->phone_number = filter_input(INPUT_POST, "phone_number");
-  $user->email = filter_input(INPUT_POST, "email");
-  $user->profile_icon = filter_input(INPUT_POST, "profile_icon");
-  $user->profile_banner = filter_input(INPUT_POST, "profile_banner");
 
-  setcookie("login", $user->login);
-  setcookie("first_name", $user->first_name);
-  setcookie("last_name", $user->last_name);
-  setcookie("phone_number", $user->phone_number);
-  setcookie("email", $user->email);
-  setcookie("profile_icon", $user->profile_icon);
-  setcookie("profile_banner", $user->profile_banner);
+  $user = new Users();
 
-  $user->add_user();
+  $username = $_POST["username"];
+  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+  $first_name = $_POST["first_name"];
+  $last_name = $_POST["last_name"];
+  $phone_number = $_POST["phone_number"];
+  $email = $_POST["email"];
+  $profile_icon = $_POST["profile_icon"];
+  $profile_banner = $_POST["profile_banner"];
 
-  header("Location: login.php");
+  setcookie("username", $username);
+  setcookie("first_name", $first_name);
+  setcookie("last_name", $last_name);
+  setcookie("phone_number", $phone_number);
+  setcookie("email", $email);
+  setcookie("profile_icon", $profile_icon);
+  setcookie("profile_banner", $profile_banner);
+
+  $user->add_user($username, $password, $first_name, $last_name, $phone_number, $email, $profile_icon, $profile_banner);
+
+  header("Location: Login.php");
   exit();
 } 
 ?>
@@ -46,7 +45,7 @@ if($method == "POST")
 <div class="form">
   <form class="box" action="" method="POST">
     <h1 class="box-title">S'inscrire</h1>
-    <input type="text" class="box-input" name="login" placeholder="Nom d'utilisateur" required />
+    <input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur" required />
     <input type="text" class="box-input" name="email" placeholder="Email" required />
     <input type="text" class="box-input" name="first_name" placeholder="first_name" required />
     <input type="text" class="box-input" name="last_name" placeholder="last_name" required />
@@ -55,7 +54,7 @@ if($method == "POST")
     <input type="text" class="box-input" name="profile_banner" placeholder="profile_banner" required />
     <input type="password" class="box-input" name="password" placeholder="Mot de passe" required />
     <input type="submit" name="submit" value="S'inscrire" class="button" />
-    <p class="box-register">Déjà inscrit? <a href="login.php">Connectez-vous ici.</a></p>
+    <p class="box-register">Déjà inscrit? <a href="username.php">Connectez-vous ici.</a></p>
   </form>
 </div>
 </body>
