@@ -1,24 +1,42 @@
 <?php
 session_start();
 
-require('User.php');
+require('../../src/model/Users.php');
 
-$method = filter_input(INPUT_SERVER, "REQUEST_METHOD");
 $error = null;
 
-if ($method == "POST") {
-
-  $user = new User($db);
-
-  $user->login = filter_input(INPUT_POST, "login");
-  $user->password = password_hash(filter_input(INPUT_POST, "password"), PASSWORD_DEFAULT);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
-  setcookie("login", $user->login);
+  $user = new Users();
+  $login = $_POST["login"];
+  $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+  
+  setcookie("login", $login);
+  
+  $mail_regex = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
+  $username_regex = '/^[a-zA-Z0-9_]{3,15}$/';
 
-  $requete = $user->login();
+  if (preg_match($mail_regex, $login)) {
+    $query = $user->login("mail");
+    echo "C'est une adresse e-mail";
+    exit();
+    
+  } elseif (preg_match($username_regex, $login)) {
+    $query = $user->login("username");
+    echo "C'est un nom d'utilisateur";
+    exit();
+
+  } else {
+    echo "Entrée invalide";
+    exit();
+  }
+
+  $query->bindParam(":login", $login);
+  $query->execute();
+
   $userDb = $requete->fetch(PDO::FETCH_ASSOC);
 
-  if (password_verify($user->password, $userDb["password"])) {
+  if (password_verify($password, $userDb["password"])) {
 
     $_SESSION["loggedin"] = true;
     
@@ -34,7 +52,6 @@ if ($method == "POST") {
 <html>
 <head>
     <title>Page de connexion</title>
-    <link rel="stylesheet" type="text/css" href="../assets/styles/style1.css">
 </head>
 <body>
 
