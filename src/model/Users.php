@@ -33,15 +33,15 @@ class Users {
         // echo json_encode($users);
     }
 
-    public function add_user($username, $password, $first_name, $last_name, $phone, $mail, $profile_icon, $profile_banner){
+    public function add_user($username, $password, $first_name, $last_name, $phone, $mail){
         //Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
         $connection = $db->getConnection();
         // Requêtes SQL
 
-        $sql = 'INSERT INTO "user" (username, password, mail, phone, first_name, last_name, profile_icon, profile_banner)
-        VALUES(:username, :password, :mail,:phone,:first_name,:last_name,:profile_icon, :profile_banner)';
+        $sql = 'INSERT INTO "user" (username, password, mail, phone, first_name, last_name)
+        VALUES(:username, :password, :mail,:phone,:first_name,:last_name)';
 
         $query = $connection->prepare($sql);
     
@@ -57,8 +57,6 @@ class Users {
         $query->bindParam(":last_name", $last_name1);
         $query->bindParam(":phone", $phone);
         $query->bindParam(":mail", $mail1);
-        $query->bindParam(":profile_icon", $profile_icon);
-        $query->bindParam(":profile_banner", $profile_banner);
     
         if ($query->execute()){
             return true;
@@ -66,37 +64,66 @@ class Users {
         return false;
     }
 
-    function login($username, $mail) : PDOStatement {
-        $table = "user";
-        $sql = "SELECT * FROM ".$table." WHERE username = :username";
 
-         //Connecter la BDD
+    function check_user($mail){
+ 
+        // Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
         $connection = $db->getConnection();
-        $query = $connection->prepare($sql);
+        
+        // Préparation/execution de la requête
+        $sql = 'SELECT * FROM "user" WHERE mail = :mail';
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $stmt->execute();
 
-        $mail_regex = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
-        $username_regex = '/^[a-zA-Z0-9_]{3,15}$/';
+        // var_dump($stmt);
+        
+        // Fetch le résultat de la requête
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (preg_match($mail_regex, $username)) {
+        return $results;
+        // Vérifie s'il y a bien un utilisatuer existant
+    }
 
-            $query->bindParam(":username", $mail);
-            echo "C'est une adresse e-mail";
-            
-        } elseif (preg_match($username_regex, $username)) {
+    function read_user($mail){
 
-            $query->bindParam(":username", $username);
-            echo "C'est un nom d'utilisateur";
-
-        } else {
-
-            echo "Entrée invalide";
-
-        }
+        //Connecter la BDD
+        $db = new Database();
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+        
+        $sql = 'SELECT * FROM "user" WHERE mail = ?';
+        $query = $connection->query($sql);
+        $query->bindParam(1,$mail);
 
         $query->execute();
 
+        // Fetch the results as an associative array
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return [$results["username"], 
+                $results["password"], 
+                $results["first_name"], 
+                $results["last_name"], 
+                $results["phone"], 
+                $results["mail"],
+                $results["profile_icon"],
+                $results["profile_banner"]
+            ];
+        
+    }
+
+    function login($credential) : PDOStatement {
+         //Connecter la BDD
+        $db = new Database();
+        // Ouverture de la connection
+        $sql = 'SELECT * FROM "user" WHERE ' .$credential. ' = :login';
+        $connection = $db->getConnection();
+        $query = $connection->prepare($sql);
+    
         return $query;
     }
+        
 }
