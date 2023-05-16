@@ -19,14 +19,14 @@ class Users {
         $users = [];
         while (($row = $request->fetch())) {
             $users = [
-                "fist_name"=> $row["first_name"],
+                "first_name"=> $row["first_name"],
             ];
         }
 
         return $users;
     }
         // Fermeture de la connection
-//        $connection = null;
+        $connection = null;
 
         // Envoi des données au format JSON
         // header('Content-Type: application/json');
