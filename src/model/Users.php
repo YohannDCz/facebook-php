@@ -133,8 +133,8 @@ class Users {
         $connection = $db->getConnection();
 
         //Requêtes SQL
-        $check = 'SELECT mail,password from user WHERE mail = :mail ;';
-        //Vérification de l'identifiant unique 
+            //Vérification de l'identifiant unique 
+        $check = 'SELECT mail, password from user WHERE mail = :mail ;';
 
         $query = $connection->prepare($check);
         $query->bindParam(":mail", $mail);
@@ -143,9 +143,9 @@ class Users {
             return false;
             }
 
-        $result = $query->fetch(PDO::FETCH_ASSOC);
         //On voit si les mots de passe sont les mêmes
-        
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+
         if ($result && password_verify($password, $result["password"])) {
             //Requêtes SQL
             $query = 'DELETE FROM user WHERE mail = :mail ;';
