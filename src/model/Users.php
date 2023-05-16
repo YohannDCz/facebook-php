@@ -26,7 +26,7 @@ class Users {
         return $users;
     }
         // Fermeture de la connection
-        $connection = null;
+        //$connection = null;
 
         // Envoi des données au format JSON
         // header('Content-Type: application/json');
@@ -128,28 +128,30 @@ class Users {
     function deleteUser($password,$mail) {
         //Connecter la BDD
         $db = new Database();
+
         //Ouverture de la connection
         $connection = $db->getConnection();
+
         //Requêtes SQL
         $check = 'SELECT mail,password from user WHERE mail = :mail ;';
         //Vérification de l'identifiant unique 
+
         $query = $connection->prepare($check);
         $query->bindParam(":mail", $mail);
-        if ($query->execute()){
-            //On voit si les mots de passe sont les mêmes
-            if (password_verify(query["$password"], password_hash($password))) {
-                //Requêtes SQL
-                $sql = 'DROP FROM user WHERE mail = :mail and password = :password ;';
-                $query = $connection->prepare($sql);
-                $mail1=htmlspecialchars(strip_tags($mail));
-                $query->bindParam(":password", $password);
-                $query->bindParam(":mail", $mail1);
-                if ($query->execute()){
-                    return true;
-                }
-                return false;
+        //On voit si l'execute passe ou pas
+        if (!$query->execute()){
+            return false;
+            }
+
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        //On voit si les mots de passe sont les mêmes
+        
+        if ($result && password_verify($password, $result["password"])) {
+            //Requêtes SQL
+            $query = 'DELETE FROM user WHERE mail = :mail ;';
+            $query = $connection->prepare($query);
+            $query->bindParam(":mail", $mail);
+            return $query->execute();
             }
         }
-        return false;
     }
-}
