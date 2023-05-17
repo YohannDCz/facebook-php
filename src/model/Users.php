@@ -118,10 +118,12 @@ class Users {
          //Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
-        $sql = 'SELECT * FROM "user" WHERE ' .$credential. ' = :login';
+        $sql = 'SELECT * FROM "user" WHERE username = :credential OR mail = :credential';
         $connection = $db->getConnection();
         $query = $connection->prepare($sql);
-    
+        $query->execute([
+            ":credential" => $credential
+        ]);
         return $query;
     }
 
