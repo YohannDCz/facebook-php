@@ -3,8 +3,6 @@ require_once('../model/Database.php');
 require_once('../model/Users.php');
 
 function signup() {
-  if ($_SERVER["REQUEST_METHOD"] == "POST")
-  {
 
     $user = new Users();
 
@@ -36,11 +34,9 @@ function signup() {
 
     header("Location: Login.php");
     exit();
-  } 
 }
 
 function login() {
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $user = new Users();
     $login = $_POST["login"];
@@ -59,8 +55,8 @@ function login() {
       echo "Identifiants invalides";
       exit();
     }
-  }
 }
+
 
 function logout() {
 
@@ -70,7 +66,7 @@ function logout() {
 
 }
 
-if(isset($_SERVER['HTTP_REFERER'])) {
+if(isset($_SERVER['HTTP_REFERER']) and $_SERVER["REQUEST_METHOD"] == "POST") {
   $referer = $_SERVER['HTTP_REFERER'];
   if(strpos($referer, "Login.php") !== false) {
       $loginScript = login();

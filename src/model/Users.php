@@ -154,6 +154,6 @@ class Users {
             $query = $connection->prepare($query);
             $query->bindParam(":mail", $mail);
             return $query->execute();
-            }
         }
     }
+}
