@@ -10,7 +10,7 @@
         <img class="profile-img" src="./img/pp.png">
         <div class="profile-nom-prenom">
             <h3>Nom Prénom</h3>
-            <h3>X Amis</h3>
+            <h4>X Amis</h4>
         </div>
     </div>
 </div>

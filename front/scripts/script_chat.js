@@ -1,5 +1,18 @@
-const messengerElement = document.querySelector('.messenger');
-const headerHeight = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
-const headerBorderWidth = getComputedStyle(document.documentElement).getPropertyValue('--header-border-width');
-const messengerHeight = `calc(100vh - (${headerHeight.trim()} + ${headerBorderWidth.trim()}))`;
-messengerElement.style.height = messengerHeight;
+let chatReturnLink = document.querySelector('.chat_return');
+let chat = document.querySelector('.chat');
+let sidebar = document.querySelector('.sidebar');
+
+chatReturnLink.addEventListener('click', () => {
+    chat.style.display = 'none';
+    sidebar.style.display = 'block';
+});
+
+
+let listContacts = document.querySelectorAll('ul');
+
+listContacts.forEach((item) => {
+    item.addEventListener('click', () => {
+        chat.style.display = 'flex';
+        sidebar.style.display = 'none';
+    });
+  });

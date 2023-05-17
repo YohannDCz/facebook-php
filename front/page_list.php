@@ -65,7 +65,7 @@ function affichageMyGroups()
                         <p>Catégorie</p>
                         <p>X personnes qui aiment la page</p>
                     </div>
-                    <p class="groups_join">Voir la page</p>
+                    <p class="groups_join"><a href="page_page.php">Voir la page</a></p>
                 </div>
             </div>
 

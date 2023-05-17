@@ -10,12 +10,10 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
-    <!-- <link rel="stylesheet" href="styles/style.css"> -->
-    <!-- <link rel="stylesheet" href="styles/style-mobile.css"> -->
     <title>Social View</title>
 </head>
 
-<body>
+<body class="chat_body">
     <header>
         <div class="headerleft">
             <div class="logo">
@@ -24,7 +22,7 @@
                 </a>
             </div>
             <div class="searchbar">
-                <span class="material-icons-outlined search_icon">search</span>
+                <span class="material-icons-outlined search_icon md-40">search</span>
                 <input name="searchbar" type="text" class="inputsearchbar" placeholder="Recherche...">
             </div>
         </div>

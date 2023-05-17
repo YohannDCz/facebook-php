@@ -65,7 +65,7 @@ function affichageMyGroups()
                         <p>X Membres</p>
                         <p>X Publications</p>
                     </div>
-                    <p class="groups_join">Voir le groupe</p>
+                    <p class="groups_join"><a href="group_page.php">Voir le groupe</a></p>
                 </div>
             </div>
 

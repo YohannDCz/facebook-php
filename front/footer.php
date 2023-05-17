@@ -1,7 +1,7 @@
 <footer>
 	<div class="footer_container">
 		<div class="footer_links">
-			<a href="about-us.php">À propos de nous</a>
+			<a href="about_us.php">À propos de nous</a>
 			<a href="policy.php">Politique de confidentialité</a>
 			<a href="mentions.php">Mentions légales</a>
 			<a href="contact_us.php">Contactez-nous</a>

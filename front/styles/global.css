@@ -6,18 +6,24 @@
     font-family: Verdana;
 }
 
-* > a:hover, * > a:hover:visited {
+*>a:hover,
+*>a:hover:visited {
     /* text-decoration: underline; */
     color: #009FF5;
 }
 
-* > a:active {
+*>a:active {
     color: #00507A;
 }
 
-* > a:visited {
+*>a,
+*>a:visited {
     /* color: #888; */
     color: inherit;
+}
+
+*>img {
+    user-select: none;
 }
 
 html {
@@ -71,39 +77,6 @@ p {
     font-size: 16px;
 }
 
-@media (max-width: 1024px) {
-
-    /* global */
-
-    h1 {
-        font-size: 38px;
-    }
-
-    h2 {
-        font-size: 32px;
-    }
-
-    h3 {
-        font-size: 26px;
-    }
-
-    h4 {
-        font-size: 20px;
-    }
-
-}
-
-@media (max-width: 1224px) {
-
-    h4 {
-        font-size: 20px;
-    }
-
-    p {
-        font-size: 14px;
-    }
-}
-
 .white_space {
     white-space: nowrap;
 }
@@ -119,6 +92,7 @@ p {
 }
 
 .Submitbutton {
+    user-select: none;
     align-self: center;
     padding: 20px 30px;
     background-color: #0077B6;
@@ -158,6 +132,45 @@ p {
 }
 
 .material-icons-outlined,
+.material-icons,
 .material-icons-round {
     user-select: none;
+}
+
+
+@media (max-width: 1024px) {
+
+    /* global */
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .material-icons-outlined.md-40 {
+        font-size: 32px;
+    }
+
+}
+
+@media (max-width: 1224px) {
+
+    h4 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
 }

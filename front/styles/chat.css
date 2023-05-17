@@ -1,47 +1,51 @@
 .messenger {
     display: flex;
-    /* height: 82vh; */
-    /* height: calc(100vh - (var(--header-height) + var(--header-border-width))); */
+    height: 100vh;
+    flex: 1;
+    height: calc(100vh - 80px);
 }
 
 .sidebar {
     border-right: 1px solid #ddd;
-    width: 30%;
+    width: 25%;
     height: 100%;
     overflow-y: auto;
 }
 
-.sidebar #iconsidebar {
-    margin-right: 20px;
-}
-
 .sidebar ul {
     list-style-type: none;
-    padding: 0px 10px;
-    display: flex;
-    flex-direction: column;
+    padding: 10px;
+    height: 100%;
 }
 
 .sidebar ul li {
     padding: 10px 5px;
-    border-bottom: 1px solid #ddd;
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 10px;
 }
 
-.profile-pic {
+.sidebar ul li:hover {
+    background-color: #ddd;
+    border-radius: 12px;
+}
+
+.sidebar ul li:active {
+    background-color: #bbb;
+    border-radius: 12px;
+}
+
+.profile_pic {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 10px;
 }
-
 
 .chat {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 75%;
     height: 100%;
 }
 
@@ -55,60 +59,45 @@
 
 .send-icons {
     display: flex;
-    flex-direction: row;
     align-items: flex-end;
-    column-gap: 2px;
-    border-top: 2px solid #ccc;
-    padding: 10px 0px;
-}
-
-.chat-header-icons {
-    display: flex;
-    justify-content: end;
+    padding: 10px;
+    border-top: 1px solid #ddd;
 }
 
 .icon {
     width: 20px;
     height: 20px;
+    margin-left: 10px;
 }
 
+.icons_chat {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
 
 .input-with-icon {
     flex-grow: 1;
     display: flex;
-    position: relative;
     width: 80%;
 }
 
-.input-with-icon input {
-    padding-right: 30px;
-    width: 100%;
-}
-
-.input-with-icon .material-icons-outlined {
-    position: absolute;
-    right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-}
-
-
 .messages {
+    padding: 10px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     border-bottom: 1px solid #ddd;
-    height: 100%;
-    justify-content: flex-end;
+    overflow-y: auto;
+    flex-grow: 1;
 }
-
 
 .send-message {
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    gap: 5px;
+    margin-left: 5px;
 }
 
 .send-message input {
@@ -117,39 +106,37 @@
     padding: 10px;
 }
 
-.chat_send_button {
-    padding: 10px 20px;
-    background-color: #009FF5;
-    border: none;
-}
-
 .chatheader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 20px;
     border-bottom: 1px solid black;
 }
 
 .chat-header-icons {
-    padding-right: 25px;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    align-items: center;
 }
 
 .profile-info {
     display: flex;
     align-items: center;
-    margin-left: 25px;
+    gap: 10px;
 }
 
-.profile-info img {
-    margin-right: 10px;
-}
 
 .amisinput {
     border: none;
     border-bottom: solid 1px black;
     padding: 10px;
     width: 100%;
+}
+
+.amisinput_div {
+    padding: 0px 10px;
 }
 
 .titre {
@@ -179,16 +166,93 @@
     color: #fff;
 }
 
-
-.amisinput_div {
-    padding: 0px 10px;
+.Submitbutton {
+    padding: 10px 15px;
+    align-self: auto;
 }
 
-.chat_list_messages{
-    background-color: pink;
+.chat_send {
+    display: none;
+}
+
+.chat_arrow_back_name {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: auto;
-    padding: 10px;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.chat_return {
+    display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .chat_return {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+        overflow: auto;
+    }
+
+    .chat {
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    .icons_chat {
+        gap: 0;
+    }
+
+    .messages {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .input-with-icon {
+        width: 100%;
+    }
+
+    .chat {
+        height: 100vh;
+        display: none;
+    }
+
+    .sidebar {
+        display: block;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .messenger {
+        flex-direction: column;
+    }
+
+    .Submitbutton {
+        display: none;
+    }
+
+    .chat_send {
+        display: inline;
+    }
+
+    .icons_chat_sub {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .chatheader {
+        padding: 5px 10px;
+        gap: 5px;
+    }
+
+    .profile_pic {
+        width: 32px;
+        height: 32px;
+    }
 }
