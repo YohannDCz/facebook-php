@@ -3,37 +3,43 @@
 //Inclusion du fichier pour la connexion a la BDD
 require_once 'Database.php';
 
-// Création du controller users
 
 class Users {
     // une fonction qui récupère tous les utilisateurs 
     function getUsers(){
+
         //Connecter la BDD
         $db = new Database();
+
         // Ouverture de la connection
         $connection = $db->getConnection();
+
         // Requêtes SQL
-        $request = $connection->query("SELECT * FROM users");
+        $request = $connection->query("SELECT * FROM user");
         $request->execute();
 
         $users = [];
         while (($row = $request->fetch())) {
-            $users = [
+            $user = [
+                "username"=> $row["username"],
                 "first_name"=> $row["first_name"],
+                "last_name"=> $row["last_name"],
+                "phone"=> $row["phone"],
+                "mail"=> $row["mail"],
+                "profile_icon"=> $row["profile_icon"],
+                "profile_banner"=> $row["profile_banner"],
             ];
+            $users[] = $user;
         }
+
+        // Fermeture de la connection
+        $connection = null;
 
         return $users;
     }
-        // Fermeture de la connection
-        //$connection = null;
 
-        // Envoi des données au format JSON
-        // header('Content-Type: application/json');
-        // echo json_encode($users);
-
-    function add_user($username, $password, $first_name, $last_name, $phone, $mail){
-        //Connecter la BDD
+    function addUser($username, $password, $first_name, $last_name, $phone, $mail){
+        //  Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
         $connection = $db->getConnection();
@@ -45,26 +51,31 @@ class Users {
         $query = $connection->prepare($sql);
     
         $username=htmlspecialchars(strip_tags($username));
-        $first_name1=htmlspecialchars(strip_tags($first_name));
-        $last_name1=htmlspecialchars(strip_tags($last_name));
+        $first_name=htmlspecialchars(strip_tags($first_name));
+        $last_name=htmlspecialchars(strip_tags($last_name));
         $phone=htmlspecialchars(strip_tags($phone));
-        $mail1=htmlspecialchars(strip_tags($mail));
+        $mail=htmlspecialchars(strip_tags($mail));
+
 
         $query->bindParam(":username", $username);
         $query->bindParam(":password", $password);
-        $query->bindParam(":first_name", $first_name1);
-        $query->bindParam(":last_name", $last_name1);
+        $query->bindParam(":first_name", $first_name);
+        $query->bindParam(":last_name", $last_name);
         $query->bindParam(":phone", $phone);
-        $query->bindParam(":mail", $mail1);
-    
+        $query->bindParam(":mail", $mail);
+
+
+
         if ($query->execute()){
+            $connection = null;
             return true;
         }
+        $connection = null;
         return false;
     }
 
-
-    function check_user($mail){
+    // Vérifie s'il y a bien un utilisateur existant
+    function checkUser($mail){
  
         // Connecter la BDD
         $db = new Database();
@@ -82,11 +93,13 @@ class Users {
         // Fetch le résultat de la requête
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Fermeture de la connection
+        $connection = null;
+
         return $results;
-        // Vérifie s'il y a bien un utilisatuer existant
     }
 
-    function read_user($mail){
+    function getUser($mail){
 
         //Connecter la BDD
         $db = new Database();
@@ -100,34 +113,26 @@ class Users {
         $query->execute();
 
         // Fetch the results as an associative array
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        $results = $query->fetch(PDO::FETCH_ASSOC);
 
-        return [$results["username"], 
-                $results["password"], 
-                $results["first_name"], 
-                $results["last_name"], 
-                $results["phone"], 
-                $results["mail"],
-                $results["profile_icon"],
-                $results["profile_banner"]
-            ];
-        
+        return $results;
     }
 
-    function login($credential) : PDOStatement {
+    function login($credential) {
          //Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
-        $sql = 'SELECT * FROM "user" WHERE username = :credential OR mail = :credential';
         $connection = $db->getConnection();
+
+        $sql = 'SELECT * FROM "user" WHERE ' .$credential. ' = user.username OR '.$credential.' = user.mail';
         $query = $connection->prepare($sql);
-        $query->execute([
-            ":credential" => $credential
-        ]);
+        $query->execute();
+
         return $query;
     }
 
     function deleteUser($password,$mail) {
+
         //Connecter la BDD
         $db = new Database();
 
@@ -140,6 +145,7 @@ class Users {
 
         $query = $connection->prepare($check);
         $query->bindParam(":mail", $mail);
+
         //On voit si l'execute passe ou pas
         if (!$query->execute()){
             return false;
@@ -154,6 +160,6 @@ class Users {
             $query = $connection->prepare($query);
             $query->bindParam(":mail", $mail);
             return $query->execute();
+            }
         }
     }
-}
