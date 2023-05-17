@@ -1,0 +1,196 @@
+.group_container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.group_settings {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.group_owner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.group_owner_pp {
+    width: 50px;
+    user-select: none;
+}
+
+.group_friend_pp {
+    width: 30px;
+    user-select: none;
+}
+
+.group_owner_role,
+.group_text_preview {
+    font-size: 10px;
+    color: #888;
+}
+
+.group_preview_info_text {
+    font-size: 12px;
+    color: #888;
+}
+
+.group_form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.group_input {
+    border: none;
+    background-color: inherit;
+    border-bottom: solid 1px black;
+    padding: 10px;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 12px;
+}
+
+.group_tag_container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    background-color: #009FF5;
+    border-radius: 12px;
+    margin: 5px;
+    padding: 10px;
+    width: fit-content;
+}
+
+#searchResults {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.material-icons {
+    user-select: none;
+}
+
+.group_preview {
+    margin: 50px;
+    padding: 10px;
+    border: 1px black solid;
+    border-radius: 12px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    user-select: none;
+}
+
+.group_banner {
+    height: 150px;
+    border-radius: 12px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5)), url(../img/blue-texture-marble.png);
+}
+
+.group_preview_info,
+.group_preview_titre,
+.page_preview_titre {
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+}
+
+.group_preview_main {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.group_preview_publication_main,
+.group_preview_aboutus {
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.group_preview_publication {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.group_preview_aboutus {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 30%;
+}
+
+.group_preview_publication_input {
+    background-color: #ccc;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.group_preview_publication_main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 70%;
+    height: fit-content;
+}
+
+.group_banner_add_banner {
+    background-color: #ccc;
+    border-radius: 100%;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
+
+.group_banner_add_banner:hover,
+.page_banner_add_banner:hover {
+    background-color: #009FF5;
+    color: white;
+}
+
+.group_banner_add_banner:active,
+.page_banner_add_banner:active {
+    background-color: #00507A;
+    color: white;
+}
+
+.group_settings_fil_arianne {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: flex-end;
+}
+
+
+.group_settings_fil_arianne p,
+.group_settings_fil_arianne p {
+    font-size: 10px;
+    color: #888;
+}
+
+@media (max-width: 1024px) {
+
+    .group_settings {
+        width: 100%;
+    }
+
+    .group_preview {
+        display: none;
+    }
+}

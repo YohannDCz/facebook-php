@@ -1,0 +1,163 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: Verdana;
+}
+
+* > a:hover, * > a:hover:visited {
+    /* text-decoration: underline; */
+    color: #009FF5;
+}
+
+* > a:active {
+    color: #00507A;
+}
+
+* > a:visited {
+    /* color: #888; */
+    color: inherit;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h1 a,
+h2 a,
+h3 a,
+h4 a {
+    font-family: "Inter"
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+p {
+    font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+
+    /* global */
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 1224px) {
+
+    h4 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+.white_space {
+    white-space: nowrap;
+}
+
+.publication_person_comment_input {
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    height: auto;
+    resize: none;
+    background-color: inherit;
+}
+
+.Submitbutton {
+    align-self: center;
+    padding: 20px 30px;
+    background-color: #0077B6;
+    border-radius: 12px;
+    border: 1px solid #0077B6;
+    color: white;
+}
+
+.Submitbutton:hover {
+    background-color: white;
+    color: #009FF5;
+    border: 1px solid #009FF5;
+}
+
+.Submitbutton:active {
+    background-color: #00507A;
+    color: white;
+    border: 1px solid #00507A;
+}
+
+.settings_category {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    width: max-content;
+    align-items: center
+}
+
+/* google material icons */
+
+.material-icons-outlined.md-40 {
+    font-size: 40px;
+}
+
+.material-icons-round.big {
+    font-size: 150px;
+}
+
+.material-icons-outlined,
+.material-icons-round {
+    user-select: none;
+}

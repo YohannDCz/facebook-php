@@ -1,0 +1,88 @@
+@media (max-width: 1024px) {
+
+
+    .box_left {
+        width: 100%;
+        row-gap: 20px;
+    }
+
+    .summary {
+        display: none;
+    }
+
+    .list_publications {
+        width: 100%;
+    }
+
+    .banner .profile-info {
+        flex-direction: column;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* right: 50%; */
+        bottom: -55%;
+        margin: 0;
+    }
+
+    .banner .page_info {
+        flex-direction: column;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* right: 50%; */
+        bottom: -50%;
+        margin: 0;
+    }
+
+    .profile-nom-prenom {
+        align-items: center;
+    }
+
+    .Submitbutton {
+        margin: 0px;
+        padding: 10px 15px;
+    }
+
+    .banner .Submitbutton {
+        right: 5px;
+        top: 5px;
+        margin-right: 0px;
+    }
+
+    .box_aboutus {
+        margin: 10px;
+        margin-bottom: 20px;
+    }
+
+    .box_summary_friends {
+        margin: 10px;
+        margin-bottom: 20px;
+    }
+
+    .box_friends_info {
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 20px;
+    }
+
+    .box_friends_title {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 10px;
+    }
+
+    .box_friends_research {
+        width: 100%;
+    }
+
+    .box_summary_photos {
+        margin: 10px;
+        margin-bottom: 20px;
+    }
+
+    .box_photos_all {
+        flex-direction: column;
+    }
+
+    .box_photos_photo {
+        width: 100%;
+    }
+
+}

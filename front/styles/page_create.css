@@ -1,0 +1,87 @@
+.page_settings {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    max-width: 350px;
+}
+
+.page_settings_p {
+    color: #888;
+    font-size: 12px;
+}
+
+.page_div_input {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.page_preview_nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.group_preview_button {
+    background-color: #009FF5;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.page_preview_icons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.page_banner {
+    height: 150px;
+    border: 1px black solid;
+    border-radius: 12px;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5)), url(../img/blue-texture-marble.png);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.page_banner_pp {
+    height: 125px;
+    width: 125px;
+}
+
+.page_banner_add_banner {
+    background-color: #ccc;
+    border-radius: 100%;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
+
+@media (max-width: 1024px) {
+
+    .page_settings {
+        width: 100%;
+    }
+
+    .page_settings {
+        max-width: fit-content;
+    }
+
+}
+
+@media (max-width: 1224px) {
+
+    .page_preview_titre {
+        column-gap: 10px;
+    }
+}
