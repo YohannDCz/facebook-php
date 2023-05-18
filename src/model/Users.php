@@ -7,7 +7,7 @@ require_once 'Database.php';
 class Users {
     // une fonction qui récupère tous les utilisateurs 
     function getUsers(){
-
+        
         //Connecter la BDD
         $db = new Database();
 
@@ -98,7 +98,7 @@ class Users {
 
         return $results;
     }
-
+    //Selection l'utilisateur par rapport à son mail 
     function getUser($mail){
 
         //Connecter la BDD
@@ -130,7 +130,7 @@ class Users {
 
         return $query;
     }
-
+    //Supprime un utilisateur de la Base de données
     function deleteUser($password,$mail) {
 
         //Connecter la BDD
@@ -153,13 +153,134 @@ class Users {
 
         //On voit si les mots de passe sont les mêmes
         $result = $query->fetch(PDO::FETCH_ASSOC);
-
-        if ($result && password_verify($password, $result["password"])) {
-            //Requêtes SQL
-            $query = 'DELETE FROM user WHERE mail = :mail ;';
-            $query = $connection->prepare($query);
-            $query->bindParam(":mail", $mail);
-            return $query->execute();
+        if ($result && !password_verify($password, $result["password"])) {
+            //Mauvais  Mot De Passe
+            return False;
             }
+        //Requêtes SQL
+        $query = 'DELETE FROM user WHERE mail = :mail ;';
+        $query = $connection->prepare($query);
+        $query->bindParam(":mail", $mail);
+        return $query->execute();
+        
+        }
+    function modifyUserData($username,$first_name, $last_name, $phone, $mail,$id) {
+        //Connecter la BDD
+        $db = new Database();
+
+        //Ouverture de la connection
+        $connection = $db->getConnection();
+
+        //Requêtes SQL
+            //Mise à jour des données suivant l'ID fourni 
+        $update = 'UPDATE user SET username = :username, first_name = :first_name, last_name = :last_name , phone = :phone , mail = :mail WHERE id = :id';
+
+        $query = $connection->prepare($update);
+        //Binding 
+        $query->bindParam(":username", $username);
+        $query->bindParam(":first_name", $first_name);
+        $query->bindParam(":last_name", $last_name);
+        $query->bindParam(":phone", $phone);
+        $query->bindParam(":mail", $mail);
+        $query->bindParam(":id", $id);
+
+        //Exécution de la Query
+        if ($query->execute()) {
+            // Update réussie
+            return true;
+        } else {
+            // Error
+            return false;
         }
     }
+    function modifyUserPassword($mail,$oldPassword,$newPassword) {
+        //Connecter la BDD
+        $db = new Database();
+
+        //Ouverture de la connection
+        $connection = $db->getConnection();
+
+        //Requêtes SQL
+            //Vérification de l'identifiant unique 
+        $check = 'SELECT password from user WHERE mail = :mail ;';
+        $query = $connection->prepare($check);
+        $query->bindParam(":mail", $mail);
+        //On voit si l'Execute passe ou pas
+        if (!$query->execute()){
+            return false;
+            }
+        //On voit si les mots de passe sont les mêmes
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        if ($result && !password_verify($oldPassword, $result["password"])) {
+            //Mauvais Vieux Mot De Passe
+            return False;
+            }
+        //Requêtes SQL
+        
+        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        $query = 'UPDATE user SET password = :newPassword WHERE mail = :mail ;';
+        $query = $connection->prepare($query);
+        $query->bindParam(":mail", $mail);
+        $query->bindParam(":newPassword", $newPassword);
+        return $query->execute();
+    }
+    function modifyUserPics($profile_icon, $profile_banner, $id) {
+        //Connecter la BDD
+        $db = new Database();
+
+        //Ouverture de la connection
+        $connection = $db->getConnection();
+
+        //Requêtes SQL
+            //Mise à jour des données suivant l'ID fourni 
+        $update = 'UPDATE user SET profile_icon = :profile_icon , profile_banner = :profile_banner WHERE id = :id';
+
+        $query = $connection->prepare($update);
+        //Binding 
+        $query->bindParam(":profile_icon", $profile_icon);
+        $query->bindParam(":profile_banner", $profile_banner);
+        $query->bindParam(":id", $id);
+
+        //Exécution de la Query
+        if ($query->execute()) {
+            // Update réussie
+            return true;
+        } else {
+            // Error
+            return false;
+    }
+    }
+    function disablingProccess($mail,$password) {
+        //Connecter la BDD
+        $db = new Database();
+
+        //Ouverture de la connection
+        $connection = $db->getConnection();
+
+        //Requêtes SQL
+            //Vérification de l'identifiant unique 
+        $check = 'SELECT mail, password from user WHERE mail = :mail ;';
+
+        $query = $connection->prepare($check);
+        $query->bindParam(":mail", $mail);
+
+        //On voit si l'execute passe ou pas
+        if (!$query->execute()){
+            return false;
+            }
+
+        //On voit si les mots de passe sont les mêmes
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        
+        if ($result && !password_verify($password, $result["password"])) {
+            //Mauvais  Mot De Passe
+            return False;
+            }
+        //Requêtes SQL
+        $query = 'UPDATE user SET is_activated = FALSE WHERE mail = :mail ;';
+        $query = $connection->prepare($query);
+        $query->bindParam(":mail", $mail);
+        return $query->execute();
+            
+    }
+}
