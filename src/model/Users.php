@@ -24,6 +24,7 @@ class Users {
                 "username"=> $row["username"],
                 "first_name"=> $row["first_name"],
                 "last_name"=> $row["last_name"],
+                "birthdate" => $row["birthdate"],
                 "phone"=> $row["phone"],
                 "mail"=> $row["mail"],
                 "profile_icon"=> $row["profile_icon"],
@@ -38,15 +39,15 @@ class Users {
         return $users;
     }
 
-    function addUser($username, $password, $first_name, $last_name, $phone, $mail){
+    function addUser($username, $password, $first_name, $last_name,$birthdate, $phone, $mail){
         //  Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
         $connection = $db->getConnection();
         // Requêtes SQL
 
-        $sql = 'INSERT INTO "user" (username, password, mail, phone, first_name, last_name)
-        VALUES(:username, :password, :mail,:phone,:first_name,:last_name)';
+        $sql = 'INSERT INTO "user" (username, password, mail, phone, first_name, last_name, birthdate)
+        VALUES(:username, :password, :mail,:phone,:first_name,:last_name,:birthdate)';
 
         $query = $connection->prepare($sql);
     
@@ -63,7 +64,7 @@ class Users {
         $query->bindParam(":last_name", $last_name);
         $query->bindParam(":phone", $phone);
         $query->bindParam(":mail", $mail);
-
+        $query->bindParam(":birthdate", $birthdate);
 
 
         if ($query->execute()){

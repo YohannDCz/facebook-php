@@ -6,7 +6,7 @@
     <div class="login_signup_container">
         <h1>Connexion</h1>
 
-        <form class="login_signup">
+        <form class="login_signup" action="userController" method="POST">
             <div class="row">
                 <input name="name" type="text" class="inputText" placeholder="Pseudo ou Email" required>
             </div>

@@ -1,4 +1,30 @@
-<?php include 'header.php' ?>
+<?php
+    require_once('../src/model/Database.php');
+    //  Connecter la BDD
+    $db = new Database();
+    // Ouverture de la connection
+    $connection = $db->getConnection();
+    // Requêtes SQL
+
+    $sql = 'SELECT * FROM "pages"';
+    $query = $connection->query($sql);
+    $query->execute();
+
+    $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $id = $rows[0]["id"];
+
+    $sql2 = 'SELECT * FROM "post" WHERE author_id = :id';
+    $query2 = $connection->prepare($sql2);
+    $query2->bindParam(':id', $id);
+    $query2->execute();
+
+    $row2 = $query2->fetchAll(PDO::FETCH_ASSOC);
+    $rowCount = count($row2);
+
+    var_dump($rowCount);
+
+?><?php include 'header.php' ?>
 <link rel="stylesheet" href="styles/profile.css">
 <link rel="stylesheet" href="styles/publication.css">
 
@@ -9,8 +35,8 @@
     <div class="page_info">
         <img class="profile-img" src="./img/pp.png">
         <div class="profile-nom-prenom">
-            <h3><span class="white_space">Nom de la page</span></h3>
-            <h4><span class="white_space">X abonnements</span></h4>
+            <h3><span class="white_space"><?= $rows[0]["name"] ?></span></h3>
+            <h4><span class="white_space">X posts</span></h4>
         </div>
     </div>
 </div>
@@ -36,34 +62,6 @@
 <div class="summary-content box_main" id="box_main">
 
     <div class="box_left">
-
-        <div class="box_info">
-            <div class="box-title">
-                <h2>Intro</h2>
-            </div>
-            <div class="user-info">
-                <div class="logo-info">
-                    <span class="material-icons-outlined md-20">location_on</span>
-                    <li id="user-info-list">Habite à X</li>
-                </div>
-                <div class="logo-info">
-                    <span class="material-icons-outlined md-20">home_repair_service</span>
-                    <li id="user-info-list">Travaille à X</li>
-                </div>
-                <div class="logo-info">
-                    <span class="material-icons-outlined md-20">school</span>
-                    <li id="user-info-list">À étudié(e) au lycée X</li>
-                </div>
-                <div class="logo-info">
-                    <span class="material-icons-outlined md-20">favorite</span>
-                    <li id="user-info-list">Célibataire</li>
-                </div>
-                <div class="logo-info">
-                    <span class="material-icons-outlined md-20">mail</span>
-                    <li id="user-info-list">machin@machin.fr</li>
-                </div>
-            </div>
-        </div>
 
         <div class="box_friends">
             <div class="box-title">

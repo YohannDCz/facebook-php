@@ -11,10 +11,10 @@ function signup() {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $phone_number = $_POST["phone_number"];
-    $mail = $_POST["mail"];
+    $email = $_POST["email"];
+    $birthdate = $_POST["birthdate"];
 
-
-    $resultat = $user->check_user($mail);
+    $resultat = $user->checkUser($email);
 
     $error = null;
 
@@ -28,9 +28,10 @@ function signup() {
     setcookie("first_name", $first_name);
     setcookie("last_name", $last_name);
     setcookie("phone_number", $phone_number);
-    setcookie("mail", $mail);
+    setcookie("email", $email);
+    setcookie("birthdate", $birthdate);
 
-    $user->add_user($username, $password, $first_name, $last_name, $phone_number, $mail);
+    $user->addUser($username, $password, $first_name, $last_name, $phone_number, $email, $birthdate);
 
     header("Location: Login.php");
     exit();
@@ -68,11 +69,11 @@ function logout() {
 
 if(isset($_SERVER['HTTP_REFERER']) and $_SERVER["REQUEST_METHOD"] == "POST") {
   $referer = $_SERVER['HTTP_REFERER'];
-  if(strpos($referer, "Login.php") !== false) {
+  if(strpos($referer, "login.php") !== false) {
       $loginScript = login();
   } elseif(strpos($referer, "Logout.php") !== false) {
       $logoutScript = logout();
-  } elseif(strpos($referer, "Signup.php") !== false) {
+  } elseif(strpos($referer, "signup.php") !== false) {
       $signupScript = signup();
   } else {
       echo "not ok";
