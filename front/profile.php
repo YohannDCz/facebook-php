@@ -157,8 +157,8 @@
             </div>
 
             <div class="publication_post_info">
-                <p>X personnes ont aimés</p>
-                <p>X commentaires</p>
+                <p class="publication_persons_like"><a href="#">X personnes ont aimés</a></p>
+                <p class="publication_persons_comment"><a href="#">X commentaires</a></p>
             </div>
 
             <div class="publication_post_reaction">
