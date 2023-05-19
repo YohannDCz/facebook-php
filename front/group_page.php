@@ -12,6 +12,7 @@
 
 <div class="group_info">
     <h3>Nom du groupe</h3>
+    <p class="accept group_invitation">Voir invitations</p>
     <input type="submit" class="Submitbutton" value="Modifier le profil">
 </div>
 
@@ -30,6 +31,10 @@
 
     <h3>
         <a class="summary-link profile_photos" href="#" data-target="box_summary_photos">Photos</a>
+    </h3>
+
+    <h3>
+        <a class="summary-link profile_invitations" href="#" data-target="box_summary_invitations">Invitations</a>
     </h3>
 </div>
 
@@ -332,7 +337,7 @@
 
 </div>
 
-<a href="profile.php" class="summary-content box_return">
+<a href="group_page.php" class="summary-content box_return">
     <span class="material-icons-outlined material-icons-round return_icon">arrow_back</span>
     <p>Retour</p>
 </a>
@@ -414,7 +419,7 @@
 
     <div class="box_friends_title">
         <h2>Membres</h2>
-        <input type="text" name="" id="" placeholder="Rechercher un ami..." class="box_friends_research" maxlength="75">
+        <input type="text" name="" id="" placeholder="Rechercher un membre..." class="box_friends_research" maxlength="75">
     </div>
 
     <div class="box_friends_info">
@@ -468,6 +473,58 @@
         <img src="./img/pp2.png" alt="" class="box_photos_photo">
         <img src="./img/pp2.png" alt="" class="box_photos_photo">
         <img src="./img/pp2.png" alt="" class="box_photos_photo">
+
+    </div>
+
+
+</div>
+
+<div class="summary-content box_summary_invitations">
+
+    <div class="box_friends_title">
+        <h2>Invitations</h2>
+    </div>
+
+    <div class="box_invitations_info">
+
+        <div class="box_invitations">
+            <div class="box_friends_pp_name">
+                <img src="./img/pp2.png" alt="" class="box_friends_friend_pp">
+                <div class="box_friends_name">
+                    <p>Nom Prénom</p>
+                </div>
+            </div>
+            <div class="box_invitations_buttons">
+                <p class="accept">Accepter</p>
+                <p class="reject">Refuser</p>
+            </div>
+        </div>
+
+        <div class="box_invitations">
+            <div class="box_friends_pp_name">
+                <img src="./img/pp2.png" alt="" class="box_friends_friend_pp">
+                <div class="box_friends_name">
+                    <p>Nom Prénom</p>
+                </div>
+            </div>
+            <div class="box_invitations_buttons">
+                <p class="accept">Accepter</p>
+                <p class="reject">Refuser</p>
+            </div>
+        </div>
+
+        <div class="box_invitations">
+            <div class="box_friends_pp_name">
+                <img src="./img/pp2.png" alt="" class="box_friends_friend_pp">
+                <div class="box_friends_name">
+                    <p>Nom Prénom</p>
+                </div>
+            </div>
+            <div class="box_invitations_buttons">
+                <p class="accept">Accepter</p>
+                <p class="reject">Refuser</p>
+            </div>
+        </div>
 
     </div>
 
