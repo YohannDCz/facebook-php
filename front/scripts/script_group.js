@@ -2,6 +2,7 @@ let box_main = document.querySelector(".box_main");
 let box_main_id = document.querySelector("#box_main");
 let box_summary_friends = document.querySelector(".box_summary_friends");
 let box_summary_photos = document.querySelector(".box_summary_photos");
+let box_summary_invitations = document.querySelector(".box_summary_invitations");
 
 let profileLinks = document.querySelectorAll('.summary-link');
 let contentBoxes = document.querySelectorAll('.summary-content');
@@ -66,3 +67,12 @@ toggleResponsiveClass();
 
 // Écoute l'événement de redimensionnement de la fenêtre
 window.addEventListener('resize', toggleResponsiveClass);
+
+let group_invitation = document.querySelector(".group_invitation");
+
+group_invitation.addEventListener('click', function (event) {
+    event.preventDefault();
+    resetContentBoxes();
+    box_summary_invitations.classList.remove('summary-content');
+    toggleResponsiveClass(); // Appel de la fonction après avoir mis à jour les classes
+});

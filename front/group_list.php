@@ -20,7 +20,7 @@ function affichageGroups()
         .group_settings { display: flex; }
         }
         </style>';
-        affichageDiscover();
+    affichageDiscover();
 }
 
 function affichageDiscover()
@@ -52,6 +52,26 @@ function affichageDiscover()
 function affichageMyGroups()
 {
 ?>
+    <h3>Tous les groupes dont vous gérez (X)</h3>
+    <div class="groups_grid">
+
+        <?php for ($i = 1; $i <= 3; $i++) { ?>
+
+            <div class="groups_group_preview">
+                <img src="./img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <div class="groups_group_content">
+                    <p class="groups_group_name">Nom du groupe</p>
+                    <div class="groups_group_info">
+                        <p>X Membres</p>
+                        <p>X Publications</p>
+                    </div>
+                    <p class="groups_join"><a href="group_page.php">Voir le groupe</a></p>
+                </div>
+            </div>
+
+        <?php } ?>
+    </div>
+
     <h3>Tous les groupes dont vous êtes membre (X)</h3>
     <div class="groups_grid">
 
@@ -94,8 +114,8 @@ function parametres()
 
     <div class="group_settings">
         <div class="group_settings_fil_arianne">
-        <p><a href="index.php">Accueil</a></p>
-        <p class="material-icons-round">chevron_right</p>
+            <p><a href="index.php">Accueil</a></p>
+            <p class="material-icons-round">chevron_right</p>
             <p>Groupes</p>
         </div>
 

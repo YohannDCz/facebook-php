@@ -184,7 +184,25 @@
     column-gap: 10px;
     align-items: center;
     color: #888;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
 }
+
+.group_preview_publication_sub:hover {
+    color: #009FF5;
+}
+
+.group_preview_publication_sub:active {
+    color: #00507A;
+}
+
+/* .publication_persons_like{
+
+}
+
+.publication_persons_comment{
+
+} */
 
 @media (max-width: 1024px) {
 

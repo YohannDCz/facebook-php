@@ -20,6 +20,7 @@
 *>a:visited {
     /* color: #888; */
     color: inherit;
+    transition: ease-in-out 0.3s;
 }
 
 *>img {
