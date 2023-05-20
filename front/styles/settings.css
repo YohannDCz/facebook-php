@@ -10,7 +10,7 @@
     border-right: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 20px;
 }
 
 .settings_block {
@@ -111,6 +111,59 @@
     width: fit-content;
 }
 
+.inputText {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding: 5px 0;
+    margin: 20px 0;
+}
+
+.radiobox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    column-gap: 30px;
+}
+
+.Submitbutton {
+    padding: 10px 15px;
+}
+
+.settings_profile {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    height: fit-content;
+    margin: 10px 0px;
+}
+
+.login_signup {
+    margin: 20px 0px;
+}
+
+.desactivate {
+    background-color: #B30000;
+    border: 1px solid #B30000
+}
+
+.desactivate:hover {
+    background-color: #FF9999;
+    border: 1px solid #B30000;
+    color: #B30000;
+}
+
+.desactivate:active {
+    background-color: red;
+    border: 1px solid #B30000;
+    color: white;
+}
 
 @media (max-width: 1024px) {
 

@@ -100,6 +100,8 @@ p {
     border-radius: 12px;
     border: 1px solid #0077B6;
     color: white;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
 }
 
 .Submitbutton:hover {
