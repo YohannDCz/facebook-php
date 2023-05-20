@@ -1,17 +1,16 @@
 .menu {
     background-color: #eee;
     border-radius: 12px;
-    padding: 15px;
+    padding: 10px;
     display: none;
     position: absolute;
     z-index: 999;
     list-style-type: none;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     top: 65px;
     right: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-
 }
 
 .menu a {
@@ -19,6 +18,16 @@
     flex-direction: row;
     gap: 10px;
     align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.menu a:hover{
+    background-color: white;
+}
+
+.menu a:active{
+    background-color: #ccc;
 }
 
 #image {
