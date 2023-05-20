@@ -13,11 +13,12 @@
             <div class="row">
                 <input name="password" type="password" class="inputText" placeholder="Mot de passe" required>
             </div>
-
+            
             <input type="submit" class="Submitbutton" value="Connexion">
-
+            
         </form>
 
+        <p><a href="signup.php">Pas encore de compte ? Inscris-toi ici !</a></p>
 
     </div>
 </div>

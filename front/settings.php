@@ -16,7 +16,7 @@ function affichageParametre()
         .Parameter { display: flex; }
         }
         </style>';
-    affichageConfidentialite();
+    affichageProfil();
 }
 
 function affichageConfidentialite()
@@ -98,6 +98,72 @@ function affichageLangue()
 <?php
 }
 
+function affichageProfil()
+{
+?>
+    <h3>Paramètre du profil</h3>
+    <div class="settings_profile">
+
+        <div>
+            <h4>Gérez les informations de votre profil</h4>
+                <form class="login_signup">
+                    <div class="radiobox">
+                        <label class="role"><input name="role" type="radio" name="bouton" value="madame" checked>Madame</label>
+                        <label class="role"><input name="role" type="radio" name="bouton" value="monsieur">Monsieur</label>
+                        <label class="role"><input name="role" type="radio" name="bouton" value="autres">Autre(s)</label>
+                    </div>
+                    <div class="row">
+                        <input name="firstname" type="text" class="inputText" placeholder="Prénom" required>
+                    </div>
+                    <div class="row">
+                        <input name="lastname" type="text" class="inputText" placeholder="Nom de famille" required>
+                    </div>
+                    <div class="row">
+                        <input name="username" type="text" class="inputText" placeholder="Pseudo" required>
+                    </div>
+                    <div class="row">
+                        <input name="birthdate" type="date" class="inputText" placeholder="Date de naissance" required>
+                    </div>
+                    <div class="row">
+                        <input name="phone" type="phone" class="inputText" placeholder="Téléphone" pattern="[0-9]{10}" minlength="10" maxlength="10" required>
+                    </div>
+                    <div class="row">
+                        <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>
+                    </div>
+
+                    <input type="submit" class="Submitbutton" value="Mettre à jour">
+
+                </form>
+        </div>
+
+        <div>
+            <h4>Modifier votre mot de passe</h4>
+            <form class="login_signup">
+
+                <div class="row">
+                    <input name="password" type="password" class="inputText" placeholder="Mot de passe" required>
+                </div>
+
+                <div class="row">
+                    <input name="confirmedPassword" type="password" class="inputText" placeholder="Confirmation du mot de passe" required>
+                </div>
+
+                <input type="submit" class="Submitbutton" value="Changer le mot de passe">
+            </form>
+        </div>
+
+        <div>
+            <h4>Désactivation du compte</h4>
+            <form class="login_signup">
+                <input type="submit" class="Submitbutton desactivate" value="Désactiver votre compte">
+            </form>
+        </div>
+
+    </div>
+
+<?php
+}
+
 function affichageNotifications()
 {
 ?>
@@ -166,6 +232,9 @@ function parametres()
     } elseif ($page === 'notifications') {
         affichage();
         affichageNotifications();
+    } elseif ($page === 'profile') {
+        affichage();
+        affichageProfil();
     } else {
         affichageParametre();
     }
@@ -180,24 +249,34 @@ function parametres()
     <div class="Parameter">
         <h1>Paramètres</h1>
         <div class="settings_list">
-            <h4 class="settings_category">
-                <span class="material-icons-outlined">lock</span>
-                <a href="settings.php?settings=confidentialite" class="settings_links">
+
+            <a href="settings.php?settings=profile" class="settings_links">
+                <h4 class="settings_category">
+                    <span class="material-icons">person</span>
+                    Profil
+                </h4>
+            </a>
+
+            <a href="settings.php?settings=confidentialite" class="settings_links">
+                <h4 class="settings_category">
+                    <span class="material-icons-outlined">lock</span>
                     Confidentialité
-                </a>
-            </h4>
-            <h4 class="settings_category">
-                <span class="material-icons-outlined">language</span>
-                <a href="settings.php?settings=langue" class="settings_links">
+                </h4>
+            </a>
+
+            <a href="settings.php?settings=langue" class="settings_links">
+                <h4 class="settings_category">
+                    <span class="material-icons-outlined">language</span>
                     Langue et region
-                </a>
-            </h4>
-            <h4 class="settings_category">
-                <span class="material-icons-outlined">notifications</span>
-                <a href="settings.php?settings=notifications" class="settings_links">
+                </h4>
+            </a>
+
+            <a href="settings.php?settings=notifications" class="settings_links">
+                <h4 class="settings_category">
+                    <span class="material-icons-outlined">notifications</span>
                     Notifications
-                </a>
-            </h4>
+                </h4>
+            </a>
 
         </div>
     </div>
