@@ -5,24 +5,68 @@
     // Ouverture de la connection
     $connection = $db->getConnection();
     // Requêtes SQL
+    $name = null;
 
-    $sql = 'SELECT * FROM "pages"';
-    $query = $connection->query($sql);
+    if(isset($_GET['name'])) {
+        $name = $_GET['name'];
+
+    } else {
+        echo "Name parameter not provided!";
+    }
+
+    $sql = 'SELECT * FROM "pages" WHERE name = :name';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':name', $name);
     $query->execute();
 
-    $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+    $pages = $query->fetchAll(PDO::FETCH_ASSOC);
+    if (!empty($pages)) {
+        $page = $pages[0]; 
+        $idPage = $page["id"];
+        $namePage = $page["name"];
+        $iconProfile = $page["profile_icon"];
+        $bannerProfile = $page["profile_banner"];
+    }
 
-    $id = $rows[0]["id"];
+    $sql = "SELECT * FROM \"post\" WHERE author_id = :id AND post_type = 1 AND author_type = 'pages' ORDER BY timestamp DESC";
 
-    $sql2 = 'SELECT * FROM "post" WHERE author_id = :id';
-    $query2 = $connection->prepare($sql2);
-    $query2->bindParam(':id', $id);
-    $query2->execute();
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idPage);
+    $query->execute();
 
-    $row2 = $query2->fetchAll(PDO::FETCH_ASSOC);
-    $rowCount = count($row2);
+    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+    $postCount = count($posts);
 
-    var_dump($rowCount);
+    function Publication($post, $connection) { 
+            $idPost = $post["id"];
+            $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
+            $query = $connection->prepare($sql);
+            $query->bindParam(':id', $idPost);
+            $query->execute();
+            $publication = $query->fetch(PDO::FETCH_ASSOC);
+            $json = $publication["content"];
+            $jsondecode = json_decode($json);
+            return [$jsondecode->description, $jsondecode->image];
+    }   
+
+    function Commentary($post, $connection) { 
+            $idPost = $post["id"];
+            $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+            $query = $connection->prepare($sql);
+            $query->bindParam(':id', $idPost);
+            $query->execute();
+            $publication = $query->fetch(PDO::FETCH_ASSOC);
+            $json = $publication["content"];
+            $jsondecode = json_decode($json);
+            return [$jsondecode->description, $jsondecode->image];
+    }   
+
+    foreach ($posts as $post) {
+        [$descprition, $image] = Commentary($post, $connection);
+        var_dump($image);
+    }
+
+    
 
 ?><?php include 'header.php' ?>
 <link rel="stylesheet" href="styles/profile.css">
@@ -30,13 +74,13 @@
 
 
 <div class="banner">
-    <img class="banner-img" src="./img/blue-texture-marble.png">
+    <img class="banner-img" src=<?= $bannerProfile ?>>
     <input type="submit" class="Submitbutton" value="Modifier le profil">
     <div class="page_info">
-        <img class="profile-img" src="./img/pp.png">
+        <img class="profile-img" src=<?= $iconProfile ?>>
         <div class="profile-nom-prenom">
-            <h3><span class="white_space"><?= $rows[0]["name"] ?></span></h3>
-            <h4><span class="white_space">X posts</span></h4>
+            <h3><span class="white_space"><?= $namePage ?></span></h3>
+            <h4><span class="white_space"><?= $postCount ?> posts</span></h4>
         </div>
     </div>
 </div>
@@ -132,54 +176,91 @@
             </div>
         </div>
 
-        <div class="publication">
+        <?php foreach ($posts as $post) :
+            [$description, $image] = Publication($post, $connection); ?>
+            <div class="publication">
 
-            <div class="publication_info">
-                <div>
-                    <img src="./img/pp.png" alt="" class="group_friend_pp">
+                <div class="publication_info">
+                    <div>
+                        <img src=<?= $iconProfile ?> alt="" class="group_friend_pp">
+                    </div>
+                    <div>
+                        <p><?= $name ?></p>
+                    </div>
                 </div>
-                <div>
-                    <p>Nom Prénom</p>
+
+
+                <p><?= $description ?></p>
+
+                <div class="publication_list_images">
+                    <?php if ($image !== ""): ?>
+                    <img src=<?= $image ?> alt="" class="publication_image">
+                    <?php endif; ?>
                 </div>
-            </div>
 
-
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusamus, dolorum perferendis veniam libero sunt dolores aspernatur facilis ipsum consequuntur officiis sint suscipit! Aliquid ipsum doloribus eius ipsa, vitae cupiditate?</p>
-
-            <div class="publication_list_images">
-                <img src="./img/blue-texture-marble.png" alt="" class="publication_image">
-                <img src="./img/blue-texture-marble.png" alt="" class="publication_image">
-                <img src="./img/blue-texture-marble.png" alt="" class="publication_image">
-                <img src="./img/blue-texture-marble.png" alt="" class="publication_image">
-            </div>
-
-            <div class="publication_post_info">
-                <p>X personnes ont aimés</p>
-                <p>X commentaires</p>
-            </div>
-
-            <div class="publication_post_reaction">
-                <div class="group_preview_publication_sub">
-                    <span class="material-icons">thumb_up</span>
-                    <p>J'aime</p>
+                <div class="publication_post_info">
+                    <p>X personnes ont aimés</p>
+                    <p>X commentaires</p>
                 </div>
-                <div class="group_preview_publication_sub">
-                    <span class="material-icons">add_comment</span>
-                    <p>Commenter</p>
+
+                <div class="publication_post_reaction">
+                    <div class="group_preview_publication_sub">
+                        <span class="material-icons">thumb_up</span>
+                        <p>J'aime</p>
+                    </div>
+                    <div class="group_preview_publication_sub">
+                        <span class="material-icons">add_comment</span>
+                        <p>Commenter</p>
+                    </div>
+                    <div class="group_preview_publication_sub">
+                        <span class="material-icons">send</span>
+                        <p>Envoyer</p>
+                    </div>
                 </div>
-                <div class="group_preview_publication_sub">
-                    <span class="material-icons">send</span>
-                    <p>Envoyer</p>
-                </div>
-            </div>
 
 
-            <div class="publication_list_comments">
+                <div class="publication_list_comments">
 
-                <!-- un commentaire -->
+                    <!-- un commentaire -->
 
-                <div>
+                    <div>
+                        <div class="publication_comment">
+                            <div class="publication_info">
+                                <img src="./img/pp.png" alt="" class="group_friend_pp">
+                            </div>
+
+                            <div>
+                                <div class="publication_person_comment">
+                                    <p class="publication_name">Nom Prénom</p>
+                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
+                                </div>
+
+                                <div class="publication_person_comment_options_reaction">
+                                    <div class="publication_person_comment_options">
+                                        <p>J'aime</p>
+                                        <p>Répondre</p>
+                                        <p>x h</p>
+                                    </div>
+
+                                    <div class="publication_comment_reaction">
+                                        <span class="material-icons">thumb_up</span>
+                                        <p>1000</p>
+                                    </div>
+                                </div>
+
+                                <div class="publication_person_view_answer">
+                                    <span class="material-icons-round">subdirectory_arrow_right</span>
+                                    <p>X réponses</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- commentaire qui se répond a un autre-->
                     <div class="publication_comment">
+
                         <div class="publication_info">
                             <img src="./img/pp.png" alt="" class="group_friend_pp">
                         </div>
@@ -203,128 +284,65 @@
                                 </div>
                             </div>
 
-                            <div class="publication_person_view_answer">
-                                <span class="material-icons-round">subdirectory_arrow_right</span>
-                                <p>X réponses</p>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- commentaire qui se répond a un autre-->
-                <div class="publication_comment">
-
-                    <div class="publication_info">
-                        <img src="./img/pp.png" alt="" class="group_friend_pp">
-                    </div>
-
-                    <div>
-                        <div class="publication_person_comment">
-                            <p class="publication_name">Nom Prénom</p>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
-                        </div>
-
-                        <div class="publication_person_comment_options_reaction">
-                            <div class="publication_person_comment_options">
-                                <p>J'aime</p>
-                                <p>Répondre</p>
-                                <p>x h</p>
-                            </div>
-
-                            <div class="publication_comment_reaction">
-                                <span class="material-icons">thumb_up</span>
-                                <p>1000</p>
-                            </div>
-                        </div>
-
-
-                        <div>
-                            <div class="publication_comment">
-                                <div class="publication_info">
-                                    <img src="./img/pp.png" alt="" class="group_friend_pp">
-                                </div>
-
-                                <div>
-                                    <div class="publication_person_comment">
-                                        <p class="publication_name">Nom Prénom</p>
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
-                                    </div>
-
-                                    <div class="publication_person_comment_options_reaction">
-                                        <div class="publication_person_comment_options">
-                                            <p>J'aime</p>
-                                            <p>Répondre</p>
-                                            <p>x h</p>
-                                        </div>
-
-                                        <div class="publication_comment_reaction">
-                                            <span class="material-icons">thumb_up</span>
-                                            <p>1000</p>
-                                        </div>
+                            <div>
+                                <div class="publication_comment">
+                                    <div class="publication_info">
+                                        <img src="./img/pp.png" alt="" class="group_friend_pp">
                                     </div>
 
                                     <div>
-                                        <div class="publication_comment">
-                                            <div class="publication_info">
-                                                <img src="./img/pp.png" alt="" class="group_friend_pp">
+                                        <div class="publication_person_comment">
+                                            <p class="publication_name">Nom Prénom</p>
+                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
+                                        </div>
+
+                                        <div class="publication_person_comment_options_reaction">
+                                            <div class="publication_person_comment_options">
+                                                <p>J'aime</p>
+                                                <p>Répondre</p>
+                                                <p>x h</p>
                                             </div>
 
-                                            <div>
-                                                <div class="publication_person_comment">
-                                                    <p class="publication_name">Nom Prénom</p>
-                                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
-                                                </div>
-                                                <div class="publication_person_comment_options_reaction">
-                                                    <div class="publication_person_comment_options">
-                                                        <p>J'aime</p>
-                                                        <p>Répondre</p>
-                                                        <p>x h</p>
-                                                    </div>
-
-                                                    <div class="publication_comment_reaction">
-                                                        <span class="material-icons">thumb_up</span>
-                                                        <p>1000</p>
-                                                    </div>
-                                                </div>
-
+                                            <div class="publication_comment_reaction">
+                                                <span class="material-icons">thumb_up</span>
+                                                <p>1000</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
+
+                    <!-- écrire un commentaire -->
+
                 </div>
 
-                <!-- écrire un commentaire -->
+                <div>
+                    <div class="publication_comment">
+                        <div class="publication_info">
+                            <img src="./img/pp.png" alt="" class="group_friend_pp">
+                        </div>
 
-            </div>
+                        <div class="publication_person_comment">
 
-            <div>
-                <div class="publication_comment">
-                    <div class="publication_info">
-                        <img src="./img/pp.png" alt="" class="group_friend_pp">
-                    </div>
-
-                    <div class="publication_person_comment">
-
-                        <textarea class="publication_person_comment_input" maxlength="300" placeholder="Ecrire un commentaire..." oninput="autoResize(this)"></textarea>
-                        <div class="publication_person_emoji_react">
-                            <div>
-                                <span class="material-icons-outlined">mood</span>
-                                <span class="material-icons-outlined">gif</span>
+                            <textarea class="publication_person_comment_input" maxlength="300" placeholder="Ecrire un commentaire..." oninput="autoResize(this)"></textarea>
+                            <div class="publication_person_emoji_react">
+                                <div>
+                                    <span class="material-icons-outlined">mood</span>
+                                    <span class="material-icons-outlined">gif</span>
+                                </div>
+                                <span class="material-icons">send</span>
                             </div>
-                            <span class="material-icons">send</span>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <!-- fin publication -->
+            </div>
+            <?php endforeach; ?>
+            <!-- fin publication -->
 
     </div>
 
