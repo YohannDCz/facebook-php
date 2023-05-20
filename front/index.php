@@ -2,6 +2,14 @@
 <link rel="stylesheet" href="styles/index.css">
 <link rel="stylesheet" href="styles/publication.css">
 
+<span class="material-icons-outlined" id="index_menuburger">menu</span>
+<ul id="index_menuopen" class="index_menuopen">
+  <li><a href="profile.php"><span class="material-icons">person</span>Nom Prénom</a></li>
+  <li><a href="friends_list.php"><span class="material-icons-outlined">group</span>Amis</a></li>
+  <li><a href="group_list.php"><span class="material-icons">groups</span>Groupes</a></li>
+  <li><a href="page_list.php"><span class="material-icons-outlined">newspaper</span>Pages</a></li>
+</ul>
+
 <div class="index_main_container">
 
   <div class="index_route">
@@ -327,7 +335,10 @@
   </div>
 
 </div>
+
+
 <script src="./scripts/script.js"></script>
+<script src="./scripts/script_index.js"></script>
 
 <?php
 include 'footer.php'
