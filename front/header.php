@@ -31,7 +31,14 @@
             <a href="friends_list.php"><span class="material-icons-outlined md-40">group</span></a>
             <a href="notifications_list.php"><span class="material-icons-outlined md-40 ">notifications</span></a>
             <a href="chat.php"><span class="material-icons-outlined md-40 ">chat</span></a>
-            <img class="profilepicture" src="img/pp.png">
+            <img class="profilepicture" src="img/pp.png" id="image">
+            <ul id="menu" class="menu">
+                <li><a href="settings.php"><span class="material-icons-outlined">settings</span>Paramètres</a></li>
+                <li><a href="logout.php"><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
+            </ul>
         </div>
 
     </header>
+
+    <link rel="stylesheet" href="./styles/header_burger.css">
+    <script src="./scripts/script_header.js"></script>
