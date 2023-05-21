@@ -46,7 +46,13 @@
     $idPost = null;
     $authorId = null;
 
-    function Publication($post, $connection) { 
+    $descriptionPublication = null;
+    $imagePublication = null;
+    $postComCount = null;
+    
+    function Posts($post, $connection) {
+        $idPost = null;
+        function Publication($post, $connection) { 
             $idPost = $post["id"];
             $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
             $query = $connection->prepare($sql);
@@ -56,19 +62,17 @@
             $json = $publication["content"];
             $jsondecode = json_decode($json);
             return [$jsondecode->description, $jsondecode->image];
-    }   
+        }
+            $sql2 = "SELECT * FROM \"post\" WHERE id = :id AND post_type = 2 ORDER BY timestamp DESC";
 
+            $query = $connection->prepare($sql2);
+            $query->bindParam(':id', $idPost);
+            $query->execute();
 
-    $sql2 = "SELECT * FROM \"post\" WHERE id = :id AND post_type = 2 ORDER BY timestamp DESC";
+            $postsComs = $query->fetchAll(PDO::FETCH_ASSOC);
+            $postComCount = count($postsComs);
 
-    $query = $connection->prepare($sql2);
-    $query->bindParam(':id', $idPost);
-    $query->execute();
-
-    $postsComs = $query->fetchAll(PDO::FETCH_ASSOC);
-    $postComCount = count($postsComs);
-
-    function Commentary($post, $connection) { 
+        function Commentary($post, $connection) { 
             $idPostCom = $post["id"];
             $authorId = $post["author_id"];
             
@@ -90,7 +94,18 @@
             $username = $author["username"];
             $profile_pic = $author["profile_icon"];
             return [$username, $profile_pic, $jsondecode->description];
-    }   
+        }    
+        [$descriptionPub, $imagePub] = Publication($post, $connection);
+        [$usernameCom, $profile_picCom, $descriptionCom] = Commentary($post, $connection);
+
+        return [$descriptionPub, $imagePub, $usernameCom, $profile_picCom, $descriptionCom];
+    }
+    
+
+
+    
+
+    
 
 ?>
 <?php include 'header.php' ?>
@@ -166,7 +181,7 @@
             </div>
             <div class="box-img">
                 <?php foreach ($posts as $post) :
-                    [$description, $image] = Publication($post, $connection); ?>
+                    [$description, $image] = Posts($post, $connection); ?>
                     <?php if ($image !== ""): ?>
                         <img src="<?= $image ?>" class="box_photos_picture">
                     <?php endif; ?>
@@ -248,9 +263,9 @@
 
                     <!-- un commentaire -->
 
+                    <?php foreach ($postsComs as $post):
+                        [$usename, $image, $description] = Commentary($post, $connection) ?>
                     <div>
-                        <?php foreach ($postsComs as $post):
-                            [$usename, $image, $description] = Commentary($postsComs, $connection) ?>
                         <div class="publication_comment">
                             <div class="publication_info">
                                 <img src=<?= $image ?> alt="" class="group_friend_pp">
@@ -283,6 +298,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php endforeach; ?>
 
 
                     <!-- commentaire qui se répond a un autre-->
@@ -342,7 +358,6 @@
 
                         </div>
                     </div>
-                    <?php endforeach; ?>
                     <!-- écrire un commentaire -->
 
                 </div>
