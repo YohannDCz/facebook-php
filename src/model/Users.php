@@ -46,8 +46,8 @@ class Users {
         $connection = $db->getConnection();
         // Requêtes SQL
 
-        $sql = 'INSERT INTO "user" (username, password, mail, phone, first_name, last_name, birthdate)
-        VALUES(:username, :password, :mail,:phone,:first_name,:last_name,:birthdate)';
+        $sql = 'INSERT INTO "user" (first_name, last_name, username, mail, phone, password, birthdate)
+        VALUES(:first_name, :last_name, :username, :mail, :phone, :password, :birthdate)';
 
         $query = $connection->prepare($sql);
     
@@ -58,12 +58,12 @@ class Users {
         $mail=htmlspecialchars(strip_tags($mail));
 
 
-        $query->bindParam(":username", $username);
-        $query->bindParam(":password", $password);
         $query->bindParam(":first_name", $first_name);
         $query->bindParam(":last_name", $last_name);
-        $query->bindParam(":phone", $phone);
+        $query->bindParam(":username", $username);
         $query->bindParam(":mail", $mail);
+        $query->bindParam(":phone", $phone);
+        $query->bindParam(":password", $password);
         $query->bindParam(":birthdate", $birthdate);
 
 
@@ -76,7 +76,7 @@ class Users {
     }
 
     // Vérifie s'il y a bien un utilisateur existant
-    function checkUser($mail){
+    function checkUser($credentials){
  
         // Connecter la BDD
         $db = new Database();
@@ -84,15 +84,17 @@ class Users {
         $connection = $db->getConnection();
         
         // Préparation/execution de la requête
-        $sql = 'SELECT * FROM "user" WHERE mail = :mail';
-        $stmt = $connection->prepare($sql);
-        $stmt->bindParam(':mail', $mail, PDO::PARAM_STR);
-        $stmt->execute();
+        $sql = 'SELECT * FROM "user" WHERE  username = :credentials OR mail = :credentials';
+        $query = $connection->prepare($sql);
+        $query->execute([
+            ":credentials" => $credentials,
+        ]);
+        $query->execute();
 
         // var_dump($stmt);
         
         // Fetch le résultat de la requête
-        $results = $stmt->fetch(PDO::FETCH_ASSOC);
+        $results = $query->fetch(PDO::FETCH_ASSOC);
 
         // Fermeture de la connection
         $connection = null;
@@ -119,15 +121,17 @@ class Users {
         return $results;
     }
 
-    function login($credential) {
+    function login($credentials) {
          //Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
         $connection = $db->getConnection();
 
-        $sql = 'SELECT * FROM "user" WHERE ' .$credential. ' = user.username OR '.$credential.' = user.mail';
+        $sql = 'SELECT * FROM "user" WHERE  username = :credentials OR mail = :credentials';
         $query = $connection->prepare($sql);
-        $query->execute();
+        $query->execute([
+            ":credentials" => $credentials,
+        ]);
 
         return $query;
     }

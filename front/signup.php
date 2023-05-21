@@ -7,17 +7,17 @@
     <div class="login_signup_container">
         <h1>Inscription</h1>
 
-        <form class="login_signup">
+        <form class="login_signup" action="../src/controller/userController.php" method="POST">
             <div class="radiobox">
                 <label class="role"><input name="role" type="radio" name="bouton" value="madame" checked>Madame</label>
                 <label class="role"><input name="role" type="radio" name="bouton" value="monsieur">Monsieur</label>
                 <label class="role"><input name="role" type="radio" name="bouton" value="autres">Autre(s)</label>
             </div>
             <div class="row">
-                <input name="firstname" type="text" class="inputText" placeholder="Prénom" required>
+                <input name="first_name" type="text" class="inputText" placeholder="Prénom" required>
             </div>
             <div class="row">
-                <input name="lastname" type="text" class="inputText" placeholder="Nom de famille" required>
+                <input name="last_name" type="text" class="inputText" placeholder="Nom de famille" required>
             </div>
             <div class="row">
                 <input name="username" type="text" class="inputText" placeholder="Pseudo" required>
@@ -26,7 +26,7 @@
                 <input name="birthdate" type="date" class="inputText" placeholder="Date de naissance" required>
             </div>
             <div class="row">
-                <input name="phone" type="tel" class="inputText" placeholder="Téléphone" pattern="^9[0-9]{7}" minlength="10" maxlength="10" required>
+                <input name="phone" type="tel" class="inputText" placeholder="Téléphone" minlength="10" maxlength="14" required>
             </div>
             <div class="row">
                 <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>

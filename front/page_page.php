@@ -1,4 +1,7 @@
 <?php
+
+use Symfony\Component\HttpFoundation\Session\Storage\Handler\NullSessionHandler;
+
     require_once('../src/model/Database.php');
     //  Connecter la BDD
     $db = new Database();
@@ -20,6 +23,12 @@
     $query->execute();
 
     $pages = $query->fetchAll(PDO::FETCH_ASSOC);
+    $page = null;
+    $idPage = null;
+    $namePage = null;
+    $iconProfile = null;
+    $bannerProfile = null;
+
     if (!empty($pages)) {
         $page = $pages[0]; 
         $idPage = $page["id"];
@@ -37,6 +46,9 @@
     $posts = $query->fetchAll(PDO::FETCH_ASSOC);
     $postCount = count($posts);
 
+    $idPost = null;
+    $authorId = null;
+
     function Publication($post, $connection) { 
             $idPost = $post["id"];
             $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
@@ -49,28 +61,44 @@
             return [$jsondecode->description, $jsondecode->image];
     }   
 
+
+    $sql = "SELECT * FROM \"post\" WHERE id = :id AND post_type = 2 ORDER BY timestamp DESC";
+
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idPost);
+    $query->execute();
+
+    $postsCom = $query->fetchAll(PDO::FETCH_ASSOC);
+    $postComCount = count($postsCom);
+
     function Commentary($post, $connection) { 
-            $idPost = $post["id"];
+            $idPostCom = $post["id"];
+            $authorId = $post["author_id"];
+            
             $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
             $query = $connection->prepare($sql);
-            $query->bindParam(':id', $idPost);
+            $query->bindParam(':id', $idPostCom);
             $query->execute();
-            $publication = $query->fetch(PDO::FETCH_ASSOC);
-            $json = $publication["content"];
+            
+            $commentary = $query->fetch(PDO::FETCH_ASSOC);
+            $json = $commentary["content"];
             $jsondecode = json_decode($json);
-            return [$jsondecode->description, $jsondecode->image];
+            
+            $sql = 'SELECT * FROM "user" WHERE id = :authorId';
+            $query = $connection->prepare($sql);
+            $query->bindParam(':authorId', $authorId);
+            $query->execute();
+
+            $author = $query->fetch(PDO::FETCH_ASSOC);
+            $username = $author["username"];
+            $image = $author["profile_icon"];
+            return [$username, $image, $jsondecode->description];
     }   
 
-    foreach ($posts as $post) {
-        [$descprition, $image] = Commentary($post, $connection);
-        var_dump($image);
-    }
-
-    
-
-?><?php include 'header.php' ?>
+?>
+<?php include 'header.php' ?>
 <link rel="stylesheet" href="styles/profile.css">
-<link rel="stylesheet" href="styles/publication.css">
+<link rel="stylesheet" href="styles/commentary.css">
 
 
 <div class="banner">
@@ -140,12 +168,12 @@
                 <a class="profile_photos_link" href="#">Toutes les photos</a>
             </div>
             <div class="box-img">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-
+                <?php foreach ($posts as $post) :
+                    [$description, $image] = Publication($post, $connection); ?>
+                    <?php if ($image !== ""): ?>
+                        <img src="<?= $image ?>" class="box_photos_picture">
+                    <?php endif; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -224,15 +252,17 @@
                     <!-- un commentaire -->
 
                     <div>
+                        <?php foreach ($posts as $post):
+                            [$usename, $image, $description] = Commentary($post, $connection) ?>
                         <div class="publication_comment">
                             <div class="publication_info">
-                                <img src="./img/pp.png" alt="" class="group_friend_pp">
+                                <img src=<?= $image ?> alt="" class="group_friend_pp">
                             </div>
 
                             <div>
                                 <div class="publication_person_comment">
                                     <p class="publication_name">Nom Prénom</p>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
+                                    <p><?= $description ?></p>
                                 </div>
 
                                 <div class="publication_person_comment_options_reaction">
@@ -315,7 +345,7 @@
 
                         </div>
                     </div>
-
+                    <?php endforeach; ?>
                     <!-- écrire un commentaire -->
 
                 </div>

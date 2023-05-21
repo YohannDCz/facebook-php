@@ -34,7 +34,7 @@
             <img class="profilepicture" src="img/pp.png" id="image">
             <ul id="menu" class="menu">
                 <li><a href="settings.php"><span class="material-icons-outlined">settings</span>Paramètres</a></li>
-                <li><a href="logout.php"><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
+                <li><a href="../src/controller/userController.php"><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
             </ul>
         </div>
 
