@@ -5,7 +5,7 @@
 }
 
 .search_page_sidebar {
-    background-color: #f8f8f8;
+    background-color: var(--bgcolor2);
     border-right: 1px solid #ccc;
     padding: 20px;
     display: flex;
@@ -24,7 +24,7 @@
 }
 
 .search_page_persons {
-    background-color: #e8e8e8;
+    background-color: var(--bgcolor2);
     border-radius: 12px;
     padding: 20px 10px;
     display: flex;

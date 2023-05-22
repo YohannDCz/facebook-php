@@ -1,5 +1,5 @@
 .center-box {
-    background-color: #e8e8e8;
+    background-color: var(--bgcolor2);
     padding: 20px 10px;
     margin: 50px auto;
     border-radius: 12px;
@@ -21,7 +21,7 @@
 }
 
 .notifications_pop:hover {
-    background-color: white;
+    background-color: var(--bgcolor);
 }
 
 .notifications_pop:active {

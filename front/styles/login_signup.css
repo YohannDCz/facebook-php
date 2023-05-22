@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     margin: 50px auto;
-    background-color: white;
+    background-color: var(--bgcolor);
 }
 
 .login_signup_container {
@@ -48,6 +48,7 @@
 }
 
 .inputText {
+    background-color: inherit;
     width: 100%;
     border: none;
     outline: none;

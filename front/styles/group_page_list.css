@@ -83,7 +83,7 @@
 }
 
 .group_settings {
-    background-color: #f8f8f8;
+    background-color: var(--bgcolor2);
     padding: 20px;
     border-right: 1px solid #ccc;
     display: flex;

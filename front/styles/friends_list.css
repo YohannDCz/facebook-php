@@ -1,5 +1,5 @@
 .friends_list_side_bar {
-    background-color: #f8f8f8;
+    background-color: var(--bgcolor2);
     padding: 20px;
     border-right: 1px solid #ccc;
     display: flex;
@@ -44,7 +44,7 @@
 
 .container {
     padding: 20px 10px;
-    background-color: #e8e8e8;
+    background-color: var(--bgcolor2);
     margin: 50px auto;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: #fff;
+    background-color: var(--bgcolor);;
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

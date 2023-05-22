@@ -5,7 +5,7 @@
 }
 
 .Parameter {
-    background-color: #f8f8f8;
+    background-color: var(--bgcolor2);
     padding: 20px;
     border-right: 1px solid #ccc;
     display: flex;
@@ -115,6 +115,8 @@
     width: 100%;
     border: none;
     outline: none;
+    background-color: inherit;
+    color: var(--color);
 }
 
 .row {
@@ -164,6 +166,7 @@
     border: 1px solid #B30000;
     color: white;
 }
+
 
 @media (max-width: 1024px) {
 
