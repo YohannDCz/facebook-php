@@ -421,6 +421,10 @@ class Users {
         $query->bindParam(":idSender", $idSender);
         //Execution de la Query
         $query->execute();
+        
+        $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $messages;
 
         // Fermeture de la connection
         $connection = null;
