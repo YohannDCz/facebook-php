@@ -288,4 +288,126 @@ class Users {
         return $query->execute();
             
     }
+    function getUserLastSeen($userid){
+        
+        //Connecter la BDD
+        $db = new Database();
+
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $query = $connection->query("SELECT user.first_name, user.last_name, user.username, user.profile_icon, last_seen.last_seen_at FROM last_seen INNER JOIN user WHERE last_seen.user_id = :userId;");
+        $query->bindParam(":userId", $userId);
+        //Execution de la Query
+        $query->execute();
+        $lastSeen = [];
+        //Recensement des utilisateurs et de la dernière fois à la quelle on les a vus
+        while (($row = $query->fetch())) {
+            $lastSeen = [
+                "username"=> $row["username"],
+                "first_name"=> $row["first_name"],
+                "last_name"=> $row["last_name"],
+                "profile_icon"=> $row["profile_icon"],
+                "last_seen_at"=> $row["last_seen_at"]
+            ];
+            $lastSeen[] = $lastSeen;
+        }
+
+        // Fermeture de la connection
+        $connection = null;
+
+        return $content;
+    }
+    function getGroupUsers($group_id) {
+        //  Connection à la la BDD
+        $db = new Database();
+
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $request = $connection->prepare("SELECT user_group.user_id FROM user_group WHERE user_group.group_id = :group_id");
+        $request->bindParam(":group_id", $group_id);
+        $request->execute();
+
+        $users = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        //  fermeture de la connexion
+        $connection = null;
+        return $users;
+    }
+    function getUserPrivateMessages($idReceiver,$idSender){
+        
+        //Connecter la BDD
+        $db = new Database();
+
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $query = $connection->query("SELECT user.first_name, user.last_name, user.username, user.profile_icon, user.is_online , private_messages.content , private_messages.timestamp FROM private_messages, 
+        INNER JOIN user ON private_messages.sender = user.id or private_messages.receiver = user.id ,
+        WHERE private_messages.sender = :idReceiver or private_messages.receiver = :idSender;");
+        $query->bindParam(":idReceiver", $idReceiver);
+        $query->bindParam(":idSender", $idSender);
+        //Execution de la Query
+        $query->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+
+        return $content;
+    }
+    function getUsersPostsLikes($id)
+    {
+        //  Connection à la la BDD
+        $db = new Database();
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+        // Requêtes SQL
+        $request = $connection->prepare("SELECT user.username, users_posts_likes.user_id, users_posts_likes.post_id, post.post_type, post.timestamp, post.author_type FROM users_posts_likes INNER JOIN post ON users_post_likes.post_id = post.id INNER JOIN user ON user.id = author_id WHERE user.id = :id");
+        $request->bindParam(":id", $id);
+        $request->execute();
+
+        $posts = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        //  fermeture de la connexion
+        $connection = null;
+        return $posts;
+    }
+    function getFriends($id){
+        
+        //Connecter la BDD
+        $db = new Database();
+
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $query = $connection->query("SELECT user.first_name, user.last_name, user.username, user.profile_icon, user.is_online FROM friends 
+        INNER JOIN user ON friends.friend_id = user.id 
+        WHERE friends.owner_id = :id");
+        
+        $query->bindParam(":id", $id);
+        //Execution de la Query
+        $query->execute();
+        $friends = [];
+        //Recensement des amis et de leurs données 
+        while (($row = $query->fetch())) {
+            $friends = [
+                "username"=> $row["username"],
+                "first_name"=> $row["first_name"],
+                "last_name"=> $row["last_name"],
+                "is_online"=> $row["is_online"],
+                "profile_icon"=> $row["profile_icon"],
+            ];
+            $friends[] = $friends;
+        }
+
+        // Fermeture de la connection
+        $connection = null;
+
+        return $friends;
+    }
 }
