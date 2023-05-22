@@ -106,34 +106,34 @@ function affichageProfil()
 
         <div>
             <h4>Gérez les informations de votre profil</h4>
-                <form class="login_signup">
-                    <div class="radiobox">
-                        <label class="role"><input name="role" type="radio" name="bouton" value="madame" checked>Madame</label>
-                        <label class="role"><input name="role" type="radio" name="bouton" value="monsieur">Monsieur</label>
-                        <label class="role"><input name="role" type="radio" name="bouton" value="autres">Autre(s)</label>
-                    </div>
-                    <div class="row">
-                        <input name="firstname" type="text" class="inputText" placeholder="Prénom" required>
-                    </div>
-                    <div class="row">
-                        <input name="lastname" type="text" class="inputText" placeholder="Nom de famille" required>
-                    </div>
-                    <div class="row">
-                        <input name="username" type="text" class="inputText" placeholder="Pseudo" required>
-                    </div>
-                    <div class="row">
-                        <input name="birthdate" type="date" class="inputText" placeholder="Date de naissance" required>
-                    </div>
-                    <div class="row">
-                        <input name="phone" type="phone" class="inputText" placeholder="Téléphone" pattern="[0-9]{10}" minlength="10" maxlength="10" required>
-                    </div>
-                    <div class="row">
-                        <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>
-                    </div>
+            <form class="login_signup">
+                <div class="radiobox">
+                    <label class="role"><input name="role" type="radio" name="bouton" value="madame" checked>Madame</label>
+                    <label class="role"><input name="role" type="radio" name="bouton" value="monsieur">Monsieur</label>
+                    <label class="role"><input name="role" type="radio" name="bouton" value="autres">Autre(s)</label>
+                </div>
+                <div class="row">
+                    <input name="firstname" type="text" class="inputText" placeholder="Prénom" required>
+                </div>
+                <div class="row">
+                    <input name="lastname" type="text" class="inputText" placeholder="Nom de famille" required>
+                </div>
+                <div class="row">
+                    <input name="username" type="text" class="inputText" placeholder="Pseudo" required>
+                </div>
+                <div class="row">
+                    <input name="birthdate" type="date" class="inputText" placeholder="Date de naissance" required>
+                </div>
+                <div class="row">
+                    <input name="phone" type="phone" class="inputText" placeholder="Téléphone" pattern="[0-9]{10}" minlength="10" maxlength="10" required>
+                </div>
+                <div class="row">
+                    <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>
+                </div>
 
-                    <input type="submit" class="Submitbutton" value="Mettre à jour">
+                <input type="submit" class="Submitbutton" value="Mettre à jour">
 
-                </form>
+            </form>
         </div>
 
         <div>
@@ -220,6 +220,31 @@ function affichageNotifications()
 <?php
 }
 
+function affichageTheme()
+{
+?>
+    <h3>Thème</h3>
+    <div class="settings_info">
+        <h4>Ajustez l’apparence de Social View pour réduire les reflets et reposer vos yeux.</h4>
+
+        <div class="settings_notif">
+
+            <label for="theme" class="settings_label">Thème
+                <div class="switch">
+                    <input name="theme" id="theme" type="checkbox">
+                    <span class="slider round"></span>
+                </div>
+            </label>
+
+
+            <!-- fin settings_notif -->
+        </div>
+
+        <!-- fin settings_info -->
+    </div>
+<?php
+}
+
 function parametres()
 {
     $page = isset($_GET['settings']) ? $_GET['settings'] : '';
@@ -235,6 +260,9 @@ function parametres()
     } elseif ($page === 'profile') {
         affichage();
         affichageProfil();
+    } elseif ($page === 'theme') {
+        affichage();
+        affichageTheme();
     } else {
         affichageParametre();
     }
@@ -275,6 +303,13 @@ function parametres()
                 <h4 class="settings_category">
                     <span class="material-icons-outlined">notifications</span>
                     Notifications
+                </h4>
+            </a>
+
+            <a href="settings.php?settings=theme" class="settings_links">
+                <h4 class="settings_category">
+                    <span class="material-icons-outlined">notifications</span>
+                    Thème
                 </h4>
             </a>
 
