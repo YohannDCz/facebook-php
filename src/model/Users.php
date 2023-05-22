@@ -6,6 +6,7 @@ require_once 'Database.php';
 
 class Users {
     // une fonction qui récupère tous les utilisateurs 
+    //récupère Les infos d'un utilisateur
     function getUsers(){
         
         //Connecter la BDD
@@ -38,7 +39,7 @@ class Users {
 
         return $users;
     }
-
+    //Ajoute un utilisateur
     function addUser($username, $password, $first_name, $last_name,$birthdate, $phone, $mail){
         //  Connecter la BDD
         $db = new Database();
@@ -172,6 +173,7 @@ class Users {
         }
         
         }
+    //modifie les infos de l'utilisateur
     function modifyUserData($username,$first_name, $last_name, $phone, $mail,$id) {
         //Connecter la BDD
         $db = new Database();
@@ -198,6 +200,7 @@ class Users {
             return true;
         }
     }
+    //Modifie Le mot de passe utilisateur
     function modifyUserPassword($mail,$oldPassword,$newPassword) {
         //Connecter la BDD
         $db = new Database();
@@ -233,6 +236,7 @@ class Users {
             return true;
         }
     }
+    //Modifie les photos de bannière et profile de l'utilisateur
     function modifyUserPics($profile_icon, $profile_banner, $id) {
         //Connecter la BDD
         $db = new Database();
@@ -257,6 +261,7 @@ class Users {
         }
     }
     }
+    // Désactive le compte de l'utilisateur
     function disablingProccess($mail,$password) {
         //Connecter la BDD
         $db = new Database();
@@ -293,6 +298,7 @@ class Users {
         }
             
     }
+    //récupère les Last seen avec le nom des utilisateurs  
     function getUserLastSeen($userid){
         
         //Connecter la BDD
@@ -324,6 +330,7 @@ class Users {
 
         return $content;
     }
+    //récupère les utilisateurs d'un groupe
     function getGroupUsers($group_id) {
         //  Connection à la la BDD
         $db = new Database();
@@ -342,6 +349,7 @@ class Users {
         $connection = null;
         return $users;
     }
+    //récupère les utilisateurs et le contenu des MP
     function getUserPrivateMessages($idReceiver,$idSender){
         
         //Connecter la BDD
@@ -364,6 +372,7 @@ class Users {
 
         return $content;
     }
+    //Permets de récupérer le nom d'utilisateur, l'id du poste de la personne qui lie, le timestamp d'un poste l'id du poste du "user"
     function getUsersPostsLikes($id)
     {
         //  Connection à la la BDD
@@ -381,6 +390,7 @@ class Users {
         $connection = null;
         return $posts;
     }
+    //Permets de récupérer les amis selon leurs Ids
     function getFriends($id){
         
         //Connecter la BDD
