@@ -29,7 +29,7 @@
                 <input name="phone" type="tel" class="inputText" placeholder="Téléphone" minlength="10" maxlength="14" required>
             </div>
             <div class="row">
-                <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>
+                <input name="mail" type="mail" class="inputText" placeholder="Adresse e-mail" required>
             </div>
             <div class="row">
                 <input name="password" type="password" class="inputText" placeholder="Mot de passe" required>
