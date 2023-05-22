@@ -141,22 +141,17 @@ class Users {
 
         //Connecter la BDD
         $db = new Database();
-
         //Ouverture de la connection
         $connection = $db->getConnection();
-
         //Requêtes SQL
             //Vérification de l'identifiant unique 
         $check = 'SELECT mail, password from user WHERE mail = :mail ;';
-
         $query = $connection->prepare($check);
         $query->bindParam(":mail", $mail);
-
         //On voit si l'execute passe ou pas
         if (!$query->execute()){
             return false;
             }
-
         //On voit si les mots de passe sont les mêmes
         $result = $query->fetch(PDO::FETCH_ASSOC);
         if ($result && !password_verify($password, $result["password"])) {
@@ -329,8 +324,69 @@ class Users {
 
         return $lastSeen;
     }
+    //Met à jour les infos d'un groupe
+    function updateGroups($name,$groupId,$description,$private,$lastSent) {
+        //Connecter la BDD
+        $db = new Database();
+   
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+   
+        // Requêtes SQL
+        $query = $connection->query("UPDATE groups SET name = :name, description = :description, private = :private , last_sent = :lastSent WHERE id = :groupId");
+        $query->bindParam(":name", $name);
+        $query->bindParam(":groupId", $groupId);
+        $query->bindParam(":description", $description);
+        $query->bindParam(":private", $private);
+        $query->bindParam(":lastSent", $lastSent);
+
+        //Execution de la Query
+        $query->execute();
+   
+        // Fermeture de la connection
+        $connection = null;
+    }
+    function deleteGroups($groupId) {
+        //Connecter la BDD
+        $db = new Database();
+   
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+   
+        // Requêtes SQL
+        $query = $connection->query("DELETE FROM groups WHERE id = :groupId");
+        $query->bindParam(":groupId", $groupId);
+
+        //Execution de la Query
+        $query->execute();
+   
+        // Fermeture de la connection
+        $connection = null;
+    }
+    //Permets d'ajouter des groupes
+
+    function addGroups($name,$description,$private,$last_sent) {
+        $db = new Database();
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $query = $connection->query('INSERT INTO "groups" (name, description, private, last_sent) VALUES(:name, :description, :private, :last_sent);');
+    
+        $name=htmlspecialchars(strip_tags($name));
+        $description=htmlspecialchars(strip_tags($description));
+  
+        $query->bindParam(":name", $name);
+        $query->bindParam(":description", $description);
+        $query->bindParam(":private", $private);
+        $query->bindParam(":last_sent", $last_sent);
+      
+        if ($query->execute()){
+            return true;
+        }
+      }
     //récupère les utilisateurs d'un groupe
-    function getGroupUsers($group_id) {
+    function getGroupUsers($groupId) {
         //  Connection à la la BDD
         $db = new Database();
 
@@ -338,8 +394,8 @@ class Users {
         $connection = $db->getConnection();
 
         // Requêtes SQL
-        $request = $connection->prepare("SELECT user_group.user_id FROM user_group WHERE user_group.group_id = :group_id");
-        $request->bindParam(":group_id", $group_id);
+        $request = $connection->prepare("SELECT user_group.user_id FROM user_group WHERE user_group.groupId = :groupId");
+        $request->bindParam(":groupId", $groupId);
         $request->execute();
 
         $users = $request->fetchAll(PDO::FETCH_ASSOC);
@@ -365,6 +421,10 @@ class Users {
         $query->bindParam(":idSender", $idSender);
         //Execution de la Query
         $query->execute();
+        
+        $messages = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $messages;
 
         // Fermeture de la connection
         $connection = null;
@@ -389,25 +449,7 @@ class Users {
         $connection = null;
         return $posts;
     }
-    function updateGroups($groupsId,$description,$private,$last_sent) {
-        //Connecter la BDD
-        $db = new Database();
-   
-        // Ouverture de la connection
-        $connection = $db->getConnection();
-   
-        // Requêtes SQL
-        $query = $connection->query("UPDATE groups SET name = :name, description = :description, private = :private , last_sent = :last_sent WHERE id = :groupsId");
-        $query->bindParam(":groupsId", $groupsId);
-        $query->bindParam(":description", $description);
-        $query->bindParam(":private", $private);
-        $query->bindParam(":last_sent", $last_sent);
-        //Execution de la Query
-        $query->execute();
-   
-        // Fermeture de la connection
-        $connection = null;
-    }
+    
     //Permets de récupérer les amis selon leurs Ids
     function getFriends($id){
         
