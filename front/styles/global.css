@@ -140,6 +140,14 @@ p {
     user-select: none;
 }
 
+.error {
+    background-color: #FAA;
+    color: red;
+    border-radius: 12px;
+    border: 1px solid red;
+    padding: 10px;
+    font-size: 12px;
+}
 
 @media (max-width: 1024px) {
 
