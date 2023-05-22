@@ -56,4 +56,22 @@ class Pages {
 
         return $content;
     }
+    function deletePage($pageId) {
+     //Connecter la BDD
+     $db = new Database();
+
+     // Ouverture de la connection
+     $connection = $db->getConnection();
+
+     // Requêtes SQL
+     $query = $connection->query("DELETE FROM pages WHERE id = :pageId ;");
+     $query->bindParam(":pageId", $pageId);
+     //Execution de la Query
+     $query->execute();
+
+     // Fermeture de la connection
+     $connection = null;
+
+     return $content;
+ }
 }
