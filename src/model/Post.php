@@ -83,6 +83,8 @@ class Posts {
                     return true;
                 }
                 return false;
+            default :
+                return false;
         }
     }
 
