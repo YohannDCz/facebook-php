@@ -9,5 +9,6 @@
 		<p>&copy; 2023 Social view. Tous droits réservés.</p>
 	</div>
 </footer>
+<script src="./scripts/script.js"></script>
 </body>
 </html>

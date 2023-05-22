@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/theme.css">
     <title>Social View</title>
 </head>
 
-<body class="chat_body">
+<body class="chat_body light-theme">
     <header>
         <div class="headerleft">
             <div class="logo">

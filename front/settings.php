@@ -229,9 +229,9 @@ function affichageTheme()
 
         <div class="settings_notif">
 
-            <label for="theme" class="settings_label">Thème
+            <label for="theme-toggle" class="settings_label">Thème
                 <div class="switch">
-                    <input name="theme" id="theme" type="checkbox">
+                    <input name="theme" id="theme-toggle" type="checkbox">
                     <span class="slider round"></span>
                 </div>
             </label>
@@ -308,7 +308,7 @@ function parametres()
 
             <a href="settings.php?settings=theme" class="settings_links">
                 <h4 class="settings_category">
-                    <span class="material-icons-outlined">notifications</span>
+                    <span class="material-icons-outlined">dark_mode</span>
                     Thème
                 </h4>
             </a>
