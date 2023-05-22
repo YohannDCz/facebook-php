@@ -133,6 +133,8 @@
     border-bottom: solid 1px black;
     padding: 10px;
     width: 100%;
+    background-color: inherit;
+    color: var(--color);
 }
 
 .amisinput_div {

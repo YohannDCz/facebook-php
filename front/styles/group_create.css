@@ -5,7 +5,7 @@
 }
 
 .group_settings {
-    background-color: #f8f8f8;
+    background-color: var(--bgcolor2);
     padding: 20px;
     border-right: 1px solid #ccc;
     display: flex;
@@ -22,8 +22,17 @@
 
 .group_owner_pp {
     width: 50px;
+    height: 50px;
+    border-radius: 50%;
     user-select: none;
+    overflow: hidden;
 }
+
+.group_owner_pp > img{
+    width: 50px;
+    height: 50px;
+}
+
 
 .group_friend_pp {
     width: 30px;
@@ -52,6 +61,7 @@
     background-color: inherit;
     border-bottom: solid 1px black;
     padding: 10px;
+    color: var(--color);
 }
 
 .tag {
@@ -86,7 +96,7 @@
     padding: 10px;
     border: 1px black solid;
     border-radius: 12px;
-    background-color: white;
+    background-color: var(--bgcolor2);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -182,6 +192,19 @@
 .group_settings_fil_arianne p {
     font-size: 10px;
     color: #888;
+}
+
+.group_preview_publication_sub{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.group_preview_publication_image{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 }
 
 @media (max-width: 1024px) {

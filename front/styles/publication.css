@@ -95,6 +95,7 @@
     height: auto;
     resize: none;
     background-color: inherit;
+    color: var(--color);
 }
 
 .publication_person_emoji_react {
@@ -142,8 +143,9 @@
 }
 
 .group_friend_pp {
-    width: 30px;
+    width: 100%;
     user-select: none;
+    border-radius: 50%;
 }
 
 .profile_publication_post {
@@ -161,7 +163,7 @@
     background-color: var(--bgcolor2);
     padding: 10px;
     border-radius: 12px;
-    width: 100%;
+    flex: 1;
 }
 
 .profile_publication_div_flex {
@@ -169,6 +171,7 @@
     flex-direction: row;
     column-gap: 10px;
     align-items: flex-start;
+    width: 100%;
 }
 
 .group_preview_publication_image {
@@ -196,13 +199,18 @@
     color: #00507A;
 }
 
-/* .publication_persons_like{
-
+.publication_pp_div{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
-.publication_persons_comment{
+.publication_pp_div>img{
+    width: 40px;
+    height: 40px;
+}
 
-} */
 
 @media (max-width: 1024px) {
 
