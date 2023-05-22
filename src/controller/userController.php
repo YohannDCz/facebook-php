@@ -17,10 +17,9 @@ function signup() {
     $resultat = $user->checkUser($email);
     $results = isset($resultat["username"]) or isset($resultat["mail"]);
 
-    var_dump($results);
-
     if ($results) {
-      echo "L'utilisateur existe déjà";
+      $error = "L'utilisateur existe déjà";
+      setcookie("errorAuthentification", $error);
       // return $error;
       exit();
     } else {
@@ -33,7 +32,7 @@ function signup() {
 
       $user->addUser($username, $password, $first_name, $last_name, $phone, $email, $birthdate);
 
-      // header("Location: ../../front/login.php");
+      header("Location: ../../front/login.php");
     }
 
     
@@ -58,7 +57,7 @@ function login() {
       header('Location: ../../front/profile.php');
     } else {
       $error = "Identifiants invalides";
-      setcookie("error", $error);
+      setcookie("errorPassword", $error);
       header("Location: ../../front/login.php");
       exit();
     }

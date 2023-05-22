@@ -39,7 +39,7 @@ class Users {
         return $users;
     }
 
-    function addUser($username, $password, $first_name, $last_name,$birthdate, $phone, $mail){
+    function addUser($username, $password, $first_name, $last_name, $phone, $mail, $birthdate){
         //  Connecter la BDD
         $db = new Database();
         // Ouverture de la connection
