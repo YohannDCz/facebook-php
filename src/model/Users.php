@@ -260,7 +260,7 @@ class Users {
             return true;
         }
     }
-    }
+    
     // Désactive le compte de l'utilisateur
     function disablingProccess($mail,$password) {
         //Connecter la BDD
@@ -389,6 +389,25 @@ class Users {
         $connection = null;
         return $posts;
     }
+    function updateGroups($groupsId,$description,$private,$last_sent) {
+        //Connecter la BDD
+        $db = new Database();
+   
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+   
+        // Requêtes SQL
+        $query = $connection->query("UPDATE groups SET name = :name, description = :description, private = :private , last_sent = :last_sent WHERE id = :groupsId");
+        $query->bindParam(":groupsId", $groupsId);
+        $query->bindParam(":description", $description);
+        $query->bindParam(":private", $private);
+        $query->bindParam(":last_sent", $last_sent);
+        //Execution de la Query
+        $query->execute();
+   
+        // Fermeture de la connection
+        $connection = null;
+    }
     //Permets de récupérer les amis selon leurs Ids
     function getFriends($id){
         
@@ -424,3 +443,4 @@ class Users {
 
         return $friends;
     }
+}
