@@ -36,6 +36,7 @@ class Pages {
 
         return $content;
     }
+    //Permets de récupérer la page et les utilisateurs affiliés aux pages
     function GetUserPage($pageId,$userId){
         
         //Connecter la BDD
@@ -56,6 +57,7 @@ class Pages {
 
         return $content;
     }
+    //Permets de supprimer la page
     function deletePage($pageId) {
      //Connecter la BDD
      $db = new Database();
@@ -74,6 +76,7 @@ class Pages {
 
      return $content;
     }
+    //Permets de mettre à jour la page
     function updatePage($pageId,$profile_icon,$profile_banner,$content) {
         //Connecter la BDD
         $db = new Database();
