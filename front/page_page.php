@@ -1,43 +1,44 @@
 <?php
-    require_once('../src/model/Database.php');
-    //  Connecter la BDD
-    $db = new Database();
-    // Ouverture de la connection
-    $connection = $db->getConnection();
-    // Requêtes SQL
-    $name = null;
+require_once('../src/model/Database.php');
+//  Connecter la BDD
+$db = new Database();
+// Ouverture de la connection
+$connection = $db->getConnection();
+// Requêtes SQL
+$name = null;
 
-    if(isset($_GET['name'])) {
-        $name = $_GET['name'];
-        setcookie("name", $name);
-    } else {
-        echo "Name parameter not provided!";
-    }
+if (isset($_GET['name'])) {
+    $name = $_GET['name'];
+    setcookie("name", $name);
+} else {
+    echo "Name parameter not provided!";
+}
 
-    $sql = 'SELECT * FROM "pages" WHERE name = :name';
-    $query = $connection->prepare($sql);
-    $query->bindParam(':name', $name);
-    $query->execute();
+$sql = 'SELECT * FROM "pages" WHERE name = :name';
+$query = $connection->prepare($sql);
+$query->bindParam(':name', $name);
+$query->execute();
 
-    $pages = $query->fetchAll(PDO::FETCH_ASSOC);
-    $page = null;
-    $idPage = null;
-    $namePage = null;
-    $iconProfile = null;
-    $bannerProfile = null;
+$pages = $query->fetchAll(PDO::FETCH_ASSOC);
+$page = null;
+$idPage = null;
+$namePage = null;
+$iconProfile = null;
+$bannerProfile = null;
 
-    if (!empty($pages)) {
-        $page = $pages[0]; 
-        $idPage = $page["id"];
-        $namePage = $page["name"];
-        $iconProfile = $page["profile_icon"];
-        $bannerProfile = $page["profile_banner"];
-    }   
+if (!empty($pages)) {
+    $page = $pages[0];
+    $idPage = $page["id"];
+    $namePage = $page["name"];
+    $iconProfile = $page["profile_icon"];
+    $bannerProfile = $page["profile_banner"];
+}
 
-    $postCount = null;
-    $posts = null;
+$postCount = null;
+$posts = null;
 
-    function fetchPublication($idPage, $connection) {
+function fetchPublication($idPage, $connection)
+{
     $sql = "SELECT * FROM \"post\" WHERE author_id = :id AND post_type = 1 AND author_type = 'pages' ORDER BY timestamp DESC";
 
     $query = $connection->prepare($sql);
@@ -47,59 +48,62 @@
     $posts = $query->fetchAll(PDO::FETCH_ASSOC);
     $postCount = count($posts);
     return [$posts, $postCount];
-    }   
+}
 
-    [$posts, $postCount] = fetchPublication($idPage, $connection);
+[$posts, $postCount] = fetchPublication($idPage, $connection);
 
 
-    function Publication($post, $connection) { 
-            $idPost = $post["id"];
-            $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
-            $query = $connection->prepare($sql);
-            $query->bindParam(':id', $idPost);
-            $query->execute();
-            $publication = $query->fetch(PDO::FETCH_ASSOC);
-            $json = $publication["content"];
-            $jsondecode = json_decode($json);
-            return [$idPost, $jsondecode->description, $jsondecode->image];
-    }   
+function Publication($post, $connection)
+{
+    $idPost = $post["id"];
+    $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idPost);
+    $query->execute();
+    $publication = $query->fetch(PDO::FETCH_ASSOC);
+    $json = $publication["content"];
+    $jsondecode = json_decode($json);
+    return [$idPost, $jsondecode->description, $jsondecode->image];
+}
 
-    function fetchCommentary($idPost, $connection) {
-        $sql2 = "SELECT * FROM \"post\" WHERE id = :id ORDER BY timestamp DESC";
+function fetchCommentary($idPost, $connection)
+{
+    $sql2 = "SELECT * FROM \"post\" WHERE id = :id ORDER BY timestamp DESC";
 
-        $query = $connection->prepare($sql2);
-        $query->bindParam(':id', $idPost);
-        $query->execute();
+    $query = $connection->prepare($sql2);
+    $query->bindParam(':id', $idPost);
+    $query->execute();
 
-        $postsComs = $query->fetchAll(PDO::FETCH_ASSOC);
-        $postComCount = count($postsComs);
-        return [$postsComs, $postComCount];
-    }
-    
+    $postsComs = $query->fetchAll(PDO::FETCH_ASSOC);
+    $postComCount = count($postsComs);
+    return [$postsComs, $postComCount];
+}
 
-    function Commentary($postCom, $connection) { 
-            $idPostCom = $postCom["id"];
-            $authorId = $postCom["author_id"];
-            
-            $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
-            $query = $connection->prepare($sql);
-            $query->bindParam(':id', $idPostCom);
-            $query->execute();
-            
-            $commentary = $query->fetch(PDO::FETCH_ASSOC);
-            $json = $commentary["content"];
-            $jsondecode = json_decode($json);
 
-            $sql = 'SELECT * FROM "user" WHERE id = :authorId';
-            $query = $connection->prepare($sql);
-            $query->bindParam(':authorId', $authorId);
-            $query->execute();
+function Commentary($postCom, $connection)
+{
+    $idPostCom = $postCom["id"];
+    $authorId = $postCom["author_id"];
 
-            $author = $query->fetch(PDO::FETCH_ASSOC);
-            $username = $author["username"];
-            $profile_pic = $author["profile_icon"];
-            return [$username, $profile_pic, $jsondecode->description];
-    }   
+    $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idPostCom);
+    $query->execute();
+
+    $commentary = $query->fetch(PDO::FETCH_ASSOC);
+    $json = $commentary["content"];
+    $jsondecode = json_decode($json);
+
+    $sql = 'SELECT * FROM "user" WHERE id = :authorId';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':authorId', $authorId);
+    $query->execute();
+
+    $author = $query->fetch(PDO::FETCH_ASSOC);
+    $username = $author["username"];
+    $profile_pic = $author["profile_icon"];
+    return [$username, $profile_pic, $jsondecode->description];
+}
 
 
 ?>
@@ -112,7 +116,9 @@
     <img class="banner-img" src=<?= $bannerProfile ?>>
     <input type="submit" class="Submitbutton" value="Modifier le profil">
     <div class="page_info">
-        <img class="profile-img" src=<?= $iconProfile ?>>
+        <div class="profile-img">
+            <img src=<?= $iconProfile ?> alt="iconProfile">
+        </div>
         <div class="profile-nom-prenom">
             <h3><span class="white_space"><?= $namePage ?></span></h3>
             <h4><span class="white_space"><?= $postCount ?> posts</span></h4>
@@ -177,7 +183,7 @@
             <div class="box-img">
                 <?php foreach ($posts as $post) :
                     [$description, $image] = Publication($post, $connection); ?>
-                    <?php if ($image !== ""): ?>
+                    <?php if ($image !== "") : ?>
                         <img src="<?= $image ?>" class="box_photos_picture">
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -189,8 +195,8 @@
 
         <div class="profile_publication_post">
             <div class="profile_publication_div_flex">
-                <div>
-                    <img src="./img/pp.png" alt="profile_picture" class="group_friend_pp">
+                <div class="publication_pp_div">
+                    <img src="./img/pp.png" alt="profile_picture">
                 </div>
                 <div class="profile_publication_div_post">
                     <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
@@ -198,27 +204,40 @@
             </div>
 
             <div class="group_preview_publication_image">
-                <div class="group_preview_publication_sub">
-                    <span class="material-icons">image</span>
-                    <p>Photo</p>
-                </div>
+                <label id="custom-img-btn">
+                    <div class="group_preview_publication_sub">
+                        <span class="material-icons">image</span>
+                        <p>Photo</p>
+                    </div>
+                </label>
 
-                <div class="group_preview_publication_sub">
-                    <span class="material-icons">videocam</span>
-                    <p>Vidéo</p>
+                <!-- <label id="custom-video-btn">
+                    <div class="group_preview_publication_sub">
+                        <span class="material-icons">videocam</span>
+                        <p>Vidéo</p>
+                    </div>
+                </label> -->
+
+                <div class="btn_send">
+                    <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
                 </div>
 
             </div>
+
+            <div id="publication_image">
+                <button class="remove_btn"><span class="material-icons-round">close</span></button>
+            </div>
+
         </div>
 
         <?php [$posts, $postCount] = fetchPublication($idPage, $connection);
-            foreach ($posts as $post) :
+        foreach ($posts as $post) :
             [$idPost, $description, $image] = Publication($post, $connection); ?>
             <div class="publication">
 
                 <div class="publication_info">
-                    <div>
-                        <img src=<?= $iconProfile ?> alt="" class="group_friend_pp">
+                    <div class="publication_pp_div">
+                        <img src=<?= $iconProfile ?> alt="">
                     </div>
                     <div>
                         <p><?= $name ?></p>
@@ -229,8 +248,8 @@
                 <p><?= $description ?></p>
 
                 <div class="publication_list_images">
-                    <?php if ($image !== ""): ?>
-                    <img src=<?= $image ?> alt="" class="publication_image">
+                    <?php if ($image !== "") : ?>
+                        <img src=<?= $image ?> alt="" class="publication_image">
                     <?php endif; ?>
                 </div>
 
@@ -260,42 +279,44 @@
                     <!-- un commentaire -->
                     <?php [$postsComs, $postComCount] = fetchCommentary($idPost, $connection);
                     var_dump($postsComs);
-                    foreach ($postsComs as $post):
+                    foreach ($postsComs as $post) :
                         [$username, $profile_pic, $description1] = Commentary($post, $connection) ?>
 
-                    <div>
-                        <div class="publication_comment">
-                            <div class="publication_info">
-                                <img src=<?= $profile_pic ?> alt="" class="group_friend_pp">
-                            </div>
-
-                            <div>
-                                <div class="publication_person_comment">
-                                    <p class="publication_name"><?= $username ?></p>
-                                    <p><?= $description1 ?></p>
-                                </div>
-
-                                <div class="publication_person_comment_options_reaction">
-                                    <div class="publication_person_comment_options">
-                                        <p>J'aime</p>
-                                        <p>Répondre</p>
-                                        <p>x h</p>
-                                    </div>
-
-                                    <div class="publication_comment_reaction">
-                                        <span class="material-icons">thumb_up</span>
-                                        <p>1000</p>
+                        <div>
+                            <div class="publication_comment">
+                                <div class="publication_info">
+                                    <div class="publication_pp_div">
+                                        <img src=<?= $profile_pic ?> alt="">
                                     </div>
                                 </div>
 
-                                <div class="publication_person_view_answer">
-                                    <span class="material-icons-round">subdirectory_arrow_right</span>
-                                    <p>X réponses</p>
-                                </div>
+                                <div>
+                                    <div class="publication_person_comment">
+                                        <p class="publication_name"><?= $username ?></p>
+                                        <p><?= $description1 ?></p>
+                                    </div>
 
+                                    <div class="publication_person_comment_options_reaction">
+                                        <div class="publication_person_comment_options">
+                                            <p>J'aime</p>
+                                            <p>Répondre</p>
+                                            <p>x h</p>
+                                        </div>
+
+                                        <div class="publication_comment_reaction">
+                                            <span class="material-icons">thumb_up</span>
+                                            <p>1000</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="publication_person_view_answer">
+                                        <span class="material-icons-round">subdirectory_arrow_right</span>
+                                        <p>X réponses</p>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
 
 
@@ -303,8 +324,10 @@
                     <!-- <div class="publication_comment">
 
                         <div class="publication_info">
-                            <img src="./img/pp.png" alt="" class="group_friend_pp">
+                            <div class="publication_pp_div">
+                            <img src="./img/pp.png" alt="">
                         </div>
+                    </div>
 
                         <div>
                             <div class="publication_person_comment">
@@ -329,7 +352,9 @@
                             <div>
                                 <div class="publication_comment">
                                     <div class="publication_info">
-                                        <img src="./img/pp.png" alt="" class="group_friend_pp">
+                                        <div class="publication_pp_div">
+                                        <img src="./img/pp.png" alt="">
+                    </div>
                                     </div>
 
                                     <div>
@@ -362,7 +387,9 @@
                 <div>
                     <div class="publication_comment">
                         <div class="publication_info">
-                            <img src="./img/pp.png" alt="" class="group_friend_pp">
+                            <div class="publication_pp_div">
+                                <img src="./img/pp.png" alt="">
+                            </div>
                         </div>
 
                         <div class="publication_person_comment">
@@ -380,8 +407,8 @@
                 </div>
 
             </div>
-            <?php endforeach; ?>
-            <!-- fin publication -->
+        <?php endforeach; ?>
+        <!-- fin publication -->
 
     </div>
 
@@ -531,6 +558,7 @@
 
 <script src="./scripts/script_profile.js"></script>
 <script src="./scripts/script.js"></script>
+<script src="./scripts/script_publication.js"></script>
 
 <?php
 include 'footer.php'

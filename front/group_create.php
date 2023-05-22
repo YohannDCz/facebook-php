@@ -13,8 +13,8 @@
         <h3 style="white-space: nowrap;">Créer un groupe</h3>
 
         <div class="group_owner">
-            <div>
-                <img src="./img/pp.png" alt="pp" class="group_owner_pp">
+            <div class="group_owner_pp">
+                <img src="./img/pp.png" alt="pp">
             </div>
             <div class="group_owner_info">
                 <p>Pseudo</p>
