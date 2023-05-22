@@ -324,11 +324,10 @@ class Users {
             ];
             $lastSeen[] = $lastSeen;
         }
-
         // Fermeture de la connection
         $connection = null;
 
-        return $content;
+        return $lastSeen;
     }
     //récupère les utilisateurs d'un groupe
     function getGroupUsers($group_id) {
