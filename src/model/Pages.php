@@ -73,5 +73,26 @@ class Pages {
      $connection = null;
 
      return $content;
- }
+    }
+    function updatePage($pageId,$profile_icon,$profile_banner,$content) {
+        //Connecter la BDD
+        $db = new Database();
+   
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+   
+        // Requêtes SQL
+        $query = $connection->query("UPDATE pages SET name = :name, profile_icon = :profile_icon, profile_banner = :profile_banner , content = :content WHERE id = :pageId");
+        $query->bindParam(":pageId", $pageId);
+        $query->bindParam(":profile_icon", $profile_icon);
+        $query->bindParam(":profile_banner", $profile_banner);
+        $query->bindParam(":content", $content);
+        //Execution de la Query
+        $query->execute();
+   
+        // Fermeture de la connection
+        $connection = null;
+   
+        return $content;
+    }
 }
