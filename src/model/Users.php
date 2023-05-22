@@ -193,9 +193,6 @@ class Users {
         if ($query->execute()) {
             // Update réussie
             return true;
-        } else {
-            // Error
-            return false;
         }
     }
     function modifyUserPassword($mail,$oldPassword,$newPassword) {
@@ -250,9 +247,7 @@ class Users {
         if ($query->execute()) {
             // Update réussie
             return true;
-        } else {
-            // Error
-            return false;
+        }
     }
     }
     function disablingProccess($mail,$password) {
