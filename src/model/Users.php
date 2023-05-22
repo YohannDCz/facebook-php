@@ -166,7 +166,10 @@ class Users {
         $query = 'DELETE FROM user WHERE mail = :mail ;';
         $query = $connection->prepare($query);
         $query->bindParam(":mail", $mail);
-        return $query->execute();
+        if ($query->execute()) {
+            // Update réussie
+            return true;
+        }
         
         }
     function modifyUserData($username,$first_name, $last_name, $phone, $mail,$id) {
@@ -224,7 +227,11 @@ class Users {
         $query = $connection->prepare($query);
         $query->bindParam(":mail", $mail);
         $query->bindParam(":newPassword", $newPassword);
-        return $query->execute();
+        //Exécution de la Query
+        if ($query->execute()) {
+            // Update réussie
+            return true;
+        }
     }
     function modifyUserPics($profile_icon, $profile_banner, $id) {
         //Connecter la BDD
@@ -280,7 +287,10 @@ class Users {
         $query = 'UPDATE user SET is_activated = FALSE WHERE mail = :mail ;';
         $query = $connection->prepare($query);
         $query->bindParam(":mail", $mail);
-        return $query->execute();
+        if ($query->execute()) {
+            // Update réussie
+            return true;
+        }
             
     }
     function getUserLastSeen($userid){
@@ -405,4 +415,3 @@ class Users {
 
         return $friends;
     }
-}
