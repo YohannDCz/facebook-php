@@ -2,6 +2,11 @@
 require_once('../model/Database.php');
 require_once('../model/Users.php');
 
+// déclaration variable globale
+global $split_url;
+
+
+
 function signup() {
 
     $user = new Users();
@@ -32,7 +37,6 @@ function signup() {
 
       $user->addUser($username, $password, $first_name, $last_name, $phone, $email, $birthdate);
 
-      header("Location: ../../front/login.php");
     }
 
     
@@ -54,11 +58,9 @@ function login() {
 
     if (password_verify($password, $userDb["password"])) {
       $_SESSION["loggedin"] = true;
-      header('Location: ../../front/profile.php');
     } else {
       $error = "Identifiants invalides";
       setcookie("errorPassword", $error);
-      header("Location: ../../front/login.php");
       exit();
     }
 }
@@ -87,5 +89,14 @@ if(isset($_SERVER['HTTP_REFERER']) and $_SERVER["REQUEST_METHOD"] === "POST") {
       exit();
   }
 }
+
+
+
+// router dans la catégorie user
+switch ($split_url[2]) {
+    case '':
+}
+
+
 
 ?>
