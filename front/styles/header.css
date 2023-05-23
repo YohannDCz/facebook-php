@@ -74,10 +74,10 @@ header {
         font-size: 32px;
     }
 
-    .profilepicture>img {
+    /* .profilepicture>img {
         width: 32px;
         height: 32px;
-    }
+    } */
 
     .material-icons-outlined.search_icon {
         font-size: 32px;

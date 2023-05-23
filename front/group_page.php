@@ -13,7 +13,7 @@
 <div class="group_info">
     <h3>Nom du groupe</h3>
     <p class="accept group_invitation">Voir invitations</p>
-    <input type="submit" class="Submitbutton" value="Modifier le profil">
+    <!-- <input type="submit" class="Submitbutton" value="Modifier le profil"> -->
 </div>
 
 <div class="summary">
@@ -395,10 +395,18 @@
                 <p id="user-info-list">Habite à X</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
+        </div>
+
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">location_on</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="J'habite à..." class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
         </div>
 
         <div class="box_aboutus_info">
@@ -407,10 +415,18 @@
                 <p id="user-info-list">Travaille à X</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
+        </div>
+
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">home_repair_service</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="Je travaille à..." class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
         </div>
 
         <div class="box_aboutus_info">
@@ -419,10 +435,18 @@
                 <p id="user-info-list">À étudié(e) au lycée Machin truc</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
+        </div>
+
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">school</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="J'ai étudié à..." class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
         </div>
 
         <div class="box_aboutus_info">
@@ -431,10 +455,18 @@
                 <p id="user-info-list">Célibataire</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
+        </div>
+
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">favorite</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="Je suis actuellement en..." class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
         </div>
 
         <div class="box_aboutus_info">
@@ -443,13 +475,20 @@
                 <p id="user-info-list">machin@machin.fr</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
         </div>
-    </div>
 
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">mail</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="machin@machin.machin" class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
+        </div>
+    </div>
 
 </div>
 

@@ -125,7 +125,6 @@
     object-fit: cover;
 }
 
-
 .user-info {
     list-style-type: none;
     display: flex;
@@ -245,16 +244,23 @@
     height: 115px;
 }
 
-.box_friends_friend_pp,
 .box_friends_friend_pp {
-    height: 100%;
     border-radius: 12px;
+    overflow: hidden;
+    height: 115px;
+    width: 115px;
+}
+
+.box_friends_friend_pp img {
+    height: 115px;
+    width: 115px;
 }
 
 .box_friends_name {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    white-space: nowrap;
 }
 
 .box_friends_pp_name {
@@ -292,16 +298,6 @@
     max-width: 1920px;
 }
 
-.box_photos_all {
-    /* display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 1fr;
-    grid-gap: 10px; */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 45px;
-}
-
 .summary-content {
     display: none;
 }
@@ -310,13 +306,68 @@
     display: flex;
 }
 
-
 .box_return {
     flex-direction: row;
     align-items: center;
     margin: 10px 0px;
     column-gap: 10px;
     width: fit-content;
+}
+
+.profile_edit_form,
+.profile_edit_form_block {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.inputText {
+    border: none;
+    border-bottom: solid 1px black;
+    padding: 5px;
+    width: 100%;
+    background-color: inherit;
+    color: var(--color);
+}
+
+.Submitbutton {
+    padding: 10px 15px;
+    align-self: auto;
+}
+
+.box_photos_all {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.box_photos_photo {
+    width: calc(25% - 8px);
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.box_photos_photo>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.profile_edit {
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.profile_edit:hover {
+    color: #009FF5;
+}
+
+.profile_edit:active {
+    color: #00507A;
 }
 
 @media (max-width: 1024px) {

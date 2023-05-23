@@ -76,3 +76,29 @@ group_invitation.addEventListener('click', function (event) {
     box_summary_invitations.classList.remove('summary-content');
     toggleResponsiveClass(); // Appel de la fonction après avoir mis à jour les classes
 });
+
+// a propos
+
+let profile_edit = document.querySelectorAll('.profile_edit');
+let profile_edit_form = document.querySelectorAll('.profile_edit_form');
+let box_aboutus_info = document.querySelectorAll('.box_aboutus_info');
+
+function profile_edit_none() {
+    profile_edit_form.forEach(box => {
+        box.style.display = "none";
+    });
+    box_aboutus_info.forEach(box => {
+        box.style.display = "flex";
+    });
+}
+
+profile_edit.forEach((button, index) => {
+    button.addEventListener('click', function () {
+        let targetBox = box_aboutus_info[index];
+        targetBox.style.display = "none";
+
+        profile_edit_form[index].style.display = "flex";
+    });
+});
+
+profile_edit_none()

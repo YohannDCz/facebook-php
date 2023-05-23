@@ -12,7 +12,7 @@ function resetContentBoxes() {
     });
 }
 
-// // Afficher box_main par défaut
+// Afficher box_main par défaut
 box_main.classList.remove('summary-content');
 
 let box_return = document.querySelector('.box_return');
@@ -25,6 +25,7 @@ profileLinks.forEach(link => {
         let targetBox = document.querySelector(`.${targetBoxClass}`);
         targetBox.classList.remove('summary-content');
         toggleResponsiveClass(); // Appel de la fonction après avoir mis à jour les classes
+        profile_edit_none();
     });
 });
 
@@ -67,3 +68,42 @@ toggleResponsiveClass();
 
 // Écoute l'événement de redimensionnement de la fenêtre
 window.addEventListener('resize', toggleResponsiveClass);
+
+let profile_edit = document.querySelectorAll('.profile_edit');
+let profile_edit_form = document.querySelectorAll('.profile_edit_form');
+let box_aboutus_info = document.querySelectorAll('.box_aboutus_info');
+
+function profile_edit_none() {
+    profile_edit_form.forEach(box => {
+        box.style.display = "none";
+    });
+    box_aboutus_info.forEach(box => {
+        box.style.display = "flex";
+    });
+}
+
+profile_edit.forEach((button, index) => {
+    button.addEventListener('click', function () {
+        let targetBox = box_aboutus_info[index];
+        targetBox.style.display = "none";
+
+        profile_edit_form[index].style.display = "flex";
+    });
+});
+
+profile_edit_none()
+
+// pour les photos
+window.addEventListener('load', function() {
+    const photoContainers = document.querySelectorAll('.box_photos_photo');
+  
+    photoContainers.forEach(container => {
+      const image = container.querySelector('img');
+      image.addEventListener('load', function() {
+        const containerWidth = container.offsetWidth;
+        const containerHeight = containerWidth; // Assumer un ratio de 1:1
+        container.style.height = `${containerHeight}px`;
+      });
+    });
+  });
+  
