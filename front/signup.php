@@ -9,9 +9,9 @@
 
         <form class="login_signup" action="../src/controller/userController.php" method="POST">
             <div class="radiobox">
-                <label class="role"><input name="role" type="radio" name="bouton" value="madame" checked>Madame</label>
-                <label class="role"><input name="role" type="radio" name="bouton" value="monsieur">Monsieur</label>
-                <label class="role"><input name="role" type="radio" name="bouton" value="autres">Autre(s)</label>
+                <label class="role"><input name="role" type="radio" value="madame" checked>Madame</label>
+                <label class="role"><input name="role" type="radio" value="monsieur">Monsieur</label>
+                <label class="role"><input name="role" type="radio" value="autres">Autre(s)</label>
             </div>
             <div class="row">
                 <input name="first_name" type="text" class="inputText" placeholder="Prénom" required>
@@ -29,7 +29,7 @@
                 <input name="phone" type="tel" class="inputText" placeholder="Téléphone" minlength="10" maxlength="14" required>
             </div>
             <div class="row">
-                <input name="mail" type="mail" class="inputText" placeholder="Adresse e-mail" required>
+                <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>
             </div>
             <div class="row">
                 <input name="password" type="password" class="inputText" placeholder="Mot de passe" required>

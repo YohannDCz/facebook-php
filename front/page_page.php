@@ -157,17 +157,23 @@ function Commentary($postCom, $connection)
             <div class="box-img">
 
                 <div class="friends-info">
-                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    <div class="friends_info_pp">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
-                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    <div class="friends_info_pp">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
-                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    <div class="friends_info_pp">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    </div>
                     <p>Pseudo</p>
                 </div>
 
@@ -503,7 +509,9 @@ function Commentary($postCom, $connection)
 
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
-                <img src="./img/pp2.png" alt="" class="box_friends_friend_pp">
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -513,7 +521,9 @@ function Commentary($postCom, $connection)
 
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
-                <img src="./img/pp2.png" alt="" class="box_friends_friend_pp">
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -523,7 +533,9 @@ function Commentary($postCom, $connection)
 
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
-                <img src="./img/pp2.png" alt="" class="box_friends_friend_pp">
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -545,11 +557,21 @@ function Commentary($postCom, $connection)
 
     <div class="box_photos_all">
 
-        <img src="./img/pp2.png" alt="" class="box_photos_photo">
-        <img src="./img/pp2.png" alt="" class="box_photos_photo">
-        <img src="./img/pp2.png" alt="" class="box_photos_photo">
-        <img src="./img/pp2.png" alt="" class="box_photos_photo">
-        <img src="./img/pp2.png" alt="" class="box_photos_photo">
+        <div class="friends_info_pp">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
+        </div>
+        <div class="friends_info_pp">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
+        </div>
+        <div class="friends_info_pp">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
+        </div>
+        <div class="friends_info_pp">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
+        </div>
+        <div class="friends_info_pp">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
+        </div>
 
     </div>
 

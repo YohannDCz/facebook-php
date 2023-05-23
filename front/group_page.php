@@ -46,28 +46,28 @@
             <div class="box-title">
                 <h2>Intro</h2>
             </div>
-            <div class="user-info">
-                <div class="logo-info">
+            <ul class="user-info">
+                <li class="logo-info">
                     <span class="material-icons-outlined md-20">location_on</span>
-                    <li id="user-info-list">Habite à X</li>
-                </div>
-                <div class="logo-info">
+                    <p id="user-info-list">Habite à X</p>
+                </li>
+                <li class="logo-info">
                     <span class="material-icons-outlined md-20">home_repair_service</span>
-                    <li id="user-info-list">Travaille à X</li>
-                </div>
-                <div class="logo-info">
+                    <p id="user-info-list">Travaille à X</p>
+                </li>
+                <li class="logo-info">
                     <span class="material-icons-outlined md-20">school</span>
-                    <li id="user-info-list">À étudié(e) au lycée X</li>
-                </div>
-                <div class="logo-info">
+                    <p id="user-info-list">À étudié(e) au lycée X</p>
+                </li>
+                <li class="logo-info">
                     <span class="material-icons-outlined md-20">favorite</span>
-                    <li id="user-info-list">Célibataire</li>
-                </div>
-                <div class="logo-info">
+                    <p id="user-info-list">Célibataire</p>
+                </li>
+                <li class="logo-info">
                     <span class="material-icons-outlined md-20">mail</span>
-                    <li id="user-info-list">machin@machin.fr</li>
-                </div>
-            </div>
+                    <p id="user-info-list">machin@machin.fr</p>
+                </li>
+            </ul>
         </div>
 
         <div class="box_friends">
@@ -79,17 +79,23 @@
             <div class="box-img">
 
                 <div class="friends-info">
-                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    <div class="friends_info_pp">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
-                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    <div class="friends_info_pp">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
-                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    <div class="friends_info_pp">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
+                    </div>
                     <p>Pseudo</p>
                 </div>
 
@@ -103,11 +109,21 @@
                 <a class="profile_photos_link" href="#">Toutes les photos</a>
             </div>
             <div class="box-img">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
-                <img src="./img/pp2.png" class="box_photos_picture">
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
+                <div class="friends_info_pp">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
+                </div>
 
             </div>
         </div>
