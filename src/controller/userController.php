@@ -110,6 +110,9 @@ switch ($split_url[2]) {
       //require la page mentions légale
       require_once '';
       break;
+    default :
+      echo 'DEFAULT USER PAGE';
+      break;
 }
 
 
