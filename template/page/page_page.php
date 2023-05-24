@@ -241,18 +241,19 @@ function Commentary($postCom, $connection)
             [$idPost, $description, $image] = Publication($post, $connection); ?>
             <div class="publication">
 
+            <div class="publication_pp_edit">
                 <div class="publication_info">
                     <div class="publication_pp_div">
-                        <img src=<?= $iconProfile ?> alt="">
+                        <img src=<?= $iconProfile ?> alt="profile_picture">
                     </div>
-                    <div>
-                        <p><?= $name ?></p>
-                    </div>
+                    <p><?= $name ?></p>
+                    <button class="modifyButton Submitbutton"><span class="material-icons-round">edit</span></button>
                 </div>
 
 
-                <p><?= $description ?></p>
-
+                <p class="publication_text"><?= $description ?></p>
+                <div class="placenewText">
+                </div>
                 <div class="publication_list_images">
                     <?php if ($image !== "") : ?>
                         <img src=<?= $image ?> alt="" class="publication_image">

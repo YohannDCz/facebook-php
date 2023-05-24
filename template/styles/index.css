@@ -112,11 +112,11 @@
     border-radius: 12px;
 }
 
-.index_menuopen a:hover{
+.index_menuopen a:hover {
     background-color: white;
 }
 
-.index_menuopen a:active{
+.index_menuopen a:active {
     background-color: #ccc;
 }
 
@@ -134,7 +134,12 @@
 
 #index_menuburger:hover {
     opacity: 0.7;
-  }
+}
+
+.Submitbutton {
+    padding: 5px;
+    border-radius: 50%;
+}
 
 @media only screen and (max-width: 1024px) {
 

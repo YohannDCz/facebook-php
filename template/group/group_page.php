@@ -170,18 +170,20 @@
 
         <div class="publication">
 
-            <div class="publication_info">
-                <div class="publication_pp_div">
-                    <img src="../img/pp.png" alt="">
-                </div>
-                <div>
+            <div class="publication_pp_edit">
+                <div class="publication_info">
+                    <div class="publication_pp_div">
+                        <img src="../img/pp.png" alt="profile_picture">
+                    </div>
                     <p>Nom Prénom</p>
                 </div>
+                <button class="modifyButton Submitbutton"><span class="material-icons-round">edit</span></button>
             </div>
 
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusamus, dolorum perferendis veniam libero sunt dolores aspernatur facilis ipsum consequuntur officiis sint suscipit! Aliquid ipsum doloribus eius ipsa, vitae cupiditate?</p>
-
+            <p class="publication_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusamus, dolorum perferendis veniam libero sunt dolores aspernatur facilis ipsum consequuntur officiis sint suscipit! Aliquid ipsum doloribus eius ipsa, vitae cupiditate?</p>
+            <div class="placenewText">
+            </div>
             <div class="publication_list_images">
                 <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
                 <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
@@ -218,7 +220,7 @@
                     <div class="publication_comment">
                         <div class="publication_info">
                             <div class="publication_pp_div">
-                                <img src="../img/pp.png" alt="">
+                                <img src="../img/pp.png" alt="profile_picture">
                             </div>
                         </div>
 
@@ -256,7 +258,7 @@
 
                     <div class="publication_info">
                         <div class="publication_pp_div">
-                            <img src="../img/pp.png" alt="">
+                            <img src="../img/pp.png" alt="profile_picture">
                         </div>
                     </div>
 
@@ -284,7 +286,7 @@
                             <div class="publication_comment">
                                 <div class="publication_info">
                                     <div class="publication_pp_div">
-                                        <img src="../img/pp.png" alt="">
+                                        <img src="../img/pp.png" alt="profile_picture">
                                     </div>
                                 </div>
 
@@ -311,7 +313,7 @@
                                         <div class="publication_comment">
                                             <div class="publication_info">
                                                 <div class="publication_pp_div">
-                                                    <img src="../img/pp.png" alt="">
+                                                    <img src="../img/pp.png" alt="profile_picture">
                                                 </div>
                                             </div>
 
@@ -351,7 +353,7 @@
                 <div class="publication_comment">
                     <div class="publication_info">
                         <div class="publication_pp_div">
-                            <img src="../img/pp.png" alt="">
+                            <img src="../img/pp.png" alt="profile_picture">
                         </div>
                     </div>
 

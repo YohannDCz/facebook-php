@@ -199,18 +199,31 @@
     color: #00507A;
 }
 
-.publication_pp_div{
+.publication_pp_div {
     width: 40px;
     height: 40px;
     overflow: hidden;
     border-radius: 50%;
 }
 
-.publication_pp_div>img{
+.publication_pp_div>img {
     width: 40px;
     height: 40px;
 }
 
+.publication_pp_edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.newTextInput {
+    width: 100%;
+    resize: none;
+    padding: 10px;
+    border-radius: 12px;
+    overflow-y: hidden;
+}
 
 @media (max-width: 1024px) {
 
