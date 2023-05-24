@@ -15,7 +15,7 @@ switch($split_url[1]){
     // Route utilisateur de l'API
     case 'user':
         // require le controller user
-        require_once './src/controller/userController.php';
+        require_once './src/router/userRoutes.php';
         break;
     case 'page':
         //  require le controller page

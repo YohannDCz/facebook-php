@@ -1,5 +1,7 @@
 <?php
 
+require_once '../controller/userController.php';
+
 // déclaration variable globale
 global $split_url;
 
