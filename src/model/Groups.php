@@ -82,6 +82,8 @@ class Groups
         }
 
     }
+
+    
     function checkGroups($name){
  
         // Connecter la BDD
