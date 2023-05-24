@@ -1,0 +1,47 @@
+.menu {
+    background-color: #eee;
+    color: #000;
+    border-radius: 12px;
+    padding: 10px;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    list-style-type: none;
+    flex-direction: column;
+    gap: 5px;
+    top: 65px;
+    right: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu a {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.menu a:hover{
+    background-color: white;
+}
+
+.menu a:active{
+    background-color: #ccc;
+}
+
+#image {
+    cursor: pointer;
+}
+
+#image:hover {
+    opacity: 0.7;
+  }
+
+@media only screen and (max-width: 1024px) {
+    .menu {
+        top: 55px;
+        right: 10px;
+    }
+}

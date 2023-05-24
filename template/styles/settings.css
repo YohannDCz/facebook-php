@@ -1,0 +1,221 @@
+.settings_container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.Parameter {
+    background-color: var(--bgcolor2);
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.settings_block {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    width: 100%;
+}
+
+.activite,
+.find {
+    margin-bottom: 20px;
+}
+
+.settings_info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    height: fit-content;
+}
+
+.settings_info2 {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.settings_info3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modifier,
+.find p {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modifier p,
+.find p {
+    width: calc(50% - 10px);
+}
+
+.settings_p {
+    width: 60%;
+}
+
+.settings_acces {
+    width: 20%;
+    font-weight: 600;
+}
+
+.settings_notif {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.settings_notif2,
+.settings_label,
+.settings_langue {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.settings_list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    height: 100%;
+}
+
+.hover-icon .hide_icon {
+    color: red
+}
+
+.hover-icon:not(:hover) .hide_icon {
+    color: transparent;
+}
+
+.settings_edit_icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.settings_return {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0px;
+    column-gap: 10px;
+    width: fit-content;
+}
+
+.inputText {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: inherit;
+    color: var(--color);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding: 5px 0;
+    margin: 20px 0;
+}
+
+.radiobox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    column-gap: 30px;
+}
+
+.Submitbutton {
+    padding: 10px 15px;
+}
+
+.settings_profile {
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+    height: fit-content;
+    margin: 10px 0px;
+}
+
+.login_signup {
+    margin: 20px 0px;
+}
+
+.desactivate {
+    background-color: #B30000;
+    border: 1px solid #B30000
+}
+
+.desactivate:hover {
+    background-color: #FF9999;
+    border: 1px solid #B30000;
+    color: #B30000;
+}
+
+.desactivate:active {
+    background-color: red;
+    border: 1px solid #B30000;
+    color: white;
+}
+
+
+@media (max-width: 1024px) {
+
+    .Parameter {
+        padding: 20px;
+        border-right: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .material-icons-outlined.return_icon {
+        font-size: 20px;
+    }
+
+    .settings_return {
+        display: flex;
+    }
+
+    .settings_block {
+        display: none;
+        height: fit-content;
+        padding: 20px;
+    }
+
+    .settings_info3 {
+        flex-direction: column;
+    }
+
+    .settings_p {
+        width: 100%;
+    }
+
+    .settings_acces {
+        width: 100%;
+        font-weight: 600;
+    }
+
+    .settings_langue {
+        flex-direction: column;
+        row-gap: 10px;
+
+    }
+
+    .hover-icon:not(:hover) .hide_icon {
+        color: transparent;
+        display: none;
+    }
+
+    .settings_edit_icon {
+        width: 100%;
+    }
+}

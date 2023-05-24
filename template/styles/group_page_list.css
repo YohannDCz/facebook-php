@@ -1,0 +1,156 @@
+.group_container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.groups_discover {
+    padding: 50px;
+    /* background-color: white; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.groups_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    grid-gap: 20px;
+}
+
+.groups_group_preview {
+    border: black 1px solid;
+    border-radius: 12px;
+}
+
+.groups_group_banner {
+    width: 100%;
+    border-radius: 12px 12px 0px 0px;
+}
+
+.groups_group_content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.groups_group_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 10px;
+}
+
+.groups_group_name {
+    font-weight: 700;
+}
+
+.groups_join {
+    text-align: center;
+    padding: 10px 15px;
+    background-color: #0077B6;
+    border-radius: 12px;
+    border: 1px solid #0077B6;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.groups_join a {
+    color: inherit;
+}
+
+.groups_join:hover {
+    background-color: white;
+    color: #009FF5;
+}
+
+.groups_join:active {
+    background-color: #00507A;
+    color: white;
+}
+
+.groups_return {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0px;
+    column-gap: 10px;
+    width: fit-content;
+}
+
+.group_settings {
+    background-color: var(--bgcolor2);
+    padding: 20px;
+    border-right: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.group_settings_fil_arianne {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: flex-end;
+}
+
+
+.group_settings_fil_arianne p,
+.group_settings_fil_arianne p {
+    font-size: 10px;
+    color: #888;
+}
+
+.group_input {
+    border: none;
+    background-color: inherit;
+    border-bottom: solid 1px black;
+    padding: 10px;
+}
+
+
+@media (max-width: 1024px) {
+
+    .group_settings {
+        width: 100%;
+    }
+
+    .group_preview {
+        display: none;
+    }
+
+    .groups_discover {
+        display: none;
+        height: fit-content;
+        padding: 20px;
+    }
+
+    .groups_return {
+        display: flex
+    }
+
+    .groups_grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .groups_mobile {
+        display: none;
+    }
+
+
+
+
+
+
+}
+
+.pages_page_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 10px;
+}

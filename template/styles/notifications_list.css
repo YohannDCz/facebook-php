@@ -1,0 +1,65 @@
+.center-box {
+    background-color: var(--bgcolor2);
+    padding: 20px 10px;
+    margin: 50px auto;
+    border-radius: 12px;
+    max-width: 755px;
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.notifications_pop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    transition: ease-in-out 0.3s;
+}
+
+.notifications_pop:hover {
+    background-color: var(--bgcolor);
+}
+
+.notifications_pop:active {
+    background-color: #aaa;
+}
+
+
+.person_notif {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.photo-notif {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.notif-info {
+    flex-grow: 1; 
+    text-align: center; 
+}
+
+.name {
+    font-weight: bold;
+}
+
+.date {
+    font-size: 12px;
+    font-weight: 700;
+    color: #00507A;
+}
+@media screen and (max-width: 1024px) {
+
+    main{
+        margin: 0px 20px;
+    }
+
+}

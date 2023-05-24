@@ -1,0 +1,233 @@
+.publication {
+    border: 1px solid black;
+    border-radius: 12px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.publication_info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.publication_image {
+    width: 100%;
+    user-select: none;
+}
+
+.publication_list_images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.publication_post_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.publication_post_info p {
+    font-size: 12px;
+}
+
+.publication_post_reaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.publication_comment {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: 10px;
+    align-items: flex-start;
+}
+
+.publication_person_comment {
+    background-color: var(--bgcolor2);
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.publication_person_comment_options {
+    display: flex;
+    flex-direction: row;
+    column-gap: 30px;
+    font-size: 12px;
+}
+
+.publication_person_comment_options>* {
+    font-size: inherit;
+}
+
+.publication_list_comments {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.publication_person_view_answer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 12px;
+}
+
+.publication_person_view_answer {
+    font-size: inherit;
+}
+
+.publication_person_comment_input {
+    padding: 10px;
+    border-radius: 12px;
+    border: none;
+    width: 100%;
+    height: auto;
+    resize: none;
+    background-color: inherit;
+    color: var(--color);
+}
+
+.publication_person_emoji_react {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.publication_person_comment {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+}
+
+.publication_name {
+    font-size: 12px;
+}
+
+.publication_comment_reaction {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    color: #888;
+    font-size: 12px;
+}
+
+.publication_person_comment_options_reaction {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    color: #888;
+    justify-content: space-between;
+    padding: 2px 10px;
+}
+
+.publication_comment_reaction>* {
+    font-size: inherit;
+}
+
+.publication_comment_reaction .material-icons {
+    font-size: 14px;
+}
+
+.group_friend_pp {
+    width: 100%;
+    user-select: none;
+    border-radius: 50%;
+}
+
+.profile_publication_post {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 100%;
+    height: fit-content;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.profile_publication_div_post {
+    background-color: var(--bgcolor2);
+    padding: 10px;
+    border-radius: 12px;
+    flex: 1;
+}
+
+.profile_publication_div_flex {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.group_preview_publication_image {
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+    align-items: center;
+}
+
+.group_preview_publication_sub {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+    color: #888;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+}
+
+.group_preview_publication_sub:hover {
+    color: #009FF5;
+}
+
+.group_preview_publication_sub:active {
+    color: #00507A;
+}
+
+.publication_pp_div{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.publication_pp_div>img{
+    width: 40px;
+    height: 40px;
+}
+
+
+@media (max-width: 1024px) {
+
+    .publication_person_comment_options {
+        column-gap: 7px;
+    }
+
+    .publication_image {
+        width: 48%;
+    }
+
+    .publication_person_comment_options>*,
+    .publication_comment_reaction>* {
+        font-size: 10px;
+    }
+
+    .publication_comment_reaction {
+        column-gap: 5px;
+    }
+}
