@@ -34,14 +34,32 @@ function createGroup() {
 function showGroup() {
     
     $groups = new groups();
-    $id =$_POST["id"];
-    $query = $user->getGroups($id);
+    $name =$_POST["id"];
+    $query = $user->getGroups($name);
 
     $userDb = $query->fetch(PDO::FETCH_ASSOC);
     $error = null;
 }
+function showGroupUsers() {
+    
+    $groups = new groups();
+    $id =$_POST["id"];
+    $query = $user->getGroupsUsers($id);
 
+    $userDb = $query->fetch(PDO::FETCH_ASSOC);
+    $error = null;
 
+}
+
+function deleteGroups() {
+    $groups = new groups();
+    $id =$_POST["id"];
+    $query = $user->deleteGroup($id);
+
+    $userDb = $query->fetch(PDO::FETCH_ASSOC);
+    $error = null;
+
+}
 
 
 ?>

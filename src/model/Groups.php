@@ -35,7 +35,7 @@ class Groups
         $connection = $db->getConnection();
 
         // Requêtes SQL
-        $request = $connection->prepare("SELECT user_group.user_id FROM user_group WHERE user_group.group_id = :group_id");
+        $request = $connection->prepare("SELECT * FROM user_group WHERE user_group.group_id = :group_id");
         $request->bindParam(":group_id", $group_id);
         $request->execute();
 
@@ -66,7 +66,7 @@ class Groups
     }
 
     // fonction pour tej un groupe
-    function deleteGroup()
+    function deleteGroup($id)
     {
         // connect bdd
         $db = new Database();
@@ -75,6 +75,7 @@ class Groups
         $connection = $db->getConnection();
 
         $request = $connection->prepare("DELETE FROM \"groups\" WHERE id = :group_id");
+        $request->bindParam(":group_id", $group_id);
 
 
         if ($request->execute()){
