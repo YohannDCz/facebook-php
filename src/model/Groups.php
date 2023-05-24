@@ -82,4 +82,29 @@ class Groups
         }
 
     }
+    function checkGroups($name){
+ 
+        // Connecter la BDD
+        $db = new Database();
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+        
+        // Préparation/execution de la requête
+        $sql = 'SELECT * FROM "groups" WHERE  name = :name ';
+        $query = $connection->prepare($sql);
+        $query->execute([
+            ":name" => $name,
+        ]);
+        $query->execute();
+
+        // var_dump($stmt);
+        
+        // Fetch le résultat de la requête
+        $results = $query->fetch(PDO::FETCH_ASSOC);
+
+        // Fermeture de la connection
+        $connection = null;
+
+        return $results;
+    }
 }
