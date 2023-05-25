@@ -28,6 +28,6 @@ switch ($clean_url) {
         header('Location:' . 'http://' . $host . '/home');
         break;
     default:
-        # code...
+        header('Location:' . 'http://' . $host . '/home');
         break;
 }
