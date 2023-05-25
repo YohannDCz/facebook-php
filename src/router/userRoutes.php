@@ -57,6 +57,10 @@ switch ($clean_url) {
       //require la page de recherche
       require_once 'template/user/search_page.php';
       break;
+    case 'notifications':
+      //require la page notifications
+      require_once 'template/user/notifications_list.php';
+      break;
     default :
       //  require la page erreur 404;
       require_once 'template/404.php';
