@@ -9,17 +9,18 @@ global $split_url;
 switch ($split_url[2]) {
     case 'Create':
       //require la page profil
-      require_once 'template\group\group_create.php';
+      require_once 'template/group/group_create.php';
       break;
     case 'List':
       //require la page signup
-      require_once 'template\group\group_list.php';
+      require_once 'template/group/group_list.php';
       break;
     case 'Page':
       //require la page login
-      require_once 'template\group\group_page.php';
+      require_once 'template/group/group_page.php';
       break;
     default :
-      echo 'DEFAULT GROUP PAGE';
+      //    require la page erreur 404
+      require_once 'template/404.php'
       break;
 }
