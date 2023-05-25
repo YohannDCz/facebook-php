@@ -6,8 +6,12 @@ require_once 'src\controller\userController.php';
 global $split_url;
 global $host;
 
+//cleaning de l'url en cas de méthode GET
+$url_cleaner = explode('?', $split_url[2]);
+$clean_url = $url_cleaner[0];
+
 // router dans la catégorie user
-switch ($split_url[2]) {
+switch ($clean_url) {
     case 'profile':
       //require la page profil
       require_once 'template/user/profile.php';
