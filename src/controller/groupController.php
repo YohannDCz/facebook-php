@@ -2,9 +2,6 @@
 require_once('src/model/Database.php');
 require_once('src/model/groups.php');
 
-// déclaration variable globale
-global $split_url;
-
 
 // fonction pour créer un groupe 
 function createGroup() {
