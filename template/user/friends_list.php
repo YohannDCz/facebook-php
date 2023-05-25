@@ -1,11 +1,11 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/friends_list.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/friends_list.css">
 
 <div class="friends_list_container">
 
     <div class="friends_list_side_bar">
         <div class="group_settings_fil_arianne">
-            <p><a href="index.php">Accueil</a></p>
+            <p><a href=<?= "http://" . $host . "/home" ?>>Accueil</a></p>
             <p class="material-icons-round">chevron_right</p>
             <p>Amis</p>
         </div>
@@ -48,7 +48,7 @@
             <div class="invitation">
                 <div class="invitation_pp_name">
                     <div class="invitation_pp_div">
-                        <img src="../img/ooo.png" alt="Photo de profil" class="invitation_pp">
+                        <img src="../template/img/ooo.png" alt="Photo de profil" class="invitation_pp">
                     </div>
                     <p class="name">Nom de l'utilisateur 1</p>
                 </div>
@@ -61,7 +61,7 @@
             <div class="invitation">
                 <div class="invitation_pp_name">
                     <div class="invitation_pp_div">
-                        <img src="../img/ooo.png" alt="Photo de profil" class="invitation_pp">
+                        <img src="../template/img/ooo.png" alt="Photo de profil" class="invitation_pp">
                     </div>
                     <p class="name">Nom de l'utilisateur 1</p>
                 </div>
@@ -80,7 +80,7 @@
             <div class="invitation">
                 <div class="invitation_pp_name">
                     <div class="invitation_pp_div">
-                        <img src="../img/ooo.png" alt="Photo de profil" class="invitation_pp">
+                        <img src="../template/img/ooo.png" alt="Photo de profil" class="invitation_pp">
                     </div>
                     <p class="name">Nom de l'utilisateur 1</p>
                 </div>
@@ -93,7 +93,7 @@
             <div class="invitation">
                 <div class="invitation_pp_name">
                     <div class="invitation_pp_div">
-                        <img src="../img/ooo.png" alt="Photo de profil" class="invitation_pp">
+                        <img src="../template/img/ooo.png" alt="Photo de profil" class="invitation_pp">
                     </div>
                     <p class="name">Nom de l'utilisateur 1</p>
                 </div>
@@ -112,7 +112,7 @@
             <div class="invitation">
                 <div class="invitation_pp_name">
                     <div class="invitation_pp_div">
-                        <img src="../img/ooo.png" alt="Photo de profil" class="invitation_pp">
+                        <img src="../template/img/ooo.png" alt="Photo de profil" class="invitation_pp">
                     </div>
                     <p class="name">Nom de l'utilisateur 1</p>
                 </div>
@@ -124,7 +124,7 @@
             <div class="invitation">
                 <div class="invitation_pp_name">
                     <div class="invitation_pp_div">
-                        <img src="../img/ooo.png" alt="Photo de profil" class="invitation_pp">
+                        <img src="../template/img/ooo.png" alt="Photo de profil" class="invitation_pp">
                     </div>
                     <p class="name">Nom de l'utilisateur 1</p>
                 </div>
@@ -141,5 +141,5 @@
 
 </div>
 
-<script src="../scripts/script_friends_list.js"></script>
-<?php include '../components/footer.php' ?>
+<script src="../template/scripts/script_friends_list.js"></script>
+<?php include 'template/components/footer.php' ?>

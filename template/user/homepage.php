@@ -4,10 +4,10 @@
 
 <span class="material-icons-outlined" id="index_menuburger">menu</span>
 <ul id="index_menuopen" class="index_menuopen">
-  <li><a href="profile.php"><span class="material-icons">person</span>Nom Prénom</a></li>
-  <li><a href="friends_list.php"><span class="material-icons-outlined">group</span>Amis</a></li>
-  <li><a href="template/group/group_list.php"><span class="material-icons">groups</span>Groupes</a></li>
-  <li><a href="template/page/page_list.php"><span class="material-icons-outlined">newspaper</span>Pages</a></li>
+  <li><a href=<?= "http://" . $host . "/user/profile" ?>><span class="material-icons">person</span>Nom Prénom</a></li>
+  <li><a href=<?= "http://" . $host . "/user/friendsList" ?>><span class="material-icons-outlined">group</span>Amis</a></li>
+  <li><a href=<?= "http://" . $host . "/group/List" ?>><span class="material-icons">groups</span>Groupes</a></li>
+  <li><a href=<?= "http://" . $host . "/page/pageList" ?>><span class="material-icons-outlined">newspaper</span>Pages</a></li>
 </ul>
 
 <div class="index_main_container">
@@ -20,21 +20,21 @@
       </div>
     </a>
 
-    <a href="friends_list.php">
+    <a href=<?= "http://" . $host . "/user/friendsList" ?>>
       <div class="index_list_div">
         <span class="material-icons-outlined">group</span>
         <h4 class="gh">Amis</h4>
       </div>
     </a>
 
-    <a href="template/group/group_list.php">
+    <a href=<?= "http://" . $host . "/group/List" ?>>
       <div class="index_list_div">
         <span class="material-icons">groups</span>
         <h4 class="gh">Groupes</h4>
       </div>
     </a>
 
-    <a href="template/page/page_list.php">
+    <a href=<?= "http://" . $host . "/page/pageList" ?>>
       <div class="index_list_div">
         <span class="material-icons">newspaper</span>
         <h4 class="gh">Pages</h4>

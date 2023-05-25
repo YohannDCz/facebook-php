@@ -1,5 +1,5 @@
 <?php include 'template/components/header.php' ?>
-<link rel="stylesheet" href="template/styles/group_page_list.css">
+<link rel="stylesheet" href="../template/styles/group_page_list.css">
 
 <?php
 
@@ -33,7 +33,7 @@ function affichageDiscover()
         <?php for ($i = 1; $i <= 10; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom du groupe</p>
                     <div class="groups_group_info">
@@ -49,7 +49,7 @@ function affichageDiscover()
 <?php
 }
 
-function affichageMyGroups()
+function affichageMyGroups($host)
 {
 ?>
     <h3>Tous les groupes dont vous gérez (X)</h3>
@@ -58,14 +58,14 @@ function affichageMyGroups()
         <?php for ($i = 1; $i <= 3; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom du groupe</p>
                     <div class="groups_group_info">
                         <p>X Membres</p>
                         <p>X Publications</p>
                     </div>
-                    <p class="groups_join"><a href="group_page.php">Voir le groupe</a></p>
+                    <p class="groups_join"><a href=<?= "http://" . $host . "/group/Page" ?>>Voir le groupe</a></p>
                 </div>
             </div>
 
@@ -78,7 +78,7 @@ function affichageMyGroups()
         <?php for ($i = 1; $i <= 10; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom du groupe</p>
                     <div class="groups_group_info">
@@ -94,7 +94,7 @@ function affichageMyGroups()
 <?php
 }
 
-function parametres()
+function parametres($host)
 {
     $page = isset($_GET['groups']) ? $_GET['groups'] : '';
     if ($page === 'discover') {
@@ -102,7 +102,7 @@ function parametres()
         affichageDiscover();
     } elseif ($page === 'mygroups') {
         affichage();
-        affichageMyGroups();
+        affichageMyGroups($host);
     } else {
         affichageGroups();
     }
@@ -114,7 +114,7 @@ function parametres()
 
     <div class="group_settings">
         <div class="group_settings_fil_arianne">
-            <p><a href="index.php">Accueil</a></p>
+            <p><a href=<?= "http://" . $host . "/home" ?>>Accueil</a></p>
             <p class="material-icons-round">chevron_right</p>
             <p>Groupes</p>
         </div>
@@ -125,19 +125,19 @@ function parametres()
 
         <h4 class="settings_category">
             <span class="material-icons">explore</span>
-            <a href="group_list.php?groups=discover" class="settings_links">
+            <a href=<?= "http://" . $host . "/group/List?groups=discover" ?> class="settings_links">
                 Découvrir
             </a>
         </h4>
 
         <h4 class="settings_category">
             <span class="material-icons">groups</span>
-            <a href="group_list.php?groups=mygroups" class="settings_links">
+            <a href=<?= "http://" . $host . "/group/List?groups=mygroups" ?> class="settings_links">
                 Vos groupes
             </a>
         </h4>
 
-        <p class="Submitbutton"><a href="group_create.php">Créer un groupe</a></p>
+        <p class="Submitbutton"><a href=<?= "http://" . $host . "/group/Create" ?>>Créer un groupe</a></p>
 
 
     </div>
@@ -151,7 +151,7 @@ function parametres()
             </a>
         </div>
         <?php
-        parametres();
+        parametres($host);
         ?>
     </div>
 </div>

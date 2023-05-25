@@ -1,11 +1,11 @@
 <?php include 'template/components/header.php' ?>
-<link rel="stylesheet" href="template/styles/group_create.css">
+<link rel="stylesheet" href="../template/styles/group_create.css">
 
 <div class="group_container">
 
     <div class="group_settings">
         <div class="group_settings_fil_arianne">
-            <p><a href="group_list.php">Groupes</a></p>
+            <p><a href=<?= "http://" . $host . "/group/List" ?>>Groupes</a></p>
             <p class="material-icons-round">chevron_right</p>
             <p>Créer un groupe</p>
         </div>
@@ -14,7 +14,7 @@
 
         <div class="group_owner">
             <div class="group_owner_pp">
-                <img src="template/img/pp.png" alt="pp">
+                <img src="../template/img/pp.png" alt="pp">
             </div>
             <div class="group_owner_info">
                 <p>Pseudo</p>
@@ -72,7 +72,7 @@
             <div class="group_preview_publication_main">
                 <div class="group_preview_publication">
                     <div>
-                        <img src="template/img/pp.png" alt="profile_picture" class="group_friend_pp">
+                        <img src="../template/img/pp.png" alt="profile_picture" class="group_friend_pp">
                     </div>
                     <div class="group_preview_publication_input">Que souhaitez-vous dire au groupe ?</div>
                 </div>
@@ -102,5 +102,5 @@
     </div>
 </div>
 
-<script src="template/scripts/script_group_create.js"></script>
+<script src="../template/scripts/script_group_create.js"></script>
 <?php include 'template/components/footer.php' ?>

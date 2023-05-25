@@ -269,44 +269,44 @@ function parametres()
 }
 ?>
 
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/switch.css">
-<link rel="stylesheet" href="../styles/settings.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/switch.css">
+<link rel="stylesheet" href="../template/styles/settings.css">
 
 <div class="settings_container">
     <div class="Parameter">
         <h1>Paramètres</h1>
         <div class="settings_list">
 
-            <a href="settings.php?settings=profile" class="settings_links">
+            <a href=<?= "http://" . $host . "/user/settings?settings=profile" ?> class="settings_links">
                 <h4 class="settings_category">
                     <span class="material-icons">person</span>
                     Profil
                 </h4>
             </a>
 
-            <a href="settings.php?settings=confidentialite" class="settings_links">
+            <a href=<?= "http://" . $host . "/user/settings?settings=confidentialite" ?> class="settings_links">
                 <h4 class="settings_category">
                     <span class="material-icons-outlined">lock</span>
                     Confidentialité
                 </h4>
             </a>
 
-            <a href="settings.php?settings=langue" class="settings_links">
+            <a href=<?= "http://" . $host . "/user/settings?settings=langue" ?> class="settings_links">
                 <h4 class="settings_category">
                     <span class="material-icons-outlined">language</span>
                     Langue et region
                 </h4>
             </a>
 
-            <a href="settings.php?settings=notifications" class="settings_links">
+            <a href=<?= "http://" . $host . "/user/settings?settings=notifications" ?> class="settings_links">
                 <h4 class="settings_category">
                     <span class="material-icons-outlined">notifications</span>
                     Notifications
                 </h4>
             </a>
 
-            <a href="settings.php?settings=theme" class="settings_links">
+            <a href=<?= "http://" . $host . "/user/settings?settings=theme" ?> class="settings_links">
                 <h4 class="settings_category">
                     <span class="material-icons-outlined">dark_mode</span>
                     Thème
@@ -332,4 +332,4 @@ function parametres()
 
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>
