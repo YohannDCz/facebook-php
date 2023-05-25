@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/group_page_list.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="template/styles/group_page_list.css">
 
 <?php
 
@@ -33,7 +33,7 @@ function affichageDiscover()
         <?php for ($i = 1; $i <= 10; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="../img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom du groupe</p>
                     <div class="groups_group_info">
@@ -58,7 +58,7 @@ function affichageMyGroups()
         <?php for ($i = 1; $i <= 3; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="../img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom du groupe</p>
                     <div class="groups_group_info">
@@ -78,7 +78,7 @@ function affichageMyGroups()
         <?php for ($i = 1; $i <= 10; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="../img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom du groupe</p>
                     <div class="groups_group_info">
@@ -156,4 +156,4 @@ function parametres()
     </div>
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>
