@@ -5,6 +5,10 @@ require_once 'src\controller\groupController.php';
 // déclaration variable globale
 global $split_url;
 
+//cleaning de l'url en cas de méthode GET
+$url_cleaner = explode('?', $split_url[2]);
+$clean_url = $url_cleaner[0];
+
 // router dans la catégorie user
 switch ($split_url[2]) {
     case 'Create':
