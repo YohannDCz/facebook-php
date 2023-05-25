@@ -1,5 +1,5 @@
 <?php
-require_once('../src/model/Database.php');
+require_once('../../src/model/Database.php');
 //  Connecter la BDD
 $db = new Database();
 // Ouverture de la connection
@@ -45,56 +45,100 @@ function fetchPublication($idPage, $connection)
     $query->bindParam(':id', $idPage);
     $query->execute();
 
-    $posts = $query->fetchAll(PDO::FETCH_ASSOC);
-    $postCount = count($posts);
-    return [$posts, $postCount];
+    $publications = $query->fetchAll(PDO::FETCH_ASSOC);
+    $publicationCount = count($publications);
+    return [$publications, $publicationCount];
 }
-
-[$posts, $postCount] = fetchPublication($idPage, $connection);
 
 
 function Publication($post, $connection)
 {
-    $idPost = $post["id"];
+    $idPublication = $post["id"];
+
     $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
     $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idPost);
+    $query->bindParam(':id', $idPublication);
     $query->execute();
+
     $publication = $query->fetch(PDO::FETCH_ASSOC);
     $json = $publication["content"];
     $jsondecode = json_decode($json);
-    return [$idPost, $jsondecode->description, $jsondecode->image];
+    return [$idPublication, $jsondecode->description, $jsondecode->image];
 }
 
-function fetchCommentary($idPost, $connection)
+function fetchCommentary($idPublication, $connection)
 {
-    $sql2 = "SELECT * FROM \"post\" WHERE id = :id ORDER BY timestamp DESC";
-
-    $query = $connection->prepare($sql2);
-    $query->bindParam(':id', $idPost);
-    $query->execute();
-
-    $postsComs = $query->fetchAll(PDO::FETCH_ASSOC);
-    $postComCount = count($postsComs);
-    return [$postsComs, $postComCount];
-}
-
-
-function Commentary($postCom, $connection)
-{
-    $idPostCom = $postCom["id"];
-    $authorId = $postCom["author_id"];
 
     $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+
     $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idPostCom);
+    $query->bindParam(':id', $idPublication);
     $query->execute();
 
-    $commentary = $query->fetch(PDO::FETCH_ASSOC);
-    $json = $commentary["content"];
+    $commentaires = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $postComCount = count($commentaires);
+    return [$commentaires, $postComCount];
+}
+
+
+function Commentary($PostCommentaire, $connection)
+{   
+    $idCommentaire = $PostCommentaire["id"];
+    $json = $PostCommentaire["content"];
     $jsondecode = json_decode($json);
 
-    $sql = 'SELECT * FROM "user" WHERE id = :authorId';
+
+    $sql = 'SELECT * FROM "post" WHERE id = :id';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idCommentaire);
+    $query->execute();
+
+    $stmt = $query->fetch(PDO::FETCH_ASSOC);
+    $authorId = $stmt["author_id"];
+
+    $sql = 'SELECT * FROM "users" WHERE id = :authorId';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':authorId', $authorId);
+    $query->execute();
+
+    $author = $query->fetch(PDO::FETCH_ASSOC);
+    $username = $author["username"];
+    $profile_pic = $author["profile_icon"];
+    return [$username, $profile_pic, $jsondecode->description, $idCommentaire];
+}
+
+function fetchCommentary2($idCommentaire, $connection)
+{   
+    $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idCommentaire);
+    $query->execute();
+
+    $sousCommentaires = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    $postComCount = count($sousCommentaires);
+    return [$sousCommentaires, $postComCount];
+}
+
+
+function Commentary2($sousCommentaire, $connection)
+{
+
+    $idSousCommentaire = $sousCommentaire["id"];
+    $json = $sousCommentaire["content"];
+    $jsondecode = json_decode($json);
+
+    $sql = 'SELECT * FROM "post" WHERE id = :id';
+    $query = $connection->prepare($sql);
+    $query->bindParam(':id', $idSousCommentaire);
+    $query->execute();
+
+    $stmt = $query->fetch(PDO::FETCH_ASSOC);
+    $authorId = $stmt["author_id"];
+
+    $sql = 'SELECT * FROM "users" WHERE id = :authorId';
     $query = $connection->prepare($sql);
     $query->bindParam(':authorId', $authorId);
     $query->execute();
@@ -104,7 +148,6 @@ function Commentary($postCom, $connection)
     $profile_pic = $author["profile_icon"];
     return [$username, $profile_pic, $jsondecode->description];
 }
-
 
 ?>
 <?php include '../components/header.php' ?>
@@ -158,21 +201,21 @@ function Commentary($postCom, $connection)
 
                 <div class="friends-info">
                     <div class="friends_info_pp">
-                        <img src="../img/pp2.png" class="box_photos_friend_picture">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
                     </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
                     <div class="friends_info_pp">
-                        <img src="../img/pp2.png" class="box_photos_friend_picture">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
                     </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
                     <div class="friends_info_pp">
-                        <img src="../img/pp2.png" class="box_photos_friend_picture">
+                        <img src="./img/pp2.png" class="box_photos_friend_picture">
                     </div>
                     <p>Pseudo</p>
                 </div>
@@ -187,7 +230,9 @@ function Commentary($postCom, $connection)
                 <a class="profile_photos_link" href="#">Toutes les photos</a>
             </div>
             <div class="box-img">
-                <?php foreach ($posts as $post) :
+
+                <?php [$posts, $postCount] = fetchPublication($idPage, $connection);
+                foreach ($posts as $post) :
                     [$description, $image] = Publication($post, $connection); ?>
                     <?php if ($image !== "") : ?>
                         <img src="<?= $image ?>" class="box_photos_picture">
@@ -202,7 +247,7 @@ function Commentary($postCom, $connection)
         <div class="profile_publication_post">
             <div class="profile_publication_div_flex">
                 <div class="publication_pp_div">
-                    <img src="../img/pp.png" alt="profile_picture">
+                    <img src="./img/pp.png" alt="profile_picture">
                 </div>
                 <div class="profile_publication_div_post">
                     <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
@@ -238,22 +283,21 @@ function Commentary($postCom, $connection)
 
         <?php [$posts, $postCount] = fetchPublication($idPage, $connection);
         foreach ($posts as $post) :
-            [$idPost, $description, $image] = Publication($post, $connection); ?>
+            [$idPublication, $description, $image] = Publication($post, $connection); ?>
             <div class="publication">
 
-            <div class="publication_pp_edit">
                 <div class="publication_info">
                     <div class="publication_pp_div">
-                        <img src=<?= $iconProfile ?> alt="profile_picture">
+                        <img src=<?= $iconProfile ?> alt="">
                     </div>
-                    <p><?= $name ?></p>
-                    <button class="modifyButton Submitbutton"><span class="material-icons-round">edit</span></button>
+                    <div>
+                        <p><?= $name ?></p>
+                    </div>
                 </div>
 
 
-                <p class="publication_text"><?= $description ?></p>
-                <div class="placenewText">
-                </div>
+                <p><?= $description ?></p>
+
                 <div class="publication_list_images">
                     <?php if ($image !== "") : ?>
                         <img src=<?= $image ?> alt="" class="publication_image">
@@ -283,63 +327,23 @@ function Commentary($postCom, $connection)
 
                 <div class="publication_list_comments">
 
-                    <!-- un commentaire -->
-                    <?php [$postsComs, $postComCount] = fetchCommentary($idPost, $connection);
-                    var_dump($postsComs);
-                    foreach ($postsComs as $post) :
-                        [$username, $profile_pic, $description1] = Commentary($post, $connection) ?>
-
-                        <div>
-                            <div class="publication_comment">
-                                <div class="publication_info">
-                                    <div class="publication_pp_div">
-                                        <img src=<?= $profile_pic ?> alt="">
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="publication_person_comment">
-                                        <p class="publication_name"><?= $username ?></p>
-                                        <p><?= $description1 ?></p>
-                                    </div>
-
-                                    <div class="publication_person_comment_options_reaction">
-                                        <div class="publication_person_comment_options">
-                                            <p>J'aime</p>
-                                            <p>Répondre</p>
-                                            <p>x h</p>
-                                        </div>
-
-                                        <div class="publication_comment_reaction">
-                                            <span class="material-icons">thumb_up</span>
-                                            <p>1000</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="publication_person_view_answer">
-                                        <span class="material-icons-round">subdirectory_arrow_right</span>
-                                        <p>X réponses</p>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-
-
                     <!-- commentaire qui se répond a un autre -->
-                    <!-- <div class="publication_comment">
+                    <?php [$postsComs, $postComCount] = fetchCommentary($idPublication, $connection);
+                    foreach ($postsComs as $post) :
+                        [$username, $profile_pic, $description, $idCommentaire] = Commentary($post, $connection);
+                        if ($username): ?>
+                    <div class="publication_comment">
 
                         <div class="publication_info">
                             <div class="publication_pp_div">
-                            <img src="../img/pp.png" alt="">
+                            <img src=<?= $profile_pic ?> alt="">
                         </div>
                     </div>
 
                         <div>
                             <div class="publication_person_comment">
-                                <p class="publication_name">Nom Prénom</p>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
+                                <p class="publication_name"><?= $username ?></p>
+                                <p><?= $description ?></p>
                             </div>
 
                             <div class="publication_person_comment_options_reaction">
@@ -357,17 +361,20 @@ function Commentary($postCom, $connection)
 
 
                             <div>
+                                <?php [$postsComs2, $postComCount] = fetchCommentary2($idCommentaire, $connection);
+                                foreach ($postsComs2 as $post):
+                                    [$username, $profile_pic, $description] = Commentary2($post, $connection) ?>
                                 <div class="publication_comment">
                                     <div class="publication_info">
                                         <div class="publication_pp_div">
-                                        <img src="../img/pp.png" alt="">
-                    </div>
+                                            <img src=<?= $profile_pic ?> alt="">
+                                        </div>
                                     </div>
 
                                     <div>
                                         <div class="publication_person_comment">
-                                            <p class="publication_name">Nom Prénom</p>
-                                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus vel cum dolorum accusantium eius neque odio accusamus, quos sequi alias. Aliquid eligendi commodi harum provident cum voluptatibus vitae, officia blanditiis.</p>
+                                            <p class="publication_name"><?= $username ?></p>
+                                            <p><?= $description ?></p>
                                         </div>
 
                                         <div class="publication_person_comment_options_reaction">
@@ -384,10 +391,13 @@ function Commentary($postCom, $connection)
                                         </div>
                                     </div>
                                 </div>
+                                <?php endforeach ?>
                             </div>
 
                         </div>
-                    </div> -->
+                    </div>
+                    <?php endif ?>
+                    <?php endforeach; ?>
                     <!-- écrire un commentaire -->
                 </div>
 
@@ -395,7 +405,7 @@ function Commentary($postCom, $connection)
                     <div class="publication_comment">
                         <div class="publication_info">
                             <div class="publication_pp_div">
-                                <img src="../img/pp.png" alt="">
+                                <img src="./img/pp.png" alt="">
                             </div>
                         </div>
 
@@ -440,18 +450,10 @@ function Commentary($postCom, $connection)
                 <p id="user-info-list">Habite à X</p>
             </div>
             <div class="box_aboutus_edits">
-                <!-- <span class="material-icons-outlined md-20">public</span> -->
-                <span class="material-icons-outlined md-20 profile_edit">edit</span>
-                <!-- <span class="material-icons-outlined md-20">delete</span> -->
+                <span class="material-icons-outlined md-20">public</span>
+                <span class="material-icons-outlined md-20">edit</span>
+                <span class="material-icons-outlined md-20">delete</span>
             </div>
-        </div>
-
-        <div class="profile_edit_form">
-            <span class="material-icons-outlined md-20">location_on</span>
-            <form action="" method="POST" class="profile_edit_form_block">
-                <input type="text" placeholder="J'habite à..." class="inputText">
-                <input type="submit" value="Mettre à jour" class="Submitbutton">
-            </form>
         </div>
 
         <div class="box_aboutus_info">
@@ -460,18 +462,34 @@ function Commentary($postCom, $connection)
                 <p id="user-info-list">Travaille à X</p>
             </div>
             <div class="box_aboutus_edits">
-                <!-- <span class="material-icons-outlined md-20">public</span> -->
-                <span class="material-icons-outlined md-20 profile_edit">edit</span>
-                <!-- <span class="material-icons-outlined md-20">delete</span> -->
+                <span class="material-icons-outlined md-20">public</span>
+                <span class="material-icons-outlined md-20">edit</span>
+                <span class="material-icons-outlined md-20">delete</span>
             </div>
         </div>
 
-        <div class="profile_edit_form">
-            <span class="material-icons-outlined md-20">home_repair_service</span>
-            <form action="" method="POST" class="profile_edit_form_block">
-                <input type="text" placeholder="Je travaille à..." class="inputText">
-                <input type="submit" value="Mettre à jour" class="Submitbutton">
-            </form>
+        <div class="box_aboutus_info">
+            <div class="logo-info">
+                <span class="material-icons-outlined md-20">school</span>
+                <p id="user-info-list">À étudié(e) au lycée Machin truc</p>
+            </div>
+            <div class="box_aboutus_edits">
+                <span class="material-icons-outlined md-20">public</span>
+                <span class="material-icons-outlined md-20">edit</span>
+                <span class="material-icons-outlined md-20">delete</span>
+            </div>
+        </div>
+
+        <div class="box_aboutus_info">
+            <div class="logo-info">
+                <span class="material-icons-outlined md-20">favorite</span>
+                <p id="user-info-list">Célibataire</p>
+            </div>
+            <div class="box_aboutus_edits">
+                <span class="material-icons-outlined md-20">public</span>
+                <span class="material-icons-outlined md-20">edit</span>
+                <span class="material-icons-outlined md-20">delete</span>
+            </div>
         </div>
 
         <div class="box_aboutus_info">
@@ -480,18 +498,10 @@ function Commentary($postCom, $connection)
                 <p id="user-info-list">machin@machin.fr</p>
             </div>
             <div class="box_aboutus_edits">
-                <!-- <span class="material-icons-outlined md-20">public</span> -->
-                <span class="material-icons-outlined md-20 profile_edit">edit</span>
-                <!-- <span class="material-icons-outlined md-20">delete</span> -->
+                <span class="material-icons-outlined md-20">public</span>
+                <span class="material-icons-outlined md-20">edit</span>
+                <span class="material-icons-outlined md-20">delete</span>
             </div>
-        </div>
-
-        <div class="profile_edit_form">
-            <span class="material-icons-outlined md-20">mail</span>
-            <form action="" method="POST" class="profile_edit_form_block">
-                <input type="text" placeholder="machin@machin.machin" class="inputText">
-                <input type="submit" value="Mettre à jour" class="Submitbutton">
-            </form>
         </div>
     </div>
 
@@ -511,7 +521,7 @@ function Commentary($postCom, $connection)
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
@@ -523,7 +533,7 @@ function Commentary($postCom, $connection)
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
@@ -535,7 +545,7 @@ function Commentary($postCom, $connection)
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="./img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
@@ -559,19 +569,19 @@ function Commentary($postCom, $connection)
     <div class="box_photos_all">
 
         <div class="friends_info_pp">
-            <img src="../img/pp2.png" class="box_photos_friend_picture">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
         </div>
         <div class="friends_info_pp">
-            <img src="../img/pp2.png" class="box_photos_friend_picture">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
         </div>
         <div class="friends_info_pp">
-            <img src="../img/pp2.png" class="box_photos_friend_picture">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
         </div>
         <div class="friends_info_pp">
-            <img src="../img/pp2.png" class="box_photos_friend_picture">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
         </div>
         <div class="friends_info_pp">
-            <img src="../img/pp2.png" class="box_photos_friend_picture">
+            <img src="./img/pp2.png" class="box_photos_friend_picture">
         </div>
 
     </div>
@@ -579,8 +589,10 @@ function Commentary($postCom, $connection)
 
 </div>
 
-<script src="../scripts/script_profile.js"></script>
-<script src="../scripts/script.js"></script>
-<script src="../scripts/script_publication.js"></script>
+<script src="./scripts/script_profile.js"></script>
+<script src="./scripts/script.js"></script>
+<script src="./scripts/script_publication.js"></script>
 
-<?php include '../components/footer.php' ?>
+<?php
+include '../components/footer.php'
+?>

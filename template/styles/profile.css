@@ -299,7 +299,7 @@
 }
 
 .summary-content {
-    display: none;
+    /* display: none; */
 }
 
 .summary-content-flex {
@@ -385,7 +385,7 @@
     }
 
     .summary {
-        display: none;
+        /* display: none; */
     }
 
     .list_publications {
