@@ -1,6 +1,6 @@
 <?php
 require_once('./src/model/Database.php');
-require_once('./src/model/Pages.php');
+require_once('./src/model/Post.php');
 // require_once('../../src/controller/pagesController.php')
 // Connecter la BDD
 $db = new Database();
@@ -16,12 +16,13 @@ if (isset($_GET['name'])) {
     echo "Name parameter not provided!";
 }
 
-$pages = new Pages();
+$posts = new Posts();
 
-[$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $pages->setPage($name, $connection);
+[$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $posts->setPage($name, $connection);
 
-$postCount = null;
-$posts = null;
+var_dump($posts);
+
+// $posts = null;
 
 
 ?>
@@ -39,7 +40,7 @@ $posts = null;
         </div>
         <div class="profile-nom-prenom">
             <h3><span class="white_space"><?= $namePage ?></span></h3>
-            <h4><span class="white_space"><?= $postCount ?> posts</span></h4>
+            <h4><span class="white_space"> posts</span></h4>
         </div>
     </div>
 </div>
@@ -107,9 +108,9 @@ $posts = null;
             <div class="box-img">
 
                 <?php
-                [$posts, $postCount] = $pages->fetchPublication($idPage, $connection);
-                foreach ($posts as $post) :
-                    [$idPublication, $description, $image] = $pages->Publication($post, $connection); ?>
+                [$posts1, $postCount] = $posts->fetchPublication($idPage, $connection);
+                foreach ($posts1 as $post) :
+                    [$idPublication, $description, $image] = $posts->Publication($post, $connection); ?>
                     <?php if ($image !== "") : ?>
                         <img src="<?= $image ?>" class="box_photos_picture">
                     <?php endif; ?>
@@ -138,12 +139,12 @@ $posts = null;
                     </div>
                 </label>
 
-                <label id="custom-video-btn">
+                <!-- <label id="custom-video-btn">
                     <div class="group_preview_publication_sub">
                         <span class="material-icons">videocam</span>
                         <p>Vidéo</p>
                     </div>
-                </label>
+                </label> -->
 
                 <div class="btn_send">
                     <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
@@ -158,9 +159,9 @@ $posts = null;
         </div>
 
         <?php 
-        [$posts, $postCount] = $pages->fetchPublication($idPage, $connection);
-        foreach ($posts as $post) :
-            [$idPublication, $description, $image, $usersPostsLikesCount, $count] = $pages->Publication($post, $connection);?>
+        [$posts1, $postCount] = $posts->fetchPublication($idPage, $connection);
+        foreach ($posts1 as $post) :
+            [$idPublication, $description, $image, $usersPostsLikesCount, $count] = $posts->Publication($post, $connection);?>
             <div class="publication">
 
                 <div class="publication_info">
@@ -206,9 +207,9 @@ $posts = null;
 
                     <!-- commentaire qui se répond a un autre -->
                     <?php
-                    [$postsComs, $postComCount] = $pages->fetchCommentary($idPublication, $connection);
+                    [$postsComs, $postComCount] = $posts->fetchCommentary($idPublication, $connection);
                     foreach ($postsComs as $post) :
-                        [$username, $profile_pic, $description, $idCommentaire, $timestamp] = $pages->Commentary($post, $connection);
+                        [$username, $profile_pic, $description, $idCommentaire, $timestamp] = $posts->Commentary($post, $connection);
                         if ($username): ?>
                     <div class="publication_comment">
 
@@ -239,9 +240,9 @@ $posts = null;
 
 
                             <div>
-                                <?php [$postsComs2, $postComCount2] = $pages->fetchCommentary2($idCommentaire, $connection);
+                                <?php [$postsComs2, $postComCount2] = $posts->fetchCommentary2($idCommentaire, $connection);
                                 foreach ($postsComs2 as $post):
-                                    [$username, $profile_pic, $description, $timestamp] = $pages->Commentary2($post, $connection); ?>
+                                    [$username, $profile_pic, $description, $timestamp] = $posts->Commentary2($post, $connection); ?>
                                 <div class="publication_comment">
                                     <div class="publication_info">
                                         <div class="publication_pp_div">

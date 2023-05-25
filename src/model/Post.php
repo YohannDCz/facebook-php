@@ -74,12 +74,12 @@ class Posts {
         // switch qui décide d'où mettre le contenu en fonction du type du post
         switch($post_type) {
             case "publication":
-                if (createPublication($post_id, $content)) {
+                if (createPublication($post_id, $content, $connection)) {
                     return true;
                 }
                 return false;
             case "commentary":
-                if (createCommentary($post_id, $commented_post_id, $content)) {
+                if (createCommentary($post_id, $commented_post_id, $content, $connection)) {
                     return true;
                 }
                 return false;
@@ -89,7 +89,7 @@ class Posts {
     }
 
     // fonction pour créer un commentaire (et pas un post attention)
-    function createCommentary($post_id, $commented_post_id, $content) {
+    function createCommentary($post_id, $commented_post_id, $content, $connection) {
 
         // Requêtes SQL
         $request = $connection->prepare("INSERT INTO commentary (id, post_id, content) VALUES (:id, :post_id, :content)");
@@ -104,7 +104,7 @@ class Posts {
     }
 
     //  fonction pour créer une publication (et pas un post attention)
-    function createPublication($post_id, $content) {
+    function createPublication($post_id, $content, $connection) {
 
         // Requêtes SQL
         $request = $connection->prepare("INSERT INTO publications (post_id, content) VALUES (:id, :post_id, :content)");
@@ -115,5 +115,181 @@ class Posts {
             return true;
         }
         return false;
+    }
+
+    function setPage($name, $connection) {
+        $sql = 'SELECT * FROM "pages" WHERE name = :name';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':name', $name);
+        $query->execute();
+
+        $pages = $query->fetchAll(PDO::FETCH_ASSOC);
+        $page = null;
+        $idPage = null;
+        $namePage = null;
+        $iconProfile = null;
+        $bannerProfile = null;
+
+        if (!empty($pages)) {
+            $page = $pages[0];
+            $idPage = $page["id"];
+            $namePage = $page["name"];
+            $iconProfile = $page["profile_icon"];
+            $bannerProfile = $page["profile_banner"];
+        }
+
+        return [$page, $idPage, $namePage, $iconProfile, $bannerProfile];
+    }
+
+    function fetchPublication($idPage, $connection)
+    {
+        $sql = "SELECT * FROM \"post\" WHERE author_id = :id AND post_type = 1 AND author_type = 'pages' ORDER BY timestamp DESC";
+
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idPage);
+        $query->execute();
+
+        $publications = $query->fetchAll(PDO::FETCH_ASSOC);
+        $publicationCount = count($publications);
+        return [$publications, $publicationCount];
+    }
+
+
+    function Publication($post, $connection)
+    {   
+        $count = 0;
+        $idPublication = $post["id"];
+
+        $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idPublication);
+        $query->execute();
+
+        $publication = $query->fetch(PDO::FETCH_ASSOC);
+        $json = $publication["content"];
+        $jsondecode = json_decode($json);
+
+        $sql = 'SELECT * FROM "users_posts_likes" WHERE post_id = :id';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idPublication);
+        $query->execute();
+
+        $usersPostsLikes = $query->fetchAll(PDO::FETCH_ASSOC);
+        $usersPostsLikesCount = count($usersPostsLikes);
+
+        $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idPublication);
+        $query->execute();
+
+        $commentaires = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($commentaires as $commentaire) {
+            $idCommentaire = $commentaire["id"];
+            $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+
+            $query = $connection->prepare($sql);
+            $query->bindParam(':id', $idCommentaire);
+            $query->execute();
+
+            $sousCommentaires = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            $postComCount2 = count($sousCommentaires);
+            $count += $postComCount2;
+        }
+        $postComCount = count($commentaires);
+
+        $count += $postComCount;
+
+        return [$idPublication, $jsondecode->description, $jsondecode->image, $usersPostsLikesCount, $count];
+    }
+
+    function fetchCommentary($idPublication, $connection)
+    {
+
+        $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idPublication);
+        $query->execute();
+
+        $commentaires = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $postComCount = count($commentaires);
+        return [$commentaires, $postComCount];
+    }
+
+
+    function Commentary($PostCommentaire, $connection)
+    {   
+        $idCommentaire = $PostCommentaire["id"];
+        $json = $PostCommentaire["content"];
+        $jsondecode = json_decode($json);
+
+
+        $sql = 'SELECT * FROM "post" WHERE id = :id';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idCommentaire);
+        $query->execute();
+
+        $stmt = $query->fetch(PDO::FETCH_ASSOC);
+        $authorId = $stmt["author_id"];
+        $timestamp = $stmt["timestamp"];
+        $timestamp = substr($timestamp, 0, 16);
+
+        $sql = 'SELECT * FROM "users" WHERE id = :authorId';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':authorId', $authorId);
+        $query->execute();
+
+        $author = $query->fetch(PDO::FETCH_ASSOC);
+        $username = $author["username"];
+        $profile_pic = $author["profile_icon"];
+
+        return [$username, $profile_pic, $jsondecode->description, $idCommentaire, $timestamp];
+    }
+
+    function fetchCommentary2($idCommentaire, $connection)
+    {   
+        $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
+
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idCommentaire);
+        $query->execute();
+
+        $sousCommentaires = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $postComCount2 = count($sousCommentaires);
+        return [$sousCommentaires, $postComCount2];
+    }
+
+
+    function Commentary2($sousCommentaire, $connection)
+    {
+
+        $idSousCommentaire = $sousCommentaire["id"];
+        $json = $sousCommentaire["content"];
+        $jsondecode = json_decode($json);
+
+        $sql = 'SELECT * FROM "post" WHERE id = :id';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':id', $idSousCommentaire);
+        $query->execute();
+
+        $stmt = $query->fetch(PDO::FETCH_ASSOC);
+        $authorId = $stmt["author_id"];
+        $timestamp = $stmt["timestamp"];
+        $timestamp = substr($timestamp, 0, 16);
+
+        $sql = 'SELECT * FROM "users" WHERE id = :authorId';
+        $query = $connection->prepare($sql);
+        $query->bindParam(':authorId', $authorId);
+        $query->execute();
+
+        $author = $query->fetch(PDO::FETCH_ASSOC);
+        $username = $author["username"];
+        $profile_pic = $author["profile_icon"];
+        return [$username, $profile_pic, $jsondecode->description, $timestamp];
     }
 }
