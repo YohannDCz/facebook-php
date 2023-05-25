@@ -22,6 +22,7 @@ $pages = new Pages();
 $postCount = null;
 $posts = null;
 
+
 ?>
 <?php include '../components/header.php' ?>
 <link rel="stylesheet" href="../styles/profile.css">
