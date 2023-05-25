@@ -1,5 +1,5 @@
 <?php
-include '../components/header.php';
+include 'template/components/header.php';
 
 if (isset($_COOKIE["error"])) {
     $error = $_COOKIE["error"];
@@ -8,7 +8,7 @@ if (isset($_COOKIE["error"])) {
     $error = null;
 }
 ?>
-<link rel="stylesheet" href="../styles/login_signup.css">
+<link rel="stylesheet" href="../template/styles/login_signup.css">
 
 
 <div class="login_signup_supercontainer">
@@ -35,4 +35,4 @@ if (isset($_COOKIE["error"])) {
 
     </div>
 </div>
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>

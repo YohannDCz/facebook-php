@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/login_signup.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/login_signup.css">
 
 <div class="login_signup_supercontainer">
 
@@ -44,4 +44,4 @@
     </div>
 
 </div>
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>

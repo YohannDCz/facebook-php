@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/footer_links.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/footer_links.css">
 
 <div class="contact_main">
 
@@ -12,7 +12,7 @@
     <div class="contact_text" id="aboutus">
         <div class="about_us_text">
             <div style="align-self:center;">
-                <img src="../img/blue_logo.png" alt="Image">
+                <img src="../template/img/blue_logo.png" alt="Image">
             </div>
             <p>
                 Chez HETIC, nous avons à cœur de créer une communauté forte et engagée, où les étudiants peuvent s'entraider, échanger et partager leurs connaissances. Nous encourageons également les projets entrepreneuriaux et l'innovation sociale, en offrant des espaces et des ressources pour développer des projets d'entreprise.
@@ -39,4 +39,4 @@
     </div>
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>

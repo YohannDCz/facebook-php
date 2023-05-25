@@ -1,12 +1,12 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/publication.css">
-<link rel="stylesheet" href="../styles/profile.css">
-<link rel="stylesheet" href="../styles/group_page.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/publication.css">
+<link rel="stylesheet" href="../template/styles/profile.css">
+<link rel="stylesheet" href="../template/styles/group_page.css">
 
 
 
 <div class="group_banner">
-    <img class="banner-img" src="../img/blue-texture-marble.png">
+    <img class="banner-img" src="../template/img/blue-texture-marble.png">
 
 </div>
 
@@ -80,21 +80,21 @@
 
                 <div class="friends-info">
                     <div class="friends_info_pp">
-                        <img src="../img/pp2.png" class="box_photos_friend_picture">
+                        <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                     </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
                     <div class="friends_info_pp">
-                        <img src="../img/pp2.png" class="box_photos_friend_picture">
+                        <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                     </div>
                     <p>Pseudo</p>
                 </div>
 
                 <div class="friends-info">
                     <div class="friends_info_pp">
-                        <img src="../img/pp2.png" class="box_photos_friend_picture">
+                        <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                     </div>
                     <p>Pseudo</p>
                 </div>
@@ -110,19 +110,19 @@
             </div>
             <div class="box-img">
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                 </div>
                 <div class="friends_info_pp">
-                    <img src="../img/pp2.png" class="box_photos_friend_picture">
+                    <img src="../template/img/pp2.png" class="box_photos_friend_picture">
                 </div>
 
             </div>
@@ -134,7 +134,7 @@
         <div class="profile_publication_post">
             <div class="profile_publication_div_flex">
                 <div class="publication_pp_div">
-                    <img src="../img/pp.png" alt="profile_picture">
+                    <img src="../template/img/pp.png" alt="profile_picture">
                 </div>
                 <div class="profile_publication_div_post">
                     <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
@@ -173,7 +173,7 @@
             <div class="publication_pp_edit">
                 <div class="publication_info">
                     <div class="publication_pp_div">
-                        <img src="../img/pp.png" alt="profile_picture">
+                        <img src="../template/img/pp.png" alt="profile_picture">
                     </div>
                     <p>Nom Prénom</p>
                 </div>
@@ -185,10 +185,10 @@
             <div class="placenewText">
             </div>
             <div class="publication_list_images">
-                <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
-                <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
-                <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
-                <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="publication_image">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="publication_image">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="publication_image">
+                <img src="../template/img/blue-texture-marble.png" alt="" class="publication_image">
             </div>
 
             <div class="publication_post_info">
@@ -220,7 +220,7 @@
                     <div class="publication_comment">
                         <div class="publication_info">
                             <div class="publication_pp_div">
-                                <img src="../img/pp.png" alt="profile_picture">
+                                <img src="../template/img/pp.png" alt="profile_picture">
                             </div>
                         </div>
 
@@ -258,7 +258,7 @@
 
                     <div class="publication_info">
                         <div class="publication_pp_div">
-                            <img src="../img/pp.png" alt="profile_picture">
+                            <img src="../template/img/pp.png" alt="profile_picture">
                         </div>
                     </div>
 
@@ -286,7 +286,7 @@
                             <div class="publication_comment">
                                 <div class="publication_info">
                                     <div class="publication_pp_div">
-                                        <img src="../img/pp.png" alt="profile_picture">
+                                        <img src="../template/img/pp.png" alt="profile_picture">
                                     </div>
                                 </div>
 
@@ -313,7 +313,7 @@
                                         <div class="publication_comment">
                                             <div class="publication_info">
                                                 <div class="publication_pp_div">
-                                                    <img src="../img/pp.png" alt="profile_picture">
+                                                    <img src="../template/img/pp.png" alt="profile_picture">
                                                 </div>
                                             </div>
 
@@ -353,7 +353,7 @@
                 <div class="publication_comment">
                     <div class="publication_info">
                         <div class="publication_pp_div">
-                            <img src="../img/pp.png" alt="profile_picture">
+                            <img src="../template/img/pp.png" alt="profile_picture">
                         </div>
                     </div>
 
@@ -506,7 +506,7 @@
 
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
-                <img src="../img/pp2.png" alt="" class="box_friends_friend_pp">
+                <img src="../template/img/pp2.png" alt="" class="box_friends_friend_pp">
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -516,7 +516,7 @@
 
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
-                <img src="../img/pp2.png" alt="" class="box_friends_friend_pp">
+                <img src="../template/img/pp2.png" alt="" class="box_friends_friend_pp">
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -526,7 +526,7 @@
 
         <div class="box_friends_friend">
             <div class="box_friends_pp_name">
-                <img src="../img/pp2.png" alt="" class="box_friends_friend_pp">
+                <img src="../template/img/pp2.png" alt="" class="box_friends_friend_pp">
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -548,11 +548,11 @@
 
     <div class="box_photos_all">
 
-        <img src="../img/pp2.png" alt="" class="box_photos_photo">
-        <img src="../img/pp2.png" alt="" class="box_photos_photo">
-        <img src="../img/pp2.png" alt="" class="box_photos_photo">
-        <img src="../img/pp2.png" alt="" class="box_photos_photo">
-        <img src="../img/pp2.png" alt="" class="box_photos_photo">
+        <img src="../template/img/pp2.png" alt="" class="box_photos_photo">
+        <img src="../template/img/pp2.png" alt="" class="box_photos_photo">
+        <img src="../template/img/pp2.png" alt="" class="box_photos_photo">
+        <img src="../template/img/pp2.png" alt="" class="box_photos_photo">
+        <img src="../template/img/pp2.png" alt="" class="box_photos_photo">
 
     </div>
 
@@ -569,7 +569,7 @@
 
         <div class="box_invitations">
             <div class="box_friends_pp_name">
-                <img src="../img/pp2.png" alt="" class="box_friends_friend_pp">
+                <img src="../template/img/pp2.png" alt="" class="box_friends_friend_pp">
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -582,7 +582,7 @@
 
         <div class="box_invitations">
             <div class="box_friends_pp_name">
-                <img src="../img/pp2.png" alt="" class="box_friends_friend_pp">
+                <img src="../template/img/pp2.png" alt="" class="box_friends_friend_pp">
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -595,7 +595,7 @@
 
         <div class="box_invitations">
             <div class="box_friends_pp_name">
-                <img src="../img/pp2.png" alt="" class="box_friends_friend_pp">
+                <img src="../template/img/pp2.png" alt="" class="box_friends_friend_pp">
                 <div class="box_friends_name">
                     <p>Nom Prénom</p>
                 </div>
@@ -611,8 +611,8 @@
 
 </div>
 
-<script src="../scripts/script_group.js"></script>
-<script src="../scripts/script.js"></script>
-<script src="../scripts/script_publication.js"></script>
+<script src="../template/scripts/script_group.js"></script>
+<script src="../template/scripts/script.js"></script>
+<script src="../template/scripts/script_publication.js"></script>
 
-<?php include '../components/footer.php' ?>
+<?php include './template/components/footer.php' ?>

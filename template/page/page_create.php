@@ -1,13 +1,13 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/group_create.css">
-<link rel="stylesheet" href="../styles/page_create.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/group_create.css">
+<link rel="stylesheet" href="../template/styles/page_create.css">
 
 
 <div class="group_container">
 
     <div class="page_settings">
         <div class="group_settings_fil_arianne">
-            <p><a href="page_list.php">Pages</a></p>
+            <p><a href=<?= "http://" . $host . "/page/pageList" ?>>Pages</a></p>
             <p class="material-icons-round">chevron_right</p>
             <p>Créer une page</p>
         </div>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="page_banner_container_pp">
-                <img src="../img/pp.png" alt="page_pp" class="page_banner_pp">
+                <img src="../template/img/pp.png" alt="page_pp" class="page_banner_pp">
             </div>
 
         </div>
@@ -105,4 +105,4 @@
     </div>
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>

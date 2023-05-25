@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/search_page.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/search_page.css">
 
 <div class="search_page_container">
 
@@ -50,7 +50,7 @@
 
             <div class="person">
                 <div class="search_pp_name">
-                    <img class="photo" src="../img/pp.png" alt="Photo 1">
+                    <img class="photo" src="../template/img/pp.png" alt="Photo 1">
                     <div class="person-info">
                         <p class="name">Nom Prénom</p>
                         <p>Travail 1</p>
@@ -65,7 +65,7 @@
 
             <div class="person">
                 <div class="search_pp_name">
-                    <img class="photo" src="../img/pp.png" alt="Photo 1">
+                    <img class="photo" src="../template/img/pp.png" alt="Photo 1">
                     <div class="person-info">
                         <p class="name">Nom Prénom</p>
                         <p>Travail 1</p>
@@ -86,7 +86,7 @@
 
             <div class="person">
                 <div class="search_pp_name">
-                    <img class="photo" src="../img/pp.png" alt="Photo 1">
+                    <img class="photo" src="../template/img/pp.png" alt="Photo 1">
                     <div class="person-info">
                         <p class="name">Nom du groupe</p>
                         <p>Public</p>
@@ -100,7 +100,7 @@
 
             <div class="person">
                 <div class="search_pp_name">
-                    <img class="photo" src="../img/pp.png" alt="Photo 1">
+                    <img class="photo" src="../template/img/pp.png" alt="Photo 1">
                     <div class="person-info">
                         <p class="name">Nom du groupe</p>
                         <p>Privé</p>
@@ -121,7 +121,7 @@
 
             <div class="person">
                 <div class="search_pp_name">
-                    <img class="photo" src="../img/pp.png" alt="Photo 1">
+                    <img class="photo" src="../template/img/pp.png" alt="Photo 1">
                     <div class="person-info">
                         <p class="name">Nom du groupe</p>
                         <p>Catégorie</p>
@@ -135,7 +135,7 @@
 
             <div class="person">
                 <div class="search_pp_name">
-                    <img class="photo" src="../img/pp.png" alt="Photo 1">
+                    <img class="photo" src="../template/img/pp.png" alt="Photo 1">
                     <div class="person-info">
                         <p class="name">Nom du groupe</p>
                         <p>Catégorie</p>
@@ -153,5 +153,5 @@
 
 </div>
 
-<script src="../scripts/script_search_page.js"></script>
-<?php include '../components/footer.php' ?>
+<script src="../template/scripts/script_search_page.js"></script>
+<?php include './template/components/footer.php' ?>
