@@ -1,6 +1,6 @@
 <?php
-require_once('../../src/model/Database.php');
-require_once('../../src/model/Pages.php');
+require_once('./src/model/Database.php');
+require_once('./src/model/Pages.php');
 // require_once('../../src/controller/pagesController.php')
 // Connecter la BDD
 $db = new Database();
@@ -25,9 +25,9 @@ $posts = null;
 
 
 ?>
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/profile.css">
-<link rel="stylesheet" href="../styles/publication.css">
+<?php include './template/components/header.php' ?>
+<link rel="stylesheet" href="./template/styles/profile.css">
+<link rel="stylesheet" href="./template/styles/publication.css">
 
 
 <div class="banner">
