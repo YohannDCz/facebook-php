@@ -138,12 +138,12 @@ $posts = null;
                     </div>
                 </label>
 
-                <label id="custom-video-btn">
+                <!-- <label id="custom-video-btn">
                     <div class="group_preview_publication_sub">
                         <span class="material-icons">videocam</span>
                         <p>Vidéo</p>
                     </div>
-                </label>
+                </label> -->
 
                 <div class="btn_send">
                     <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
