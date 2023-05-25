@@ -26,8 +26,8 @@ $posts = null;
 
 ?>
 <?php include './template/components/header.php' ?>
-<link rel="stylesheet" href="./template/styles/profile.css">
-<link rel="stylesheet" href="./template/styles/publication.css">
+<link rel="stylesheet" href="../template/styles/profile.css">
+<link rel="stylesheet" href="../template/styles/publication.css">
 
 
 <div class="banner">
@@ -467,10 +467,10 @@ $posts = null;
 
 </div>
 
-<script src="./scripts/script_profile.js"></script>
-<script src="./scripts/script.js"></script>
-<script src="./scripts/script_publication.js"></script>
+<script src="../template/scripts/script_profile.js"></script>
+<script src="../template/scripts/script.js"></script>
+<script src="../template/scripts/script_publication.js"></script>
 
 <?php
-include '../components/footer.php'
+include './template/components/footer.php'
 ?>

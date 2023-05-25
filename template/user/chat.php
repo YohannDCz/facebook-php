@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/chat.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/chat.css">
 
 <div class="messenger">
 	<div class="sidebar">
@@ -13,19 +13,19 @@
 		</div>
 
 		<ul>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">chris</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
-			<li><img class="profile_pic" src="../img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">chris</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
+			<li><img class="profile_pic" src="../template/img/pp.png" alt="">Jonathan</li>
 		</ul>
 	</div>
 
@@ -37,7 +37,7 @@
 				</a>
 				<a href="#">
 					<div class="profile-info">
-						<img class="profile_pic" src="../img/pp.png" alt="">
+						<img class="profile_pic" src="../template/img/pp.png" alt="">
 						<h4>chris</h4>
 					</div>
 				</a>
@@ -156,7 +156,7 @@
 </div>
 </div>
 </body>
-<script src="../scripts/script.js"></script>
-<script src="../scripts/script_chat.js"></script>
+<script src="../template/scripts/script.js"></script>
+<script src="../template/scripts/script_chat.js"></script>
 
 </html>

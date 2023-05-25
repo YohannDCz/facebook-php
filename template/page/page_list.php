@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/group_page_list.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/group_page_list.css">
 
 <?php
 
