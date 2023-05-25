@@ -7,8 +7,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 
 // sépare l'url en plusieurs sections pour le routage
-$split_url = explode($url, '/');
-
+$split_url = explode('/', $url);
 
 //Router
 switch($split_url[1]){
