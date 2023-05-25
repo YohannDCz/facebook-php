@@ -1,5 +1,6 @@
 <?php
 require_once('../../src/model/Database.php');
+require_once('../../src/model/Pages.php');
 //  Connecter la BDD
 $db = new Database();
 // Ouverture de la connection
@@ -14,140 +15,13 @@ if (isset($_GET['name'])) {
     echo "Name parameter not provided!";
 }
 
-$sql = 'SELECT * FROM "pages" WHERE name = :name';
-$query = $connection->prepare($sql);
-$query->bindParam(':name', $name);
-$query->execute();
+$pages = new Pages();
 
-$pages = $query->fetchAll(PDO::FETCH_ASSOC);
-$page = null;
-$idPage = null;
-$namePage = null;
-$iconProfile = null;
-$bannerProfile = null;
-
-if (!empty($pages)) {
-    $page = $pages[0];
-    $idPage = $page["id"];
-    $namePage = $page["name"];
-    $iconProfile = $page["profile_icon"];
-    $bannerProfile = $page["profile_banner"];
-}
+[$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $pages->setPage($name, $connection);
 
 $postCount = null;
 $posts = null;
 
-function fetchPublication($idPage, $connection)
-{
-    $sql = "SELECT * FROM \"post\" WHERE author_id = :id AND post_type = 1 AND author_type = 'pages' ORDER BY timestamp DESC";
-
-    $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idPage);
-    $query->execute();
-
-    $publications = $query->fetchAll(PDO::FETCH_ASSOC);
-    $publicationCount = count($publications);
-    return [$publications, $publicationCount];
-}
-
-
-function Publication($post, $connection)
-{
-    $idPublication = $post["id"];
-
-    $sql = 'SELECT * FROM "publications" WHERE post_id = :id';
-    $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idPublication);
-    $query->execute();
-
-    $publication = $query->fetch(PDO::FETCH_ASSOC);
-    $json = $publication["content"];
-    $jsondecode = json_decode($json);
-    return [$idPublication, $jsondecode->description, $jsondecode->image];
-}
-
-function fetchCommentary($idPublication, $connection)
-{
-
-    $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
-
-    $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idPublication);
-    $query->execute();
-
-    $commentaires = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    $postComCount = count($commentaires);
-    return [$commentaires, $postComCount];
-}
-
-
-function Commentary($PostCommentaire, $connection)
-{   
-    $idCommentaire = $PostCommentaire["id"];
-    $json = $PostCommentaire["content"];
-    $jsondecode = json_decode($json);
-
-
-    $sql = 'SELECT * FROM "post" WHERE id = :id';
-    $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idCommentaire);
-    $query->execute();
-
-    $stmt = $query->fetch(PDO::FETCH_ASSOC);
-    $authorId = $stmt["author_id"];
-
-    $sql = 'SELECT * FROM "users" WHERE id = :authorId';
-    $query = $connection->prepare($sql);
-    $query->bindParam(':authorId', $authorId);
-    $query->execute();
-
-    $author = $query->fetch(PDO::FETCH_ASSOC);
-    $username = $author["username"];
-    $profile_pic = $author["profile_icon"];
-    return [$username, $profile_pic, $jsondecode->description, $idCommentaire];
-}
-
-function fetchCommentary2($idCommentaire, $connection)
-{   
-    $sql = 'SELECT * FROM "commentary" WHERE post_id = :id';
-
-    $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idCommentaire);
-    $query->execute();
-
-    $sousCommentaires = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    $postComCount = count($sousCommentaires);
-    return [$sousCommentaires, $postComCount];
-}
-
-
-function Commentary2($sousCommentaire, $connection)
-{
-
-    $idSousCommentaire = $sousCommentaire["id"];
-    $json = $sousCommentaire["content"];
-    $jsondecode = json_decode($json);
-
-    $sql = 'SELECT * FROM "post" WHERE id = :id';
-    $query = $connection->prepare($sql);
-    $query->bindParam(':id', $idSousCommentaire);
-    $query->execute();
-
-    $stmt = $query->fetch(PDO::FETCH_ASSOC);
-    $authorId = $stmt["author_id"];
-
-    $sql = 'SELECT * FROM "users" WHERE id = :authorId';
-    $query = $connection->prepare($sql);
-    $query->bindParam(':authorId', $authorId);
-    $query->execute();
-
-    $author = $query->fetch(PDO::FETCH_ASSOC);
-    $username = $author["username"];
-    $profile_pic = $author["profile_icon"];
-    return [$username, $profile_pic, $jsondecode->description];
-}
 
 ?>
 <?php include '../components/header.php' ?>
@@ -231,9 +105,10 @@ function Commentary2($sousCommentaire, $connection)
             </div>
             <div class="box-img">
 
-                <?php [$posts, $postCount] = fetchPublication($idPage, $connection);
+                <?php
+                [$posts, $postCount] = $pages->fetchPublication($idPage, $connection);
                 foreach ($posts as $post) :
-                    [$description, $image] = Publication($post, $connection); ?>
+                    [$idPublication, $description, $image] = $pages->Publication($post, $connection); ?>
                     <?php if ($image !== "") : ?>
                         <img src="<?= $image ?>" class="box_photos_picture">
                     <?php endif; ?>
@@ -247,7 +122,7 @@ function Commentary2($sousCommentaire, $connection)
         <div class="profile_publication_post">
             <div class="profile_publication_div_flex">
                 <div class="publication_pp_div">
-                    <img src="./img/pp.png" alt="profile_picture">
+                    <img src=<?= $iconProfile ?> alt="profile_picture">
                 </div>
                 <div class="profile_publication_div_post">
                     <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
@@ -262,12 +137,12 @@ function Commentary2($sousCommentaire, $connection)
                     </div>
                 </label>
 
-                <!-- <label id="custom-video-btn">
+                <label id="custom-video-btn">
                     <div class="group_preview_publication_sub">
                         <span class="material-icons">videocam</span>
                         <p>Vidéo</p>
                     </div>
-                </label> -->
+                </label>
 
                 <div class="btn_send">
                     <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
@@ -281,9 +156,10 @@ function Commentary2($sousCommentaire, $connection)
 
         </div>
 
-        <?php [$posts, $postCount] = fetchPublication($idPage, $connection);
+        <?php 
+        [$posts, $postCount] = $pages->fetchPublication($idPage, $connection);
         foreach ($posts as $post) :
-            [$idPublication, $description, $image] = Publication($post, $connection); ?>
+            [$idPublication, $description, $image, $usersPostsLikesCount, $count] = $pages->Publication($post, $connection);?>
             <div class="publication">
 
                 <div class="publication_info">
@@ -305,8 +181,8 @@ function Commentary2($sousCommentaire, $connection)
                 </div>
 
                 <div class="publication_post_info">
-                    <p>X personnes ont aimés</p>
-                    <p>X commentaires</p>
+                    <p><?= $usersPostsLikesCount ?> personnes ont aimés</p>
+                    <p><?= $count ?> commentaires</p>
                 </div>
 
                 <div class="publication_post_reaction">
@@ -328,9 +204,10 @@ function Commentary2($sousCommentaire, $connection)
                 <div class="publication_list_comments">
 
                     <!-- commentaire qui se répond a un autre -->
-                    <?php [$postsComs, $postComCount] = fetchCommentary($idPublication, $connection);
+                    <?php
+                    [$postsComs, $postComCount] = $pages->fetchCommentary($idPublication, $connection);
                     foreach ($postsComs as $post) :
-                        [$username, $profile_pic, $description, $idCommentaire] = Commentary($post, $connection);
+                        [$username, $profile_pic, $description, $idCommentaire, $timestamp] = $pages->Commentary($post, $connection);
                         if ($username): ?>
                     <div class="publication_comment">
 
@@ -350,7 +227,7 @@ function Commentary2($sousCommentaire, $connection)
                                 <div class="publication_person_comment_options">
                                     <p>J'aime</p>
                                     <p>Répondre</p>
-                                    <p>x h</p>
+                                    <p><?= $timestamp ?> h</p>
                                 </div>
 
                                 <div class="publication_comment_reaction">
@@ -361,9 +238,9 @@ function Commentary2($sousCommentaire, $connection)
 
 
                             <div>
-                                <?php [$postsComs2, $postComCount] = fetchCommentary2($idCommentaire, $connection);
+                                <?php [$postsComs2, $postComCount2] = $pages->fetchCommentary2($idCommentaire, $connection);
                                 foreach ($postsComs2 as $post):
-                                    [$username, $profile_pic, $description] = Commentary2($post, $connection) ?>
+                                    [$username, $profile_pic, $description, $timestamp] = $pages->Commentary2($post, $connection); ?>
                                 <div class="publication_comment">
                                     <div class="publication_info">
                                         <div class="publication_pp_div">
@@ -381,7 +258,7 @@ function Commentary2($sousCommentaire, $connection)
                                             <div class="publication_person_comment_options">
                                                 <p>J'aime</p>
                                                 <p>Répondre</p>
-                                                <p>x h</p>
+                                                <p><?= $timestamp ?> h</p>
                                             </div>
 
                                             <div class="publication_comment_reaction">
