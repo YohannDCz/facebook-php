@@ -1,7 +1,7 @@
 <?php
 
-  require_once("../model/Pages.php");
-
+require("../model/Database.php");
+require("../model/Pages.php");
   
  //  Connecter la BDD
 $db = new Database();
