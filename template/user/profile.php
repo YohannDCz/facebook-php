@@ -5,7 +5,11 @@
 
 <div class="banner">
     <img class="banner-img" src="../img/blue-texture-marble.png">
-    <a href="settings.php" class="Submitbutton">Modifier le profil</a>
+    <p class="Submitbutton" id="change_pp"><span class="material-icons-outlined md-20">photo_camera</span></p>
+    <ul class="menu_change_pp" id="menu_change_pp">
+        <li>Changer votre photo de profil</li>
+        <li>Changer votre bannière</li>
+    </ul>
     <div class="profile-info">
         <div class="profile-img">
             <img src="../img/pp.png">

@@ -94,22 +94,22 @@ profile_edit.forEach((button, index) => {
 profile_edit_none()
 
 // pour les photos
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     const photoContainers = document.querySelectorAll('.box_photos_photo');
-  
+
     photoContainers.forEach(container => {
-      const image = container.querySelector('img');
-      image.addEventListener('load', function() {
-        const containerWidth = container.offsetWidth;
-        const containerHeight = containerWidth; // Assumer un ratio de 1:1
-        container.style.height = `${containerHeight}px`;
-      });
+        const image = container.querySelector('img');
+        image.addEventListener('load', function () {
+            const containerWidth = container.offsetWidth;
+            const containerHeight = containerWidth; // Assumer un ratio de 1:1
+            container.style.height = `${containerHeight}px`;
+        });
     });
-  });
-  
+});
+
 
 // Fonction pour modifier une publication
-  function modifyText(index) {
+function modifyText(index) {
     let currentText = document.querySelectorAll(".publication_text")[index];
     let areaText = document.querySelectorAll(".placenewText")[index];
     let textarea = document.createElement("textarea");
@@ -119,38 +119,69 @@ window.addEventListener('load', function() {
     textarea.setAttribute("oninput", "autoResize(this)");
     textarea.classList.add("publication_text_area");
     textarea.classList.add("newTextInput");
-  
+
     // Création d'un bouton "Valider"
     let validateButton = document.createElement("button");
     validateButton.textContent = 'done';
     validateButton.classList.add("Submitbutton");
     validateButton.classList.add("material-icons-round");
-  
+
     // Masque le bouton "Modifier"
     let modify_btns = document.querySelectorAll(".modifyButton");
     modify_btns[index].style.display = "none";
-  
+
     // Insère le champ de saisie et le bouton "Valider" après le bouton "Modifier"
     modify_btns[index].insertAdjacentElement("afterend", validateButton);
     areaText.appendChild(textarea);
-  
+
     validateButton.addEventListener("click", function () {
-      let newTextElement = document.querySelectorAll(".newTextInput")[0].value;
-      currentText.textContent = newTextElement;
-  
-      // Supprime le champ de saisie et le bouton "Valider"
-      textarea.remove();
-      validateButton.remove();
-  
-      // Affiche à nouveau le bouton "Modifier"
-      modify_btns[index].style.display = "inline-block";
+        let newTextElement = document.querySelectorAll(".newTextInput")[0].value;
+        currentText.textContent = newTextElement;
+
+        // Supprime le champ de saisie et le bouton "Valider"
+        textarea.remove();
+        validateButton.remove();
+
+        // Affiche à nouveau le bouton "Modifier"
+        modify_btns[index].style.display = "inline-block";
     });
-  }
-  
-  let modify_btns = document.querySelectorAll(".modifyButton");
-  modify_btns.forEach((btn, index) => {
+}
+
+let modify_btns = document.querySelectorAll(".modifyButton");
+modify_btns.forEach((btn, index) => {
     btn.addEventListener("click", function () {
-      modifyText(index);
+        modifyText(index);
     });
-  });
-  
+});
+
+//   fonction pour edit photo
+let change_pp = document.getElementById("change_pp");
+let menu_change_pp = document.getElementById("menu_change_pp");
+
+let isMenuPPVisible = false;
+
+change_pp.addEventListener('click', () => {
+    if (isMenuPPVisible) {
+        hideMenuPP();
+    } else {
+        showMenuPP();
+    }
+});
+
+function showMenuPP() {
+    menu_change_pp.style.display = 'flex';
+    isMenuPPVisible = true;
+    document.addEventListener('click', handleOutsideClick);
+}
+
+function hideMenuPP() {
+    menu_change_pp.style.display = 'none';
+    isMenuPPVisible = false;
+    document.removeEventListener('click', handleOutsideClick);
+}
+
+function handleOutsideClick(event) {
+    if (!menu_change_pp.contains(event.target) && event.target !== change_pp) {
+        hideMenuPP();
+    }
+}
