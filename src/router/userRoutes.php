@@ -6,8 +6,12 @@ require_once 'src\controller\userController.php';
 global $split_url;
 global $host;
 
+//cleaning de l'url en cas de méthode GET
+$url_cleaner = explode('?', $split_url[2]);
+$clean_url = $url_cleaner[0];
+
 // router dans la catégorie user
-switch ($split_url[2]) {
+switch ($clean_url) {
     case 'profile':
       //require la page profil
       require_once 'template/user/profile.php';
@@ -52,6 +56,10 @@ switch ($split_url[2]) {
     case 'search':
       //require la page de recherche
       require_once 'template/user/search_page.php';
+      break;
+    case 'notifications':
+      //require la page notifications
+      require_once 'template/user/notifications_list.php';
       break;
     default :
       //  require la page erreur 404;
