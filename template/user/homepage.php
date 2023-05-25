@@ -1,19 +1,19 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/index.css">
-<link rel="stylesheet" href="../styles/publication.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="template/styles/index.css">
+<link rel="stylesheet" href="template/styles/publication.css">
 
 <span class="material-icons-outlined" id="index_menuburger">menu</span>
 <ul id="index_menuopen" class="index_menuopen">
   <li><a href="profile.php"><span class="material-icons">person</span>Nom Prénom</a></li>
   <li><a href="friends_list.php"><span class="material-icons-outlined">group</span>Amis</a></li>
-  <li><a href="../group/group_list.php"><span class="material-icons">groups</span>Groupes</a></li>
-  <li><a href="../page/page_list.php"><span class="material-icons-outlined">newspaper</span>Pages</a></li>
+  <li><a href="template/group/group_list.php"><span class="material-icons">groups</span>Groupes</a></li>
+  <li><a href="template/page/page_list.php"><span class="material-icons-outlined">newspaper</span>Pages</a></li>
 </ul>
 
 <div class="index_main_container">
 
   <div class="index_route">
-    <a href="profile.php">
+    <a href="user/profile">
       <div class="index_list_div">
         <span class="material-icons">person</span>
         <h4 class="gh">Nom Prénom</h4>
@@ -27,14 +27,14 @@
       </div>
     </a>
 
-    <a href="../group/group_list.php">
+    <a href="template/group/group_list.php">
       <div class="index_list_div">
         <span class="material-icons">groups</span>
         <h4 class="gh">Groupes</h4>
       </div>
     </a>
 
-    <a href="../page/page_list.php">
+    <a href="template/page/page_list.php">
       <div class="index_list_div">
         <span class="material-icons">newspaper</span>
         <h4 class="gh">Pages</h4>
@@ -49,7 +49,7 @@
     <div class="profile_publication_post">
       <div class="profile_publication_div_flex">
         <div class="publication_pp_div">
-          <img src="../img/pp.png" alt="profile_picture">
+          <img src="template/img/pp.png" alt="profile_picture">
         </div>
         <div class="profile_publication_div_post">
           <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
@@ -88,7 +88,7 @@
       <div class="publication_pp_edit">
         <div class="publication_info">
           <div class="publication_pp_div">
-            <img src="../img/pp.png" alt="profile_picture">
+            <img src="template/img/pp.png" alt="profile_picture">
           </div>
           <p>Nom Prénom</p>
         </div>
@@ -100,10 +100,10 @@
       <div class="placenewText">
       </div>
       <div class="publication_list_images">
-        <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
-        <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
-        <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
-        <img src="../img/blue-texture-marble.png" alt="" class="publication_image">
+        <img src="template/img/blue-texture-marble.png" alt="" class="publication_image">
+        <img src="template/img/blue-texture-marble.png" alt="" class="publication_image">
+        <img src="template/img/blue-texture-marble.png" alt="" class="publication_image">
+        <img src="template/img/blue-texture-marble.png" alt="" class="publication_image">
       </div>
 
       <div class="publication_post_info">
@@ -135,7 +135,7 @@
           <div class="publication_comment">
             <div class="publication_info">
               <div class="publication_pp_div">
-                <img src="../img/pp.png" alt="profile_picture">
+                <img src="template/img/pp.png" alt="profile_picture">
               </div>
             </div>
 
@@ -173,7 +173,7 @@
 
           <div class="publication_info">
             <div class="publication_pp_div">
-              <img src="../img/pp.png" alt="profile_picture">
+              <img src="template/img/pp.png" alt="profile_picture">
             </div>
           </div>
 
@@ -201,7 +201,7 @@
               <div class="publication_comment">
                 <div class="publication_info">
                   <div class="publication_pp_div">
-                    <img src="../img/pp.png" alt="profile_picture">
+                    <img src="template/img/pp.png" alt="profile_picture">
                   </div>
                 </div>
 
@@ -228,7 +228,7 @@
                     <div class="publication_comment">
                       <div class="publication_info">
                         <div class="publication_pp_div">
-                          <img src="../img/pp.png" alt="profile_picture">
+                          <img src="template/img/pp.png" alt="profile_picture">
                         </div>
                       </div>
 
@@ -268,7 +268,7 @@
         <div class="publication_comment">
           <div class="publication_info">
             <div class="publication_pp_div">
-              <img src="../img/pp.png" alt="profile_picture">
+              <img src="template/img/pp.png" alt="profile_picture">
             </div>
           </div>
 
@@ -296,91 +296,91 @@
   <div class="index_list_friends">
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
     <div class="rr">
       <div class="publication_pp_div">
-        <img src="../img/pp.png" alt="Photo de profil">
+        <img src="template/img/pp.png" alt="Photo de profil">
       </div>
       <span class="ps">Nom Prénom</span>
     </div>
@@ -392,8 +392,8 @@
 </div>
 
 
-<script src="../scripts/script.js"></script>
-<script src="../scripts/script_index.js"></script>
-<script src="../scripts/script_publication.js"></script>
+<script src="template/scripts/script.js"></script>
+<script src="template/scripts/script_index.js"></script>
+<script src="template/scripts/script_publication.js"></script>
 
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>

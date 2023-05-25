@@ -6,9 +6,11 @@ ini_set('display_errors', 1);
 $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 
-// sépare l'url en plusieurs sections pour le routage
-$split_url = explode($url, '/');
+//  host
+$host = 'localhost:3000';
 
+// sépare l'url en plusieurs sections pour le routage
+$split_url = explode('/', $url);
 
 //Router
 switch($split_url[1]){
@@ -28,6 +30,14 @@ switch($split_url[1]){
     case 'post':
         //  require le controller post
         require_once './src/controller/postController.php';
+        break;
+    case 'home' :
+        //require la page homepage
+        require_once './template/user/homepage.php';
+        break;
+    default :
+        //require la page d'erreur 404
+        require_once './template/404.php';
         break;
 }
 

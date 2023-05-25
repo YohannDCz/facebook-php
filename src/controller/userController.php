@@ -1,6 +1,6 @@
 <?php
-require_once('../model/Database.php');
-require_once('../model/Users.php');
+require_once('src/model/Database.php');
+require_once('src/model/Users.php');
 
 
 function signup() {
