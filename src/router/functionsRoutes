@@ -8,16 +8,25 @@ require_once 'src\controller\postController.php';
 
 //  déclaration variable globale
 global $split_url;
+global $host;
 
 //cleaning de l'url en cas de méthode GET
 $url_cleaner = explode('?', $split_url[2]);
 $clean_url = $url_cleaner[0];
 
 switch ($clean_url) {
-    case 'value':
-        # code...
+    case 'signUp':
+        signup();
+        header('Location:' . 'http://' . $host . '/home');
         break;
-    
+    case 'login':
+        login();
+        header('Location:' . 'http://' . $host . '/home');
+        break;
+    case 'logout':
+        logout();
+        header('Location:' . 'http://' . $host . '/home');
+        break;
     default:
         # code...
         break;
