@@ -25,6 +25,6 @@ switch ($split_url[2]) {
       break;
     default :
       //    require la page erreur 404
-      require_once 'template/404.php'
+      require_once 'template/404.php';
       break;
 }
