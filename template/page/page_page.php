@@ -1,7 +1,8 @@
 <?php
 require_once('../../src/model/Database.php');
 require_once('../../src/model/Pages.php');
-//  Connecter la BDD
+// require_once('../../src/controller/pagesController.php')
+// Connecter la BDD
 $db = new Database();
 // Ouverture de la connection
 $connection = $db->getConnection();
