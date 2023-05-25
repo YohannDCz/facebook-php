@@ -74,12 +74,12 @@ class Posts {
         // switch qui décide d'où mettre le contenu en fonction du type du post
         switch($post_type) {
             case "publication":
-                if (createPublication($post_id, $content)) {
+                if (createPublication($post_id, $content, $connection)) {
                     return true;
                 }
                 return false;
             case "commentary":
-                if (createCommentary($post_id, $commented_post_id, $content)) {
+                if (createCommentary($post_id, $commented_post_id, $content, $connection)) {
                     return true;
                 }
                 return false;
@@ -89,7 +89,7 @@ class Posts {
     }
 
     // fonction pour créer un commentaire (et pas un post attention)
-    function createCommentary($post_id, $commented_post_id, $content) {
+    function createCommentary($post_id, $commented_post_id, $content, $connection) {
 
         // Requêtes SQL
         $request = $connection->prepare("INSERT INTO commentary (id, post_id, content) VALUES (:id, :post_id, :content)");
@@ -104,7 +104,7 @@ class Posts {
     }
 
     //  fonction pour créer une publication (et pas un post attention)
-    function createPublication($post_id, $content) {
+    function createPublication($post_id, $content, $connection) {
 
         // Requêtes SQL
         $request = $connection->prepare("INSERT INTO publications (post_id, content) VALUES (:id, :post_id, :content)");
