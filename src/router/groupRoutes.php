@@ -10,7 +10,7 @@ $url_cleaner = explode('?', $split_url[2]);
 $clean_url = $url_cleaner[0];
 
 // router dans la catégorie user
-switch ($split_url[2]) {
+switch ($clean_url) {
     case 'Create':
       //require la page profil
       require_once 'template/group/group_create.php';
