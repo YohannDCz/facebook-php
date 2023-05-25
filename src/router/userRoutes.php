@@ -14,9 +14,8 @@ switch ($split_url[2]) {
       break;
     case 'signup':
       if ($condition) {
-        $user = new Users;
-        $user->signup();
-        $user->login();
+        signup();
+        login();
         header('Location:' . $host . 'home');
       }
       //require la page signup
