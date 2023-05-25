@@ -13,15 +13,15 @@ switch ($split_url[2]) {
       break;
     case 'signup':
       //require la page signup
-      require_once '';
+      require_once 'template/user/signup.php';
       break;
     case 'login':
       //require la page login
-      require_once '';
+      require_once 'template/user/';
       break;
     case 'mentions':
       //require la page mentions légale
-      require_once '';
+      require_once 'template/user/';
       break;
     default :
       echo 'DEFAULT USER PAGE';

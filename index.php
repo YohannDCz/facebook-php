@@ -28,6 +28,10 @@ switch($split_url[1]){
         //  require le controller post
         require_once './src/controller/postController.php';
         break;
+    default :
+        //require la page homepage
+        require_once './template/user/homepage.php';
+        break;
 }
 
 ?>
