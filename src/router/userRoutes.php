@@ -17,11 +17,6 @@ switch ($clean_url) {
       require_once 'template/user/profile.php';
       break;
     case 'signup':
-      if ($condition) {
-        signup();
-        login();
-        header('Location:' . $host . 'home');
-      }
       //require la page signup
       require_once 'template/user/signup.php';
       break;

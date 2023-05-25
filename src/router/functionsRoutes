@@ -1,0 +1,24 @@
+<?php
+
+// require de tous les controllers
+require_once 'src\controller\userController.php';
+require_once 'src\controller\groupController.php';
+require_once 'src\controller\pagesController.php';
+require_once 'src\controller\postController.php';
+
+//  déclaration variable globale
+global $split_url;
+
+//cleaning de l'url en cas de méthode GET
+$url_cleaner = explode('?', $split_url[2]);
+$clean_url = $url_cleaner[0];
+
+switch ($clean_url) {
+    case 'value':
+        # code...
+        break;
+    
+    default:
+        # code...
+        break;
+}

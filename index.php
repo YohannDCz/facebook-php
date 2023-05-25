@@ -1,6 +1,6 @@
 <?php
 ini_set('display_errors', 1);
-// inclure les controllers nécessaires
+// inclure les routers nécessaires
 
 // récupérer la méthode et l'URL de la requête
 $method = $_SERVER['REQUEST_METHOD'];
@@ -16,20 +16,24 @@ $split_url = explode('/', $url);
 switch($split_url[1]){
     // Route utilisateur de l'API
     case 'user':
-        // require le controller user
+        // require le router user
         require_once './src/router/userRoutes.php';
         break;
     case 'page':
-        //  require le controller page
+        //  require le router page
         require_once './src/router/pagesRoutes.php';
         break;
     case 'group':
-        //  require le controller group
+        //  require le router group
         require_once './src/router/groupRoutes.php';
         break;
     case 'post':
-        //  require le controller post
+        //  require le router post
         require_once './src/router/postRoutes.php';
+        break;
+    case 'functions':
+        //  require le routeur des fonctions
+        require_once './src/router/functionsRoutes.php';
         break;
     case 'home' :
         //require la page homepage
