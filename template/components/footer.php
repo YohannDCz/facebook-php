@@ -1,10 +1,10 @@
 <footer>
 	<div class="footer_container">
 		<div class="footer_links">
-			<a href="about_us.php">À propos de nous</a>
-			<a href="policy.php">Politique de confidentialité</a>
-			<a href="mentions.php">Mentions légales</a>
-			<a href="contact_us.php">Contactez-nous</a>
+			<a href=<?= "http://" . $host . "/user/aboutUs" ?>>À propos de nous</a>
+			<a href=<?= "http://" . $host . "/user/policy" ?>>Politique de confidentialité</a>
+			<a href=<?= "http://" . $host . "/user/mentions" ?>>Mentions légales</a>
+			<a href=<?= "http://" . $host . "/user/contactUs" ?>>Contactez-nous</a>
 		</div>
 		<p>&copy; 2023 Social view. Tous droits réservés.</p>
 	</div>

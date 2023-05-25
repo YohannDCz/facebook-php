@@ -61,6 +61,10 @@ switch ($clean_url) {
       //require la page notifications
       require_once 'template/user/notifications_list.php';
       break;
+      case 'aboutUs':
+        //require la page notifications
+        require_once 'template/user/about_us.php';
+        break;
     default :
       //  require la page erreur 404;
       require_once 'template/404.php';

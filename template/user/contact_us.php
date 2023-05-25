@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/footer_links.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="../template/styles/footer_links.css">
 
 <div class="contact_main">
     <div class="contact_container">
@@ -51,4 +51,4 @@
     </div>
 </div>
 
-<?php include '../components/footer.php' ?>
+<?php include 'template/components/footer.php' ?>
