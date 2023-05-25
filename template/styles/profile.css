@@ -299,7 +299,7 @@
 }
 
 .summary-content {
-    /* display: none; */
+    display: none;
 }
 
 .summary-content-flex {
@@ -369,44 +369,6 @@
 .profile_edit:active {
     color: #00507A;
 }
-
-.menu_change_pp {
-    display: none;
-    list-style: none;
-    flex-direction: column;
-    gap: 10px;
-    position: absolute;
-    z-index: 999;
-    background-color: var(--colorburger);
-    color: #000;
-    border-radius: 12px;
-    padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    right: 10px;
-}
-
-.menu_change_pp li {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: ease-in-out 0.3s;
-}
-
-.menu_change_pp li:hover {
-    background-color: #ddd;
-    color: #009FF5;
-}
-
-.menu_change_pp li:active {
-    background-color: #ccc;
-    color: #00507A;
-}
-
 
 @media (max-width: 1024px) {
 
