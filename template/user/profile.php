@@ -1,4 +1,4 @@
-<?php include '../components/header.php' ?>
+<?php include 'template/components/header.php' ?>
 <link rel="stylesheet" href="../styles/publication.css">
 <link rel="stylesheet" href="../styles/profile.css">
 
