@@ -37,6 +37,7 @@ switch($split_url[1]){
         break;
     default :
         //require la page d'erreur 404
+        require_once './template/404.php';
         break;
 }
 
