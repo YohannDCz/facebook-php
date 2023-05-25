@@ -9,19 +9,4 @@ $db = new Database();
 $connection = $db->getConnection();
 // Requêtes SQL
 $name = null;
-
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-    setcookie("name", $name);
-} else {
-    echo "Name parameter not provided!";
-}
-
-$pages = new Pages();
-
-[$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $pages->setPage($name, $connection);
-
-$postCount = null;
-$posts = null;
-
 ?>
