@@ -21,15 +21,15 @@ switch($split_url[1]){
         break;
     case 'page':
         //  require le controller page
-        require_once './src/controller/pagesRoutes.php';
+        require_once './src/router/pagesRoutes.php';
         break;
     case 'group':
         //  require le controller group
-        require_once './src/controller/groupRoutes.php';
+        require_once './src/router/groupRoutes.php';
         break;
     case 'post':
         //  require le controller post
-        require_once './src/controller/postRoutes.php';
+        require_once './src/router/postRoutes.php';
         break;
     case 'home' :
         //require la page homepage
