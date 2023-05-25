@@ -1,5 +1,5 @@
-<?php include '../components/header.php' ?>
-<link rel="stylesheet" href="../styles/group_create.css">
+<?php include 'template/components/header.php' ?>
+<link rel="stylesheet" href="template/styles/group_create.css">
 
 <div class="group_container">
 
@@ -14,7 +14,7 @@
 
         <div class="group_owner">
             <div class="group_owner_pp">
-                <img src="../img/pp.png" alt="pp">
+                <img src="template/img/pp.png" alt="pp">
             </div>
             <div class="group_owner_info">
                 <p>Pseudo</p>
@@ -72,7 +72,7 @@
             <div class="group_preview_publication_main">
                 <div class="group_preview_publication">
                     <div>
-                        <img src="../img/pp.png" alt="profile_picture" class="group_friend_pp">
+                        <img src="template/img/pp.png" alt="profile_picture" class="group_friend_pp">
                     </div>
                     <div class="group_preview_publication_input">Que souhaitez-vous dire au groupe ?</div>
                 </div>
@@ -102,5 +102,5 @@
     </div>
 </div>
 
-<script src="../scripts/script_group_create.js"></script>
-<?php include '../components/footer.php' ?>
+<script src="template/scripts/script_group_create.js"></script>
+<?php include 'template/components/footer.php' ?>
