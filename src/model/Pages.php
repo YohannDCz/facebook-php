@@ -5,8 +5,29 @@ require_once 'Database.php';
 
 
 class Pages {
+    //  fonction qui retourne toutes les pages qui contiennent la recherche dans leur nom
+    function getPagesByName($search) {
+        //Connecter la BDD
+        $db = new Database();
+
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        $query_string = $search . '%';
+
+        //  Requêtes SQL
+        $request = $connection->prepare("SELECT * FROM pages WHERE pages.name LIKE :search");
+        $request->bindParam(":search", $query_string);
+
+        $request->execute();
+
+        $result = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     // une fonction qui montre la page d'un utilisateur
-    function getPages($id){
+    function getPagesById($id){
         
         //Connecter la BDD
         $db = new Database();
@@ -21,7 +42,7 @@ class Pages {
         $query->execute();
         $content = [];
         //Recensement des utilisateurs et de leurs données/messages
-        while (($row = $query->fetch())) {
+        while (($row = $query->fetch(PDO::FETCH_ASSOC))) {
             $content = [
                 "id"=> $row["id"],
                 "name"=> $row["name"],
