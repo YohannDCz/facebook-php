@@ -32,7 +32,8 @@ function affichageResearch($searchResults)
     global $host;
 ?>
     <h3>Découvrir des pages</h3>
-    <h4>Pages qui pourraient vous intéresser.</h4>
+    <h3>Résultat de vos recherches : </h3>
+    <!-- <h4>Pages qui pourraient vous intéresser.</h4> -->
     <div class="groups_grid">
 
         <?php foreach ($searchResults as $result) { ?>
@@ -57,7 +58,7 @@ function affichageResearch($searchResults)
 function affichageDiscover()
 {
 ?>
-    <h3>Résultat de vos recherches : </h3>
+    <h3>Découvrir des pages</h3>
     <!-- <h4>Pages qui pourraient vous intéresser.</h4> -->
     <div class="groups_grid">
 
