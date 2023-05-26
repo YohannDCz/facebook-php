@@ -14,11 +14,4 @@ function searchPagesByName() {
 
     return $result;
 }
-
-$searchResults = searchPagesByName();
-
-foreach ($searchResult as $result) {
-    //  Affichage de la recherche
-}
-
 ?>
