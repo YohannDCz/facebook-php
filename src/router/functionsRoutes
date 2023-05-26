@@ -1,10 +1,10 @@
 <?php
 
 // require de tous les controllers
-require_once 'src\controller\userController.php';
-require_once 'src\controller\groupController.php';
-require_once 'src\controller\pagesController.php';
-require_once 'src\controller\postController.php';
+require_once 'src/controller/userController.php';
+require_once 'src/controller/groupController.php';
+require_once 'src/controller/pagesController.php';
+require_once 'src/controller/postController.php';
 
 //  déclaration variable globale
 global $split_url;
@@ -14,16 +14,20 @@ global $host;
 $url_cleaner = explode('?', $split_url[2]);
 $clean_url = $url_cleaner[0];
 
+// routage 
 switch ($clean_url) {
     case 'signUp':
+        //  fonction d'inscription
         signup();
         header('Location:' . 'http://' . $host . '/home');
         break;
     case 'login':
+        //fonction de login
         login();
         header('Location:' . 'http://' . $host . '/home');
         break;
     case 'logout':
+        //  fonction de logout
         logout();
         header('Location:' . 'http://' . $host . '/home');
         break;

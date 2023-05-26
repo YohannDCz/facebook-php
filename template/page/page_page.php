@@ -20,8 +20,6 @@ $posts = new Posts();
 
 [$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $posts->setPage($name, $connection);
 
-var_dump($posts);
-
 // $posts = null;
 
 
