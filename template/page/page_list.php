@@ -3,6 +3,10 @@
 
 <?php
 
+if (isset($_GET["searchPageName"])) {
+    global $searchResults;
+}
+
 function affichage()
 {
     echo '<style>
@@ -23,11 +27,38 @@ function affichageGroups()
     affichageDiscover();
 }
 
-function affichageDiscover()
+function affichageResearch($searchResults)
 {
+    global $host;
 ?>
     <h3>Découvrir des pages</h3>
     <h4>Pages qui pourraient vous intéresser.</h4>
+    <div class="groups_grid">
+
+        <?php foreach ($searchResults as $result) { ?>
+
+            <div class="groups_group_preview">
+                <img src=<?= $result["profile_banner"] ?> alt="" class="groups_group_banner">
+                <div class="groups_group_content">
+                    <p class="groups_group_name"><?= $result["name"] ?></p>
+                    <div class="pages_page_info">
+                        <p>Catégorie</p>
+                        <p>X personnes qui aiment la page</p>
+                    </div>
+                    <a href=<?= "http://" . $host . "/page/page?name=" . $result["name"] ?> class="groups_join">Voir la page</a>
+                </div>
+            </div>
+
+        <?php } ?>
+    </div>
+<?php
+}
+
+function affichageDiscover()
+{
+?>
+    <h3>Résultat de vos recherches : </h3>
+    <!-- <h4>Pages qui pourraient vous intéresser.</h4> -->
     <div class="groups_grid">
 
         <?php for ($i = 1; $i <= 10; $i++) { ?>
@@ -49,8 +80,9 @@ function affichageDiscover()
 <?php
 }
 
-function affichageMyGroups($host)
+function affichageMyGroups()
 {
+    global $host;
 ?>
     <h3>Tous les pages dont vous gérez (X)</h3>
     <div class="groups_grid">
@@ -94,7 +126,7 @@ function affichageMyGroups($host)
 <?php
 }
 
-function parametres($host)
+function parametres($searchResults)
 {
     $page = isset($_GET['groups']) ? $_GET['groups'] : '';
     if ($page === 'discover') {
@@ -102,7 +134,10 @@ function parametres($host)
         affichageDiscover();
     } elseif ($page === 'mygroups') {
         affichage();
-        affichageMyGroups($host);
+        affichageMyGroups();
+    } elseif ($page === 'name') {
+        affichage();
+        affichageResearch($searchResults);
     } else {
         affichageGroups();
     }
@@ -120,8 +155,10 @@ function parametres($host)
         </div>
 
         <h3 style="white-space: nowrap;">Pages</h3>
-
-        <input type="text" name="" id="" placeholder="Rechercher une page..." class="group_input groups_mobile">
+        <form action="<?= "http://" . $host . "/page/pageList" ?>" method="GET" class="page_list_form">
+            <input type="text" name="searchPageName" placeholder="Rechercher une page..." class="group_input groups_mobile">
+            <input type="submit" class="Submitbutton" value="Valider">
+        </form>
 
         <h4 class="settings_category">
             <span class="material-icons">explore</span>

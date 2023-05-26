@@ -112,6 +112,12 @@
     padding: 10px;
 }
 
+.page_list_form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 
 @media (max-width: 1024px) {
 
