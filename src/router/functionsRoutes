@@ -14,16 +14,20 @@ global $host;
 $url_cleaner = explode('?', $split_url[2]);
 $clean_url = $url_cleaner[0];
 
+// routage 
 switch ($clean_url) {
     case 'signUp':
+        //  fonction d'inscription
         signup();
         header('Location:' . 'http://' . $host . '/home');
         break;
     case 'login':
+        //fonction de login
         login();
         header('Location:' . 'http://' . $host . '/home');
         break;
     case 'logout':
+        //  fonction de logout
         logout();
         header('Location:' . 'http://' . $host . '/home');
         break;
