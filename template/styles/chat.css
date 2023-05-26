@@ -24,16 +24,19 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
 .sidebar ul li:hover {
-    background-color: #ddd;
+    background-color: var(--colorburger);
     border-radius: 12px;
+    color: var(--color);
 }
 
 .sidebar ul li:active {
-    background-color: #bbb;
+    background-color: var(--bgcolor2);
     border-radius: 12px;
+    color: var(--color);
 }
 
 .profile_pic {
@@ -89,6 +92,7 @@
     border-bottom: 1px solid #ddd;
     overflow-y: auto;
     flex-grow: 1;
+    gap: 10px;
 }
 
 .send-message {
@@ -102,8 +106,6 @@
 
 .send-message input {
     flex-grow: 1;
-    margin-right: 20px;
-    padding: 10px;
 }
 
 .chatheader {
@@ -151,7 +153,7 @@
 
 .message {
     max-width: 90%;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     padding: 10px;
     border-radius: 10px;
 }
@@ -168,7 +170,7 @@
 }
 
 .Submitbutton {
-    padding: 10px 15px;
+    padding: 15px 10px;
     align-self: auto;
 }
 
@@ -208,11 +210,15 @@
 }
 
 .menu2 a:hover {
-    background-color: #ddd;
+    background-color: var(--bgcolor);
 }
 
-.menu2 a:active {
-    background-color: #ccc;
+.chat_conv_menu li:hover {
+    background-color: var(--colorburger);
+}
+
+.menu2 a:active, .chat_conv_menu li:active {
+    background-color: var(--bgcolor2);
 }
 
 .msg-sent {
@@ -247,6 +253,42 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.chat_conv {
+    top: 0;
+    right: 0;
+    border: none;
+    background-color: inherit;
+    border-radius: 12px;
+    color: grey;
+    cursor: pointer;
+    position: relative;
+}
+
+.chat_conv_menu {
+    display: none;
+    list-style: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    z-index: 20;
+    background-color: var(--bgcolor);
+    color: #000;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    top: 100%;
+    right: 0;
+    min-height: 118px;
+}
+
+
+.chat_conv_menu li a {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
 .menu2_received {
     left: 0;
 }
@@ -259,6 +301,38 @@
     background-color: var(--colorburger);
     border-radius: 50%;
     color: var(--color2);
+}
+
+select[name="invites[]"] option:checked {
+    background-color: red;
+    font-weight: bold;
+}
+
+#chat_create_group {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--bgcolor2);
+    border-radius: 12px;
+    align-items: flex-start;
+    height: fit-content;
+    position: absolute;
+    width: fit-content;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 50px;
+    z-index: 10;
+}
+
+.chat_create_p {
+    font-size: 12px;
+}
+
+.chat_conv_more {
+    margin-left: auto;
 }
 
 
