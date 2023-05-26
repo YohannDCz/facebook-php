@@ -12,17 +12,15 @@ function signup() {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $phone = $_POST["phone"];
-    $email = $_POST["email"];
+    $email = $_POST["mail"];
     $birthdate = $_POST["birthdate"];
 
     $resultat = $user->checkUser($email);
     $results = isset($resultat["username"]) or isset($resultat["mail"]);
 
     if ($results) {
-      $error = "L'utilisateur existe déjà";
-      setcookie("errorAuthentification", $error);
+      echo "L'utilisateur existe déjà";
       // return $error;
-      exit();
     } else {
       setcookie("username", $username);
       setcookie("first_name", $first_name);
@@ -31,12 +29,8 @@ function signup() {
       setcookie("email", $email);
       setcookie("birthdate", $birthdate);
 
-      $user->addUser($username, $password, $first_name, $last_name, $phone, $email, $birthdate);
-
+      $user->addUser($username, $password, $first_name, $last_name,$birthdate, $phone, $email);
     }
-
-    
-    exit();
 }
 
 function login() {
@@ -57,7 +51,6 @@ function login() {
     } else {
       $error = "Identifiants invalides";
       setcookie("errorPassword", $error);
-      exit();
     }
 }
 
@@ -66,24 +59,21 @@ function logout() {
 
   session_start();
   session_destroy();
-  var_dump("ok");
-
-  header('Location: ../front/login.php');
 
 }
 
-if(isset($_SERVER['HTTP_REFERER']) and $_SERVER["REQUEST_METHOD"] === "POST") {
-  $referer = $_SERVER['HTTP_REFERER'];
-  if(strpos($referer, "login.php") !== false) {
-      $loginScript = login();
-  } elseif(strpos($referer, "header.php") !== false) {
-      $logoutScript = logout();
-  } elseif(strpos($referer, "signup.php") !== false) {
-      $signupScript = signup();
-  } else {
-      echo "not ok";
-      exit();
-  }
-}
+// if(isset($_SERVER['HTTP_REFERER']) and $_SERVER["REQUEST_METHOD"] === "POST") {
+//   $referer = $_SERVER['HTTP_REFERER'];
+//   if(strpos($referer, "http://" . $host . "/user/login") !== false) {
+//       $loginScript = login();
+//   } elseif(strpos($referer, "header.php") !== false) {
+//       $logoutScript = logout();
+//   } elseif(strpos($referer, "signup.php") !== false) {
+//       $signupScript = signup();
+//   } else {
+//       echo "not ok";
+//       exit();
+//   }
+// }
 
 ?>
