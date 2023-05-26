@@ -13,6 +13,9 @@ $clean_url = $url_cleaner[0];
 // router dans la catégorie user
 switch ($clean_url) {
     case 'pageList':
+        if (isset($_GET["searchPageName"])) {
+            $searchResults = searchPagesByName();
+        }
         //require la page page_list
         require_once 'template/page/page_list.php';
         break;

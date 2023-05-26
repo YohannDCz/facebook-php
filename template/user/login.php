@@ -19,7 +19,7 @@ if (isset($_COOKIE["error"])) {
                 <p style="color: white">Identifiants invalides !</p>
             </div>
         <?php endif; ?>
-        <form class="login_signup" action="../src/controller/userController.php" method="POST">
+        <form class="login_signup" action=<?= "http://" . $host . "/functions/login" ?> method="POST">
             <div class="row">
                 <input name="name" type="text" class="inputText" placeholder="Pseudo ou Email" required>
             </div>
@@ -31,7 +31,7 @@ if (isset($_COOKIE["error"])) {
 
         </form>
 
-        <p><a href="signup.php">Pas encore de compte ? Inscris-toi ici !</a></p>
+        <p><a href=<?= "http://" . $host . "/user/signup" ?>>Pas encore de compte ? Inscris-toi ici !</a></p>
 
     </div>
 </div>

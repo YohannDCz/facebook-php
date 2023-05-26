@@ -47,7 +47,7 @@ class Users {
         $connection = $db->getConnection();
         // Requêtes SQL
 
-        $sql = 'INSERT INTO "user" (first_name, last_name, username, mail, phone, password, birthdate)
+        $sql = 'INSERT INTO "users" (first_name, last_name, username, mail, phone, password, birthdate)
         VALUES(:first_name, :last_name, :username, :mail, :phone, :password, :birthdate)';
 
         $query = $connection->prepare($sql);
@@ -85,7 +85,7 @@ class Users {
         $connection = $db->getConnection();
         
         // Préparation/execution de la requête
-        $sql = 'SELECT * FROM "user" WHERE  username = :credentials OR mail = :credentials';
+        $sql = 'SELECT * FROM "users" WHERE  username = :credentials OR mail = :credentials';
         $query = $connection->prepare($sql);
         $query->execute([
             ":credentials" => $credentials,
@@ -110,7 +110,7 @@ class Users {
         // Ouverture de la connection
         $connection = $db->getConnection();
         
-        $sql = 'SELECT * FROM "user" WHERE mail = ?';
+        $sql = 'SELECT * FROM "users" WHERE mail = ?';
         $query = $connection->query($sql);
         $query->bindParam(1,$mail);
 
@@ -128,7 +128,7 @@ class Users {
         // Ouverture de la connection
         $connection = $db->getConnection();
 
-        $sql = 'SELECT * FROM "user" WHERE  username = :credentials OR mail = :credentials';
+        $sql = 'SELECT * FROM "users" WHERE  username = :credentials OR mail = :credentials';
         $query = $connection->prepare($sql);
         $query->execute([
             ":credentials" => $credentials,

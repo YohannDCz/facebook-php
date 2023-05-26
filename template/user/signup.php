@@ -7,7 +7,7 @@
     <div class="login_signup_container">
         <h1>Inscription</h1>
 
-        <form class="login_signup" action="../src/controller/userController.php" method="POST">
+        <form class="login_signup" action=<?= "http://" . $host . "/functions/signUp" ?> method="POST">
             <div class="radiobox">
                 <label class="role"><input name="role" type="radio" value="madame" checked>Madame</label>
                 <label class="role"><input name="role" type="radio" value="monsieur">Monsieur</label>
@@ -26,10 +26,10 @@
                 <input name="birthdate" type="date" class="inputText" placeholder="Date de naissance" required>
             </div>
             <div class="row">
-                <input name="tel" type="tel" class="inputText" placeholder="Téléphone" minlength="10" maxlength="14" required>
+                <input name="phone" type="tel" class="inputText" placeholder="Téléphone" minlength="10" maxlength="14" required>
             </div>
             <div class="row">
-                <input name="email" type="email" class="inputText" placeholder="Adresse e-mail" required>
+                <input name="mail" type="mail" class="inputText" placeholder="Adresse e-mail" required>
             </div>
             <div class="row">
                 <input name="password" type="password" class="inputText" placeholder="Mot de passe" required>
