@@ -6,10 +6,10 @@ class Database {
         
         // variables de connection a la bdd
         $host = "localhost";
-        $dbname = "SocialNetwork";
+        $dbname = "socialNetwork";
         $username = "Yohann";
         $password = "Yohann";
-        $port = 8887;
+        $port = 5432;
 
         $connection = null;
         try {

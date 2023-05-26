@@ -118,6 +118,9 @@
     gap: 10px;
 }
 
+.group_input{
+    color: var(--color);
+}
 
 @media (max-width: 1024px) {
 

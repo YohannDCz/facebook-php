@@ -8,18 +8,18 @@ function signup() {
     $user = new Users();
 
     $username = $_POST["username"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);;
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $phone = $_POST["phone"];
-    $email = $_POST["mail"];
+    $email = $_POST["email"];
     $birthdate = $_POST["birthdate"];
 
     $resultat = $user->checkUser($email);
     $results = isset($resultat["username"]) or isset($resultat["mail"]);
 
     if ($results) {
-      echo "L'utilisateur existe déjà";
+      echo "L'utilisateur existe déjà.";
       // return $error;
     } else {
       setcookie("username", $username);
@@ -29,7 +29,7 @@ function signup() {
       setcookie("email", $email);
       setcookie("birthdate", $birthdate);
 
-      $user->addUser($username, $password, $first_name, $last_name,$birthdate, $phone, $email);
+      $user->addUser($username, $password, $first_name, $last_name, $birthdate, $phone, $email);
     }
 }
 
@@ -75,5 +75,3 @@ function logout() {
 //       exit();
 //   }
 // }
-
-?>

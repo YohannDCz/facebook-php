@@ -7,7 +7,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
 
 //  host
-$host = 'localhost:8888';
+$host = 'localhost:3000';
 
 // sépare l'url en plusieurs sections pour le routage
 $split_url = explode('/', $url);

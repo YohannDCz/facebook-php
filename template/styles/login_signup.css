@@ -52,6 +52,7 @@
     width: 100%;
     border: none;
     outline: none;
+    color: var(--color);
 }
 
 .inputText::placeholder {
