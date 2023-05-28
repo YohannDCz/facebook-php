@@ -4,9 +4,11 @@
 require_once 'Database.php';
 
 
-class Pages {
+class Pages
+{
     //  fonction qui retourne toutes les pages qui contiennent la recherche dans leur nom
-    function getPagesByName($search) {
+    function getPagesByName($search)
+    {
         //Connecter la BDD
         $db = new Database();
 
@@ -25,8 +27,9 @@ class Pages {
 
         return $result;
     }
-    
-    function fetchPage($connection) {
+
+    function fetchPage($connection)
+    {
 
         //  Requêtes SQL
         $request = $connection->prepare("SELECT * FROM pages");
@@ -38,15 +41,17 @@ class Pages {
         return $pages;
     }
 
-    function getPageName($page) {
-       $name = $page["name"];
+    function getPageName($page)
+    {
+        $name = $page["name"];
 
         return $name;
     }
 
     // une fonction qui montre la page d'un utilisateur
-    function getPagesById($id){
-        
+    function getPagesById($id)
+    {
+
         //Connecter la BDD
         $db = new Database();
 
@@ -62,12 +67,12 @@ class Pages {
         //Recensement des utilisateurs et de leurs données/messages
         while (($row = $query->fetch(PDO::FETCH_ASSOC))) {
             $content = [
-                "id"=> $row["id"],
-                "name"=> $row["name"],
-                "profile_icon"=> $row["profile_icon"],
-                "profile_banner"=> $row["profile_banner"],
+                "id" => $row["id"],
+                "name" => $row["name"],
+                "profile_icon" => $row["profile_icon"],
+                "profile_banner" => $row["profile_banner"],
             ];
-            $content[] = $Content;
+            // $content[] = $Content;
         }
 
         // Fermeture de la connection
@@ -76,8 +81,9 @@ class Pages {
         return $content;
     }
     //Permets de récupérer la page et les utilisateurs affiliés aux pages
-    function GetUserPage($pageId,$userId){
-        
+    function GetUserPage($pageId, $userId)
+    {
+
         //Connecter la BDD
         $db = new Database();
 
@@ -94,35 +100,37 @@ class Pages {
         // Fermeture de la connection
         $connection = null;
 
-        return $content;
+        return $query;
     }
     //Permets de supprimer la page
-    function deletePage($pageId) {
-     //Connecter la BDD
-     $db = new Database();
-
-     // Ouverture de la connection
-     $connection = $db->getConnection();
-
-     // Requêtes SQL
-     $query = $connection->query("DELETE FROM pages WHERE id = :pageId ;");
-     $query->bindParam(":pageId", $pageId);
-     //Execution de la Query
-     $query->execute();
-
-     // Fermeture de la connection
-     $connection = null;
-
-     return $content;
-    }
-    //Permets de mettre à jour la page
-    function updatePage($pageId,$profile_icon,$profile_banner,$content) {
+    function deletePage($pageId)
+    {
         //Connecter la BDD
         $db = new Database();
-   
+
         // Ouverture de la connection
         $connection = $db->getConnection();
-   
+
+        // Requêtes SQL
+        $query = $connection->query("DELETE FROM pages WHERE id = :pageId ;");
+        $query->bindParam(":pageId", $pageId);
+        //Execution de la Query
+        $query->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+
+        return $query;
+    }
+    //Permets de mettre à jour la page
+    function updatePage($pageId, $profile_icon, $profile_banner, $content)
+    {
+        //Connecter la BDD
+        $db = new Database();
+
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
         // Requêtes SQL
         $query = $connection->query("UPDATE pages SET name = :name, profile_icon = :profile_icon, profile_banner = :profile_banner , content = :content WHERE id = :pageId");
         $query->bindParam(":pageId", $pageId);
@@ -131,10 +139,10 @@ class Pages {
         $query->bindParam(":content", $content);
         //Execution de la Query
         $query->execute();
-   
+
         // Fermeture de la connection
         $connection = null;
-   
+
         return $content;
     }
 
@@ -142,24 +150,23 @@ class Pages {
     function createPage($page_name, $profile_icon, $profile_banner, $content) {
         //Connecter la BDD
         $db = new Database();
-   
+        
         // Ouverture de la connection
         $connection = $db->getConnection();
 
         // Requêtes SQL
-        $request = $connection->prepare("INSERT INTO pages VALUES (:page_name , :profile_icon, :profile_banner, :content)");
-        
+        $request = $connection->prepare("INSERT INTO pages (name, profile_icon, profile_banner, content) VALUES (:page_name, :profile_icon, :profile_banner, :content)");
         $request->bindParam(":page_name", $page_name);
         $request->bindParam(":profile_icon", $profile_icon);
         $request->bindParam(":profile_banner", $profile_banner);
         $request->bindParam(":content", $content);
 
         //Execution de la Query
-        $query->execute();
+        $request->execute();
 
         // Fermeture de la connection
         $connection = null;
-   
+
         return $page_name;
     }
 }
