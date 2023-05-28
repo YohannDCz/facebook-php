@@ -31,7 +31,23 @@ $posts = new Posts();
 
 <div class="banner">
     <img class="banner-img" src=<?= $bannerProfile ?>>
-    <input type="submit" class="Submitbutton" value="Modifier le profil">
+    
+    <p class="Submitbutton material-icons-outlined md-20" id="change_pp">photo_camera
+    </p>
+    <ul class="menu_change_pp" id="menu_change_pp">
+        <li id="changePP">Changer votre photo de profil</li>
+        <li id="changeBanner">Changer votre bannière</li>
+    </ul>
+    <form action="" method="POST" id="changePPWindow">
+        <input type="text" name="" id="" placeholder="URL de votre photo de profil..." class="amisinput">
+        <input type="submit" value="Changer votre photo de profil" class="Submitbutton2">
+    </form>
+
+    <form action="" method="POST" id="changeBannerWindow">
+        <input type="text" name="" id="" placeholder="URL de votre image de bannière..." class="amisinput">
+        <input type="submit" value="Changer votre image de bannière" class="Submitbutton2">
+    </form>
+
     <div class="page_info">
         <div class="profile-img">
             <img src=<?= $iconProfile ?> alt="iconProfile">
@@ -64,6 +80,22 @@ $posts = new Posts();
 <div class="summary-content box_main" id="box_main">
 
     <div class="box_left">
+
+    <div class="box_info">
+            <div class="box-title">
+                <h2>Intro</h2>
+            </div>
+            <ul class="user-info">
+                <li class="logo-info">
+                    <span class="material-icons-outlined md-20">location_on</span>
+                    <p id="user-info-list">Habite à X</p>
+                </li>
+                <li class="logo-info">
+                    <span class="material-icons-outlined md-20">mail</span>
+                    <p id="user-info-list">machin@machin.fr</p>
+                </li>
+            </ul>
+        </div>
 
         <div class="box_friends">
             <div class="box-title">
@@ -329,53 +361,26 @@ $posts = new Posts();
 
     <div class="user-info">
 
-        <div class="box_aboutus_info">
+    <div class="box_aboutus_info">
             <div class="logo-info">
                 <span class="material-icons-outlined md-20">location_on</span>
                 <p id="user-info-list">Habite à X</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
         </div>
 
-        <div class="box_aboutus_info">
-            <div class="logo-info">
-                <span class="material-icons-outlined md-20">home_repair_service</span>
-                <p id="user-info-list">Travaille à X</p>
-            </div>
-            <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
-            </div>
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">location_on</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="J'habite à..." class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
         </div>
 
-        <div class="box_aboutus_info">
-            <div class="logo-info">
-                <span class="material-icons-outlined md-20">school</span>
-                <p id="user-info-list">À étudié(e) au lycée Machin truc</p>
-            </div>
-            <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
-            </div>
-        </div>
-
-        <div class="box_aboutus_info">
-            <div class="logo-info">
-                <span class="material-icons-outlined md-20">favorite</span>
-                <p id="user-info-list">Célibataire</p>
-            </div>
-            <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
-            </div>
-        </div>
 
         <div class="box_aboutus_info">
             <div class="logo-info">
@@ -383,11 +388,29 @@ $posts = new Posts();
                 <p id="user-info-list">machin@machin.fr</p>
             </div>
             <div class="box_aboutus_edits">
-                <span class="material-icons-outlined md-20">public</span>
-                <span class="material-icons-outlined md-20">edit</span>
-                <span class="material-icons-outlined md-20">delete</span>
+                <!-- <span class="material-icons-outlined md-20">public</span> -->
+                <span class="material-icons-outlined md-20 profile_edit">edit</span>
+                <!-- <span class="material-icons-outlined md-20">delete</span> -->
             </div>
         </div>
+
+        <div class="profile_edit_form">
+            <span class="material-icons-outlined md-20">mail</span>
+            <form action="" method="POST" class="profile_edit_form_block">
+                <input type="text" placeholder="machin@machin.machin" class="inputText">
+                <input type="submit" value="Mettre à jour" class="Submitbutton">
+            </form>
+        </div>
+
+        <div>
+            <button id="buttonDeleteGroup" class="Submitbutton desactivate">Supprimez la page</button>
+        </div>
+
+        <form id="divDeleteGroup" action="" method="POST">
+            <p>Êtes vous sûr(e) de vouloir supprimer la page ?</p>
+            <input type="submit" value="Supprimer" class="Submitbutton desactivate">
+        </form>
+
     </div>
 
 
@@ -474,6 +497,7 @@ $posts = new Posts();
 
 </div>
 
+<script src="../template/scripts/script_page.js"></script>
 <script src="../template/scripts/script_profile.js"></script>
 <script src="../template/scripts/script.js"></script>
 <script src="../template/scripts/script_publication.js"></script>

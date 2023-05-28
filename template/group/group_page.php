@@ -56,14 +56,6 @@
                     <p id="user-info-list">Travaille à X</p>
                 </li>
                 <li class="logo-info">
-                    <span class="material-icons-outlined md-20">school</span>
-                    <p id="user-info-list">À étudié(e) au lycée X</p>
-                </li>
-                <li class="logo-info">
-                    <span class="material-icons-outlined md-20">favorite</span>
-                    <p id="user-info-list">Célibataire</p>
-                </li>
-                <li class="logo-info">
                     <span class="material-icons-outlined md-20">mail</span>
                     <p id="user-info-list">machin@machin.fr</p>
                 </li>
@@ -139,7 +131,7 @@
             <div class="profile_publication_post">
                 <div class="profile_publication_div_flex">
                     <div class="publication_pp_div">
-                        <img src="template/img/pp.png" alt="profile_picture">
+                        <img src="../template/img/pp.png" alt="profile_picture">
                     </div>
                     <div class="profile_publication_div_post">
                         <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
@@ -365,7 +357,7 @@
                     <div class="publication_comment">
                         <div class="publication_info">
                             <div class="publication_pp_div">
-                                <img src="template/img/pp.png" alt="profile_picture">
+                                <img src="../template/img/pp.png" alt="profile_picture">
                             </div>
                         </div>
 
@@ -448,46 +440,6 @@
 
         <div class="box_aboutus_info">
             <div class="logo-info">
-                <span class="material-icons-outlined md-20">school</span>
-                <p id="user-info-list">À étudié(e) au lycée Machin truc</p>
-            </div>
-            <div class="box_aboutus_edits">
-                <!-- <span class="material-icons-outlined md-20">public</span> -->
-                <span class="material-icons-outlined md-20 profile_edit">edit</span>
-                <!-- <span class="material-icons-outlined md-20">delete</span> -->
-            </div>
-        </div>
-
-        <div class="profile_edit_form">
-            <span class="material-icons-outlined md-20">school</span>
-            <form action="" method="POST" class="profile_edit_form_block">
-                <input type="text" placeholder="J'ai étudié à..." class="inputText">
-                <input type="submit" value="Mettre à jour" class="Submitbutton">
-            </form>
-        </div>
-
-        <div class="box_aboutus_info">
-            <div class="logo-info">
-                <span class="material-icons-outlined md-20">favorite</span>
-                <p id="user-info-list">Célibataire</p>
-            </div>
-            <div class="box_aboutus_edits">
-                <!-- <span class="material-icons-outlined md-20">public</span> -->
-                <span class="material-icons-outlined md-20 profile_edit">edit</span>
-                <!-- <span class="material-icons-outlined md-20">delete</span> -->
-            </div>
-        </div>
-
-        <div class="profile_edit_form">
-            <span class="material-icons-outlined md-20">favorite</span>
-            <form action="" method="POST" class="profile_edit_form_block">
-                <input type="text" placeholder="Je suis actuellement en..." class="inputText">
-                <input type="submit" value="Mettre à jour" class="Submitbutton">
-            </form>
-        </div>
-
-        <div class="box_aboutus_info">
-            <div class="logo-info">
                 <span class="material-icons-outlined md-20">mail</span>
                 <p id="user-info-list">machin@machin.fr</p>
             </div>
@@ -505,6 +457,16 @@
                 <input type="submit" value="Mettre à jour" class="Submitbutton">
             </form>
         </div>
+
+        <div>
+            <button id="buttonDeleteGroup" class="Submitbutton desactivate">Supprimez le groupe</button>
+        </div>
+
+        <form id="divDeleteGroup" action="" method="POST">
+            <p>Êtes vous sûr(e) de vouloir supprimer le groupe ?</p>
+            <input type="submit" value="Supprimer" class="Submitbutton desactivate">
+        </form>
+
     </div>
 
 </div>

@@ -433,6 +433,25 @@
     color: var(--color);
 }
 
+#divDeleteGroup {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--bgcolor2);
+    border-radius: 12px;
+    align-items: flex-start;
+    height: fit-content;
+    position: absolute;
+    width: fit-content;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 50px;
+    z-index: 10;
+}
+
 @media (max-width: 1024px) {
 
     .box_main {
