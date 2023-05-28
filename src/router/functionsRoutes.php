@@ -34,6 +34,16 @@ switch ($clean_url) {
         logout();
         header('Location:' . 'http://' . $host . '/user/login');
         break;
+    case 'createGroup':
+        //  fonction de création de groupe
+        createGroup();
+        header('Location:' . 'http://' . $host . '/group/Page?name=');
+        break;
+    case 'createPage':
+        //  fonction de création de groupe
+        $page_name = addPage();
+        header('Location:' . 'http://' . $host . '/group/page?name=' . $page_name);
+        break;
     default:
         header('Location:' . 'http://' . $host . '/home');
         break;

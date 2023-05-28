@@ -13,7 +13,7 @@ class Pages {
         // Ouverture de la connection
         $connection = $db->getConnection();
 
-        $query_string = $search . '%';
+        $query_string = '%' . $search . '%';
 
         //  Requêtes SQL
         $request = $connection->prepare("SELECT * FROM pages WHERE pages.name LIKE :search");
@@ -136,5 +136,30 @@ class Pages {
         $connection = null;
    
         return $content;
+    }
+
+    //  fonction de création de page
+    function createPage($page_name, $profile_icon, $profile_banner, $content) {
+        //Connecter la BDD
+        $db = new Database();
+   
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $request = $connection->prepare("INSERT INTO pages VALUES (:page_name , :profile_icon, :profile_banner, :content)");
+        
+        $request->bindParam(":page_name", $page_name);
+        $request->bindParam(":profile_icon", $profile_icon);
+        $request->bindParam(":profile_banner", $profile_banner);
+        $request->bindParam(":content", $content);
+
+        //Execution de la Query
+        $query->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+   
+        return $page_name;
     }
 }
