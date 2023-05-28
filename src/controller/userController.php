@@ -31,8 +31,6 @@ function signup() {
       $_SESSION["email"] = $email;
       $_SESSION["birthdate"] = $birthdate;
 
-      $_SESSION["loggedin"] = true;
-      
       setcookie("username", $username);
       setcookie("first_name", $first_name);
       setcookie("last_name", $last_name);
@@ -41,6 +39,8 @@ function signup() {
       setcookie("birthdate", $birthdate);
 
       $user->addUser($username, $password, $first_name, $last_name, $birthdate, $phone, $email);
+
+      login();
     }
 }
 
