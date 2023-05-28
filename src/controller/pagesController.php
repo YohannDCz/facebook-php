@@ -70,6 +70,13 @@ function getUserRole(){
 
 //  fonction pour envoyer un message sur un groupe
 function sendMessage(){
-    
+    $message = $_POST['group_message'];
+    $json_message = json_encode($message);
+
+    $page = new Pages;
+
+    $page->addMessage($_SESSION['user_id'], $_SESSION['group_id'], $json_message);
+
+    return true;
 }
 ?>

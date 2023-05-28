@@ -110,4 +110,29 @@ class Groups
 
         return $results;
     }
+
+//  fonction qui stocke le contenu d'un message
+function addMessage($user_id, $group_id, $content, $reply_to = null){
+    //Connecter la BDD
+    $db = new Database();
+  
+    // Ouverture de la connection
+    $connection = $db->getConnection();
+
+    // Requêtes SQL
+    $request = $connection->prepare("INSERT INTO user_group_messages (sender, reply_to, group_id, content) VALUES (:sender, :reply_to, :group_id, :content)");
+
+    $request->bindParam(":sender", $user_id);
+    $request->bindParam(":reply_to", $reply_to); 
+    $request->bindParam(":group_id", $group_id); 
+    $request->bindParam(":content", $content); 
+
+    //Execution de la Query
+    $request->execute();
+
+    // Fermeture de la connection
+    $connection = null;
+
+    return true;
+}
 }
