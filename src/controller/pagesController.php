@@ -65,7 +65,10 @@ function getUserRole(){
 
     $user_role = $page->checkUserRole($user_mail, $page_id);
 
-    return $user_role;
+    if ($user_role){
+        return $user_role;
+    }
+    return null;
 }
 
 //  fonction pour envoyer un message sur un groupe

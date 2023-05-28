@@ -276,10 +276,7 @@ class Pages
 
         $result = $request->fetch(PDO::FETCH_ASSOC);
 
-        if ($result['role']) {
-            return $result;
-        }
-        return null;
+        return $result;
     }
 
 
