@@ -22,6 +22,14 @@ function signup() {
       echo "L'utilisateur existe déjà.";
       // return $error;
     } else {
+      session_start();
+      $_SESSION["username"] = $username;
+      $_SESSION["first_name"] = $first_name;
+      $_SESSION["last_name"] = $last_name;
+      $_SESSION["phone"] = $phone;
+      $_SESSION["username"] = $username;
+      $_SESSION["email"] = $email;
+      $_SESSION["birthdate"] = $birthdate;
       setcookie("username", $username);
       setcookie("first_name", $first_name);
       setcookie("last_name", $last_name);
