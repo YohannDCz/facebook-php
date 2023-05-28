@@ -170,6 +170,29 @@ class Pages
         return $page_name;
     }
 
+    function getPageById($id){
+        //Connecter la BDD
+        $db = new Database();
+  
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $request = $connection->prepare("SELECT * FROM pages WHERE id = :id");
+        $request->bindParam(":id", $id);
+
+        //Execution de la Query
+        $request->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+        
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+
     //  fonction pour modifier le chemin vers la photo de profil d'une page
     function    updateProfileIconPath($id, $picture_url){
          //Connecter la BDD
@@ -216,27 +239,5 @@ class Pages
         $result = getPageById($id);
 
         return $result["name"];
-    }
-
-    function getPageById($id){
-        //Connecter la BDD
-        $db = new Database();
-  
-        // Ouverture de la connection
-        $connection = $db->getConnection();
-
-        // Requêtes SQL
-        $request = $connection->prepare("SELECT * FROM pages WHERE id = :id");
-        $request->bindParam(":id", $id);
-
-        //Execution de la Query
-        $request->execute();
-
-        // Fermeture de la connection
-        $connection = null;
-        
-        $result = $request->fetch(PDO::FETCH_ASSOC);
-
-        return $result;
     }
 }
