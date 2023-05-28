@@ -11,7 +11,7 @@ function createGroup() {
     $name = $_POST["name"];
     $description = $_POST["description"];
     $private = $_POST["private"];
-    $last_sent = $_POST["last_sent"];
+    $last_sent = null;
 
     $resultat = $user->checkGroups($name);
     $results = isset($resultat["name"]);
