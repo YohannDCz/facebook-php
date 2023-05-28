@@ -2,6 +2,14 @@
 <link rel="stylesheet" href="../template/styles/group_page_list.css">
 
 <?php
+require_once('./src/model/Database.php');
+require_once('./src/model/Pages.php');
+
+$pagesObject = new Pages();
+
+$db = new Database();
+        // Ouverture de la connection
+$connection = $db->getConnection();
 
 if (isset($_GET["searchPageName"])) {
     global $searchResults;
@@ -17,14 +25,14 @@ function affichage()
         </style>';
 }
 
-function affichageGroups()
+function affichageGroups($pagesObject, $connection)
 {
     echo '<style>
         @media (max-width: 1024px) {
         .group_settings { display: flex; }
         }
         </style>';
-    affichageDiscover();
+    affichageDiscover($pagesObject, $connection);
 }
 
 function affichageResearch($searchResults)
@@ -55,19 +63,22 @@ function affichageResearch($searchResults)
 <?php
 }
 
-function affichageDiscover()
+function affichageDiscover($pagesObject, $connection)
 {
 ?>
     <h3>Découvrir des pages</h3>
     <!-- <h4>Pages qui pourraient vous intéresser.</h4> -->
     <div class="groups_grid">
 
-        <?php for ($i = 1; $i <= 10; $i++) { ?>
+        <?php $pages = $pagesObject->fetchPage($connection);
+        foreach ($pages as $page):
+            $name = $pagesObject->getPageName($page);
+         ?>
 
             <div class="groups_group_preview">
                 <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
                 <div class="groups_group_content">
-                    <p class="groups_group_name">Nom de la page</p>
+                    <p class="groups_group_name"><?= $name ?></p>
                     <div class="pages_page_info">
                         <p>Catégorie</p>
                         <p>X personnes qui aiment la page</p>
@@ -76,7 +87,7 @@ function affichageDiscover()
                 </div>
             </div>
 
-        <?php } ?>
+        <?php endforeach; ?>
     </div>
 <?php
 }
@@ -127,12 +138,12 @@ function affichageMyGroups()
 <?php
 }
 
-function parametres($searchResults)
+function parametres($searchResults, $pagesObject, $connection)
 {
     $page = isset($_GET['groups']) ? $_GET['groups'] : '';
     if ($page === 'discover') {
         affichage();
-        affichageDiscover();
+        affichageDiscover($pagesObject, $connection);
     } elseif ($page === 'mygroups') {
         affichage();
         affichageMyGroups();
@@ -140,7 +151,7 @@ function parametres($searchResults)
         affichage();
         affichageResearch($searchResults);
     } else {
-        affichageGroups();
+        affichageGroups($pagesObject, $connection);
     }
 }
 
@@ -189,7 +200,7 @@ function parametres($searchResults)
             </a>
         </div>
         <?php
-        parametres($host);
+        parametres($host, $pagesObject, $connection);
         ?>
     </div>
 </div>

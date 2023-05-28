@@ -25,6 +25,24 @@ class Pages {
 
         return $result;
     }
+    
+    function fetchPage($connection) {
+
+        //  Requêtes SQL
+        $request = $connection->prepare("SELECT * FROM pages");
+
+        $request->execute();
+
+        $pages = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        return $pages;
+    }
+
+    function getPageName($page) {
+       $name = $page["name"];
+
+        return $name;
+    }
 
     // une fonction qui montre la page d'un utilisateur
     function getPagesById($id){
