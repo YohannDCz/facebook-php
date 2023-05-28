@@ -46,7 +46,7 @@ function changePagePicture(){
 //  fonction pour changer la bannière de la page, renvoie le nom de la page concéernée
 function changePageBanner(){
     $page_id = $_SESSION["page_id"];
-    $new_picture_url = $_POST["zprofile_banner_url"];
+    $new_picture_url = $_POST["profile_banner_url"];
 
     $page = new Pages;
 
