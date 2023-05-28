@@ -245,7 +245,7 @@ class Pages
         return $result["name"];
     }
 
-    //  fonction qui vérifie si un utilisateur est administrateur d'une page
+    //  fonction qui vérifie le role d'un utilisateur vis à vis d'une page
     function checkUserRole($user_mail, $page_id){
         //Connecter la BDD
         $db = new Database();
@@ -254,9 +254,17 @@ class Pages
         $connection = $db->getConnection();
 
         // Requêtes SQL
-        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE users.mail = :mail AND pages.page_id = :page_id");
-
+        $request = $connection->prepare("SELECT id FROM users WHERE mail = :mail");
         $request->bindParam(":mail", $user_mail); 
+
+        //Execution de la Query
+        $request->execute();
+
+        $user_id = $request->fetch(PDO::FETCH_ASSOC);
+
+        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE user_id = :mail AND page_id = :page_id");
+
+        $request->bindParam(":user_id", $user_id); 
         $request->bindParam(":page_id", $page_id); 
 
         //Execution de la Query
