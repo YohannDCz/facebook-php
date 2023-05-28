@@ -28,10 +28,9 @@ $posts = new Posts();
 <link rel="stylesheet" href="../template/styles/profile.css">
 <link rel="stylesheet" href="../template/styles/publication.css">
 
-
 <div class="banner">
     <img class="banner-img" src=<?= $bannerProfile ?>>
-    
+
     <p class="Submitbutton material-icons-outlined md-20" id="change_pp">photo_camera
     </p>
     <ul class="menu_change_pp" id="menu_change_pp">
@@ -54,10 +53,19 @@ $posts = new Posts();
         </div>
         <div class="profile-nom-prenom">
             <h3><span class="white_space"><?= $namePage ?></span></h3>
-            <h4><span class="white_space"> posts</span></h4>
+            <h4><span class="white_space">X posts</span></h4>
         </div>
     </div>
 </div>
+
+<form action="" method="POST" class="page_follow">
+    <input type="submit" value="S'abonner à la page" class="Submitbutton">
+</form>
+
+<form action="" method="POST" class="page_follow">
+    <input type="submit" value="Se désabonner" class="Submitbutton">
+</form>
+
 
 <div class="summary">
     <h3>
@@ -81,7 +89,7 @@ $posts = new Posts();
 
     <div class="box_left">
 
-    <div class="box_info">
+        <div class="box_info">
             <div class="box-title">
                 <h2>Intro</h2>
             </div>
@@ -361,7 +369,7 @@ $posts = new Posts();
 
     <div class="user-info">
 
-    <div class="box_aboutus_info">
+        <div class="box_aboutus_info">
             <div class="logo-info">
                 <span class="material-icons-outlined md-20">location_on</span>
                 <p id="user-info-list">Habite à X</p>

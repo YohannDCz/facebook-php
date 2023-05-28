@@ -18,10 +18,16 @@ function searchPagesByName() {
 //  fonction pour créer une page
 function addPage() {
 
-    $page = new Pages;
+    $page = new Pages();
 
-    $page_name = createPage($_POST["page_name"], $_POST["page_profile_icon"], $_POST["page_profile_banner"], $_POST["content"]);
-
+    // $page_name = $page->createPage($_POST["page_name"], $_POST["page_profile_icon"], $_POST["page_profile_banner"], $_POST["content"]);
+    $page_name = $page->createPage(
+        isset($_POST["page_name"]) ? $_POST["page_name"] : null,
+        isset($_POST["page_profile_icon"]) ? $_POST["page_profile_icon"] : null,
+        isset($_POST["page_profile_banner"]) ? $_POST["page_profile_banner"] : null,
+        isset($_POST["content"]) ? $_POST["content"] : null
+    );
+    
     return $page_name;
 }
 

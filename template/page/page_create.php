@@ -12,25 +12,45 @@
             <p>Créer une page</p>
         </div>
 
-        <h3 style="white-space: nowrap;">Créer une page</h3>
+        <h3 style="white-space: nowrap;">
+
+            <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                header('Location:' . 'http://' . $host . '/home');
+                exit();
+            } else {
+                echo "Créer une page";
+            }
+            ?>
+        </h3>
 
         <p class="page_settings_p">Les internautes accèdent à votre Page pour en savoir plus sur vous. Veuillez à y inclure toutes les informations dont ils pourraient avoir besoin.</p>
 
-        <form action="" class="group_form">
+        <form action="<?= "http://" . $host . "/functions/createPage" ?>" class="group_form" method="POST">
 
             <div class="page_div_input">
-                <input type="text" name="" id="" placeholder="Nom de la page (obligatoire)" class="group_input" maxlength="75" required>
+                <input type="text" name="page_name" id="page_name" placeholder="Nom de la page (obligatoire)" class="group_input" maxlength="75" required>
                 <p class="page_settings_p">Utilisez le nom de votre entreprise, marque ou organisation, ou un nom qui décrit votre Page.</p>
             </div>
 
             <div class="page_div_input">
-                <input type="text" name="" id="" placeholder="Catégorie (obligatoire)" class="group_input" maxlength="75" required>
+                <input type="text" name="page_category" id="page_category" placeholder="Catégorie (obligatoire)" class="group_input" maxlength="75" required>
                 <p class="page_settings_p">Saisissez la catégorie qui vous décrit le mieux.</p>
             </div>
 
             <div class="page_div_input">
                 <input type="textarea" name="" id="" placeholder="Biographie (facultatif)" class="group_input" maxlength="140">
                 <p class="page_settings_p">Dites-en plus sur votre activité.</p>
+            </div>
+
+            <div class="page_div_input">
+                <input type="text" name="profile_icon" id="profile_icon" placeholder="URL de l'image de la page" class="group_input" maxlength="75" required>
+                <p class="page_settings_p">Choisissez une image qui vous décrit le mieux.</p>
+            </div>
+
+            <div class="page_div_input">
+                <input type="text" name="profile_banner" id="profile_banner" placeholder="URL de l'mage de la bannière" class="group_input" maxlength="75" required>
+                <p class="page_settings_p">Choisissez une image qui vous décrit le mieux.</p>
             </div>
 
             <input type="submit" value="Créer la page" class="Submitbutton">
