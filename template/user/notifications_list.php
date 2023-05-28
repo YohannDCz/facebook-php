@@ -5,7 +5,16 @@
     <div class="center-box">
 
         <h3>
-            Notifications
+            <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                header('Location:' . 'http://' . $host . '/home');
+                exit();
+            } else {
+                if (isset($_SESSION["last_name"]) && isset($_SESSION["first_name"])) {
+                    echo "Notifications";
+                }
+            }
+            ?>
         </h3>
 
         <div class="notifications_pop">

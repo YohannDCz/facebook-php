@@ -131,42 +131,50 @@
 
     <div class="list_publications">
 
-        <div class="profile_publication_post">
-            <div class="profile_publication_div_flex">
-                <div class="publication_pp_div">
-                    <img src="../template/img/pp.png" alt="profile_picture">
-                </div>
-                <div class="profile_publication_div_post">
-                    <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
-                </div>
-            </div>
-
-            <div class="group_preview_publication_image">
-                <label id="custom-img-btn">
-                    <div class="group_preview_publication_sub">
-                        <span class="material-icons">image</span>
-                        <p>Photo</p>
+        <?php
+        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            // echo "Session Invité";
+        } else {
+        ?>
+            <div class="profile_publication_post">
+                <div class="profile_publication_div_flex">
+                    <div class="publication_pp_div">
+                        <img src="template/img/pp.png" alt="profile_picture">
                     </div>
-                </label>
-
-                <!-- <label id="custom-video-btn">
-                    <div class="group_preview_publication_sub">
-                        <span class="material-icons">videocam</span>
-                        <p>Vidéo</p>
+                    <div class="profile_publication_div_post">
+                        <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
                     </div>
-                </label> -->
+                </div>
 
-                <div class="btn_send">
-                    <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
+                <div class="group_preview_publication_image">
+                    <label id="custom-img-btn">
+                        <div class="group_preview_publication_sub">
+                            <span class="material-icons">image</span>
+                            <p>Photo</p>
+                        </div>
+                    </label>
+
+                    <!-- <label id="custom-video-btn">
+                        <div class="group_preview_publication_sub">
+                            <span class="material-icons">videocam</span>
+                            <p>Vidéo</p>
+                        </div>
+                    </label> -->
+
+                    <div class="btn_send">
+                        <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
+                    </div>
+
+                </div>
+
+                <div id="publication_image">
+                    <button class="remove_btn"><span class="material-icons-round">close</span></button>
                 </div>
 
             </div>
-
-            <div id="publication_image">
-                <button class="remove_btn"><span class="material-icons-round">close</span></button>
-            </div>
-
-        </div>
+        <?php
+        }
+        ?>
 
         <div class="publication">
 
@@ -345,31 +353,38 @@
                     </div>
                 </div>
 
-                <!-- écrire un commentaire -->
-
             </div>
 
-            <div>
-                <div class="publication_comment">
-                    <div class="publication_info">
-                        <div class="publication_pp_div">
-                            <img src="../template/img/pp.png" alt="profile_picture">
-                        </div>
-                    </div>
-
-                    <div class="publication_person_comment">
-
-                        <textarea class="publication_person_comment_input" maxlength="300" placeholder="Ecrire un commentaire..." oninput="autoResize(this)"></textarea>
-                        <div class="publication_person_emoji_react">
-                            <div>
-                                <span class="material-icons-outlined">mood</span>
-                                <span class="material-icons-outlined">gif</span>
+            <!-- écrire un commentaire -->
+            <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                // echo "Session Invité";
+            } else {
+            ?>
+                <div>
+                    <div class="publication_comment">
+                        <div class="publication_info">
+                            <div class="publication_pp_div">
+                                <img src="template/img/pp.png" alt="profile_picture">
                             </div>
-                            <span class="material-icons">send</span>
+                        </div>
+
+                        <div class="publication_person_comment">
+
+                            <textarea class="publication_person_comment_input" maxlength="300" placeholder="Ecrire un commentaire..." oninput="autoResize(this)"></textarea>
+                            <div class="publication_person_emoji_react">
+                                <div>
+                                    <span class="material-icons-outlined">mood</span>
+                                    <span class="material-icons-outlined">gif</span>
+                                </div>
+                                <span class="material-icons">send</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php
+            }
+            ?>
 
         </div>
         <!-- fin publication -->

@@ -41,7 +41,19 @@ global $host;
             </div>
             <ul id="menu" class="menu">
                 <li><a href=<?= "http://" . $host . "/user/settings" ?>><span class="material-icons-outlined">settings</span>Paramètres</a></li>
-                <li><a href=<?= "http://" . $host . "/functions/logout" ?>><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
+                <?php
+                if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                ?>
+                    <li><a href=<?= "http://" . $host . "/functions/logout" ?>><span class="material-icons-outlined">login</span>Se connecter</a></li>
+                    <?php
+                } else {
+                    if (isset($_SESSION["last_name"]) && isset($_SESSION["first_name"])) {
+                    ?>
+                        <li><a href=<?= "http://" . $host . "/functions/logout" ?>><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
+                <?php
+                    }
+                }
+                ?>
             </ul>
         </div>
 

@@ -26,7 +26,23 @@
             <img src="../template/img/pp.png">
         </div>
         <div class="profile-nom-prenom">
-            <h3>Nom Prénom</h3>
+            <h3>
+                <?php
+                if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                    header('Location:' . 'http://' . $host . '/home');
+                    exit();
+                } else {
+                    if (isset($_SESSION["last_name"]) && isset($_SESSION["first_name"])) {
+                        echo $_SESSION["first_name"];
+                        echo " ";
+                        echo $_SESSION["last_name"];
+                    } else {
+                        echo "Username not found";
+                    }
+                }
+                ?>
+            </h3>
+
             <h4>X Amis</h4>
         </div>
     </div>

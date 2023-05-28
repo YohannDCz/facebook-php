@@ -284,7 +284,18 @@ function parametres()
 
 <div class="settings_container">
     <div class="Parameter">
-        <h1>Paramètres</h1>
+        <h1>
+        <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                header('Location:' . 'http://' . $host . '/home');
+                exit();
+            } else {
+                if (isset($_SESSION["last_name"]) && isset($_SESSION["first_name"])) {
+                    echo "Paramètres";
+                }
+            }
+            ?>
+        </h1>
         <div class="settings_list">
 
             <a href=<?= "http://" . $host . "/user/settings?settings=profile" ?> class="settings_links">

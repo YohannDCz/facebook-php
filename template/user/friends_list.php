@@ -9,7 +9,18 @@
             <p class="material-icons-round">chevron_right</p>
             <p>Amis</p>
         </div>
-        <h3 style="white-space: nowrap;" class="friends_list_title">Amis</h3>
+        <h3 style="white-space: nowrap;" class="friends_list_title">
+            <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                header('Location:' . 'http://' . $host . '/home');
+                exit();
+            } else {
+                if (isset($_SESSION["last_name"]) && isset($_SESSION["first_name"])) {
+                    echo "Amis";
+                }
+            }
+            ?>
+        </h3>
 
         <a href="#" class="settings_links filter_friends">
             <h4 class="settings_category">
