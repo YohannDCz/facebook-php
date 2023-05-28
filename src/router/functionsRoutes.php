@@ -29,7 +29,7 @@ switch ($clean_url) {
     case 'logout':
         //  fonction de logout
         logout();
-        header('Location:' . 'http://' . $host . '/home');
+        header('Location:' . 'http://' . $host . '/user/login');
         break;
     default:
         header('Location:' . 'http://' . $host . '/home');

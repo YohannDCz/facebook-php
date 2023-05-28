@@ -40,8 +40,8 @@ global $host;
                 <img src="../template/img/pp.png" id="image">
             </div>
             <ul id="menu" class="menu">
-                <li><a href="<?= "http://" . $host . "/user/settings" ?>"><span class="material-icons-outlined">settings</span>Paramètres</a></li>
-                <li><a href="../template/src/controller/userController.php"><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
+                <li><a href=<?= "http://" . $host . "/user/settings" ?>><span class="material-icons-outlined">settings</span>Paramètres</a></li>
+                <li><a href=<?= "http://" . $host . "/functions/logout" ?>><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
             </ul>
         </div>
 
