@@ -105,20 +105,27 @@ img {
     top: 0;
     bottom: 0;
     right: 0;
-    width: 20px; /* Largeur du coin arrondi */
-    background-color: white; /* Couleur de fond du coin arrondi */
-    z-index: 1; /* Assurez-vous que le pseudo-élément est en avant-plan */
-  }
-  
-  .publication_person_comment_input::-webkit-scrollbar {
-    width: 10px; /* Largeur de la barre de défilement */
-    background-color: transparent; /* Couleur de fond de la barre de défilement */
-  }
-  
-  .publication_person_comment_input::-webkit-scrollbar-thumb {
-    background-color: gray; /* Couleur de la poignée de défilement */
-    border-radius: 12px; /* Rayon de la poignée de défilement */
-  }
+    width: 20px;
+    /* Largeur du coin arrondi */
+    background-color: white;
+    /* Couleur de fond du coin arrondi */
+    z-index: 1;
+    /* Assurez-vous que le pseudo-élément est en avant-plan */
+}
+
+.publication_person_comment_input::-webkit-scrollbar {
+    width: 10px;
+    /* Largeur de la barre de défilement */
+    background-color: transparent;
+    /* Couleur de fond de la barre de défilement */
+}
+
+.publication_person_comment_input::-webkit-scrollbar-thumb {
+    background-color: gray;
+    /* Couleur de la poignée de défilement */
+    border-radius: 12px;
+    /* Rayon de la poignée de défilement */
+}
 
 .Submitbutton {
     user-select: none;
@@ -178,53 +185,14 @@ img {
 }
 
 code {
-    font-family: Consolas,"courier new";
+    font-family: Consolas, "courier new";
     color: white;
     background-color: #202324;
     padding: 4px;
     font-size: 105%;
     border-radius: 4px;
     border: 1px black solid;
-  }
-
-
-@media (max-width: 1024px) {
-
-    /* global */
-
-    h1 {
-        font-size: 38px;
-    }
-
-    h2 {
-        font-size: 32px;
-    }
-
-    h3 {
-        font-size: 26px;
-    }
-
-    h4 {
-        font-size: 20px;
-    }
-
-    .material-icons-outlined.md-40 {
-        font-size: 32px;
-    }
-
 }
-
-@media (max-width: 1224px) {
-
-    h4 {
-        font-size: 20px;
-    }
-
-    p {
-        font-size: 14px;
-    }
-}
-
 
 .btn_send {
     position: relative;
@@ -278,4 +246,56 @@ code {
 
 .remove_btn:active {
     background-color: rgba(255, 255, 255, 1);
+}
+
+.container_404 {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container_404 > ul {
+    list-style: none;
+}
+
+@media (max-width: 1024px) {
+
+    /* global */
+
+    h1 {
+        font-size: 38px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 26px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    .material-icons-outlined.md-40 {
+        font-size: 32px;
+    }
+
+    .container_404 {
+        margin: 100px 20px;
+    }
+
+}
+
+@media (max-width: 1224px) {
+
+    h4 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
 }
