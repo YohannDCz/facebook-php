@@ -58,7 +58,7 @@ function changePageBanner(){
 //  fonction qui vérifie sir l'utilisateur est administrateur de la page
 function getUserRole(){
 
-    $user_mail = $_SESSION["mail"];
+    $user_mail = $_SESSION["email"];
     $page_id = $_SESSION["page_id"];
 
     $page = new Pages;
