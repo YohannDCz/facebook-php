@@ -1,4 +1,4 @@
-<?php include 'template/components/header.php' ?>
+<?php include 'template/components/header.php'; ?>
 <link rel="stylesheet" href="template/styles/index.css">
 <link rel="stylesheet" href="template/styles/publication.css">
 
@@ -16,7 +16,21 @@
     <a href="user/profile">
       <div class="index_list_div">
         <span class="material-icons">person</span>
-        <h4 class="gh">Nom Prénom</h4>
+        <h4 class="gh">
+          <?php
+          if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            echo "Invité";
+          } else {
+            if (isset($_SESSION["last_name"])&&isset($_SESSION["first_name"])) {
+              echo $_SESSION["first_name"];
+              echo " ";
+              echo $_SESSION["last_name"];
+          } else {
+              echo "Pas de nom d'utilisateur";
+          }
+      }
+          ?>
+        </h4>
       </div>
     </a>
 

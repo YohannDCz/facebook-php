@@ -3,3 +3,4 @@ src\model\Database.php
 old\*
 src\websocket\
 src\model\Chatroom.php
+src/model/Database.php
