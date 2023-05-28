@@ -39,7 +39,7 @@ function login() {
     $login = $_POST["name"];
     $password = $_POST["password"];
     
-    setcookie("login", $login);
+    // setcookie("login", $login);
 
     $query = $user->login($login);
 
@@ -48,6 +48,9 @@ function login() {
 
     if (password_verify($password, $userDb["password"])) {
       $_SESSION["loggedin"] = true;
+      $_SESSION["first_name"] = $userDb['first_name'];
+      $_SESSION["last_name"] = $userDb['last_name'];
+
       return true;
     } else {
       $error = "Identifiants invalides";
