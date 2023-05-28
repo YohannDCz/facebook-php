@@ -48,9 +48,11 @@ function login() {
 
     if (password_verify($password, $userDb["password"])) {
       $_SESSION["loggedin"] = true;
+      return true;
     } else {
       $error = "Identifiants invalides";
       setcookie("errorPassword", $error);
+      return false;
     }
 }
 
