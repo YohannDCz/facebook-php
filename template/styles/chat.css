@@ -405,4 +405,8 @@ select[name="invites[]"] option:checked {
         width: 32px;
         height: 32px;
     }
+
+    #chat_create_group {
+        margin: 20px;
+    }
 }

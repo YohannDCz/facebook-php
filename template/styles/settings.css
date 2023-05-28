@@ -150,24 +150,6 @@
     margin: 20px 0px;
 }
 
-.desactivate {
-    background-color: #B30000;
-    border: 1px solid #B30000
-}
-
-.desactivate:hover {
-    background-color: #FF9999;
-    border: 1px solid #B30000;
-    color: #B30000;
-}
-
-.desactivate:active {
-    background-color: red;
-    border: 1px solid #B30000;
-    color: white;
-}
-
-
 @media (max-width: 1024px) {
 
     .Parameter {
