@@ -254,7 +254,7 @@ class Pages
         $connection = $db->getConnection();
 
         // Requêtes SQL
-        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE mail = :mail AND page_id = :page_id");
+        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE users.mail = :mail AND pages.page_id = :page_id");
 
         $request->bindParam(":mail", $user_mail); 
         $request->bindParam(":page_id", $page_id); 
