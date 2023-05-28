@@ -127,7 +127,7 @@ img {
     /* Rayon de la poignée de défilement */
 }
 
-.Submitbutton {
+.Submitbutton, .Submitbutton2 {
     user-select: none;
     align-self: center;
     padding: 20px 30px;
@@ -139,13 +139,13 @@ img {
     cursor: pointer;
 }
 
-.Submitbutton:hover {
+.Submitbutton:hover, .Submitbutton2:hover {
     background-color: white;
     color: #009FF5;
     border: 1px solid #009FF5;
 }
 
-.Submitbutton:active {
+.Submitbutton:active, .Submitbutton2:active {
     background-color: #00507A;
     color: white;
     border: 1px solid #00507A;

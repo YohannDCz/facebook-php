@@ -161,6 +161,7 @@ let menu_change_pp = document.getElementById("menu_change_pp");
 let isMenuPPVisible = false;
 
 change_pp.addEventListener('click', () => {
+    console.log("cc");
     if (isMenuPPVisible) {
         hideMenuPP();
     } else {
@@ -183,5 +184,58 @@ function hideMenuPP() {
 function handleOutsideClick(event) {
     if (!menu_change_pp.contains(event.target) && event.target !== change_pp) {
         hideMenuPP();
+    }
+}
+
+// fonction pour les windows de la PP et la banniere 
+let changePP = document.getElementById("changePP");
+let changePPWindow = document.getElementById("changePPWindow");
+let changeBanner = document.getElementById("changeBanner");
+let changeBannerWindow = document.getElementById("changeBannerWindow");
+
+let isWindowPPVisible = false;
+
+changePP.addEventListener('click', () => {
+    if (isWindowPPVisible) {
+        hideMenuWindows(changePPWindow);
+    } else {
+        showMenuWindows(changePPWindow);
+    }
+});
+
+changeBanner.addEventListener('click', () => {
+    if (isWindowPPVisible) {
+        hideMenuWindows(changeBannerWindow);
+    } else {
+        showMenuWindows(changeBannerWindow);
+    }
+});
+
+function showMenuWindows(menu_change_pp) {
+    menu_change_pp.style.display = 'flex';
+    isWindowPPVisible = true;
+    document.addEventListener('click', handleOutsideClickWrapper);
+}
+
+function hideMenuWindows(menu_change_pp) {
+    menu_change_pp.style.display = 'none';
+    isWindowPPVisible = false;
+    document.removeEventListener('click', handleOutsideClickWrapper);
+}
+
+function handleOutsideClickWrapper(event) {
+    const isClickInsidePP = changePP.contains(event.target) || changePPWindow.contains(event.target);
+    const isClickInsideBanner = changeBanner.contains(event.target) || changeBannerWindow.contains(event.target);
+    
+    if (!isClickInsidePP && !isClickInsideBanner) {
+        hideMenuWindows(changePPWindow);
+        hideMenuWindows(changeBannerWindow);
+    }
+}
+
+function handleOutsideClickMenuPP(event, menu_change_pp) {
+    if (!menu_change_pp.contains(event.target) && event.target !== changePP && event.target !== changeBanner) {
+        hideMenuWindows(changePPWindow);
+        hideMenuWindows(changeBannerWindow);
     }
 }
