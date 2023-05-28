@@ -16,14 +16,13 @@ if (isset($_GET['name'])) {
     echo "Name parameter not provided!";
 }
 
+
 $posts = new Posts();
 
 [$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $posts->setPage($name, $connection);
-
 $_SESSION['page_id'] = $idPage;
 
-// $posts = null;
-
+$user_role = getUserRole();
 
 ?>
 <?php include './template/components/header.php' ?>
@@ -33,21 +32,26 @@ $_SESSION['page_id'] = $idPage;
 <div class="banner">
     <img class="banner-img" src=<?= $bannerProfile ?>>
 
-    <p class="Submitbutton material-icons-outlined md-20" id="change_pp">photo_camera
-    </p>
-    <ul class="menu_change_pp" id="menu_change_pp">
-        <li id="changePP">Changer votre photo de profil</li>
-        <li id="changeBanner">Changer votre bannière</li>
-    </ul>
-    <form action=<?= "http://" . $host . "/functions/changePagePicture" ?> method="POST" id="changePPWindow">
-        <input type="text" name="profile_picture_url" placeholder="URL de votre photo de profil..." class="amisinput">
-        <input type="submit" value="Changer votre photo de profil" class="Submitbutton2">
-    </form>
+    <?php
+    if ($user_role == 'admin') {
+    ?>
+        <p class="Submitbutton material-icons-outlined md-20" id="change_pp">photo_camera
+        </p>
+        <ul class="menu_change_pp" id="menu_change_pp">
+            <li id="changePP">Changer votre photo de profil</li>
+            <li id="changeBanner">Changer votre bannière</li>
+        </ul>
+        <form action=<?= "http://" . $host . "/functions/changePagePicture" ?> method="POST" id="changePPWindow">
+            <input type="text" name="profile_picture_url" placeholder="URL de votre photo de profil..." class="amisinput">
+            <input type="submit" value="Changer votre photo de profil" class="Submitbutton2">
+        </form>
 
-    <form action=<?= "http://" . $host . "/functions/changePageBanner" ?> method="POST" id="changeBannerWindow">
-        <input type="text" name="profile_picture_url" placeholder="URL de votre image de bannière..." class="amisinput">
-        <input type="submit" value="Changer votre image de bannière" class="Submitbutton2">
-    </form>
+        <form action=<?= "http://" . $host . "/functions/changePageBanner" ?> method="POST" id="changeBannerWindow">
+            <input type="text" name="profile_banner_url" placeholder="URL de votre image de bannière..." class="amisinput">
+            <input type="submit" value="Changer votre image de bannière" class="Submitbutton2">
+        </form>
+    <?php
+    } ?>
 
     <div class="page_info">
         <div class="profile-img">
