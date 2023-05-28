@@ -260,7 +260,8 @@ class Pages
         //Execution de la Query
         $request->execute();
 
-        $user_id = $request->fetch(PDO::FETCH_ASSOC);
+        $requestData = $request->fetch(PDO::FETCH_ASSOC);
+        $user_id = $requestData['id'];
 
         $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE user_id = :user_id AND page_id = :page_id");
 
