@@ -66,7 +66,7 @@ function getUserRole(){
     $user_role = $page->checkUserRole($user_mail, $page_id);
 
     if ($user_role){
-        return $user_role;
+        return $user_role['role'];
     }
     return "visiteur";
 }
