@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="../template/styles/chat.css">
 <!-- <script src="https://cdn.tiny.cloud/1/z17gfgevxujzuemvrdmwbdygwnielkig51xlygvl85jbhatz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
+	// Api pour afficher les emojis
 	tinymce.init({
 		selector: "#chat_textarea",
 		plugins: "emoticons",
@@ -14,12 +15,23 @@
 		branding: false, // Masquez la signature de l'API TinyMCE
 		statusbar: false, // Masquez la barre de statut
 		content_css: "../template/styles/chat.css",
-	}); -->
+	}); 
 </script>
+-->
 <div class="messenger">
 	<div class="sidebar">
 		<div class="titre">
-			<h2>Discussions</h2>
+			<h2>
+				<?php
+				if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+					header('Location:' . 'http://' . $host . '/home');
+					exit();
+				} else {
+					echo "Discussions";
+				}
+				?>
+			</h2>
+
 			<a href="#"><span class="material-icons-outlined" id="button_create_group">add</span></a>
 			<!-- <div id="chat_create_group"> -->
 			<form action="" method="POST" id="chat_create_group">

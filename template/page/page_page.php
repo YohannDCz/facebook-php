@@ -119,47 +119,55 @@ $posts = new Posts();
 
     <div class="list_publications">
 
-        <div class="profile_publication_post">
-            <div class="profile_publication_div_flex">
-                <div class="publication_pp_div">
-                    <img src=<?= $iconProfile ?> alt="profile_picture">
-                </div>
-                <div class="profile_publication_div_post">
-                    <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
-                </div>
-            </div>
-
-            <div class="group_preview_publication_image">
-                <label id="custom-img-btn">
-                    <div class="group_preview_publication_sub">
-                        <span class="material-icons">image</span>
-                        <p>Photo</p>
+        <?php
+        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            // echo "Session Invité";
+        } else {
+        ?>
+            <div class="profile_publication_post">
+                <div class="profile_publication_div_flex">
+                    <div class="publication_pp_div">
+                        <img src=<?= $iconProfile ?> alt="profile_picture">
                     </div>
-                </label>
-
-                <!-- <label id="custom-video-btn">
-                    <div class="group_preview_publication_sub">
-                        <span class="material-icons">videocam</span>
-                        <p>Vidéo</p>
+                    <div class="profile_publication_div_post">
+                        <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
                     </div>
-                </label> -->
+                </div>
 
-                <div class="btn_send">
-                    <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
+                <div class="group_preview_publication_image">
+                    <label id="custom-img-btn">
+                        <div class="group_preview_publication_sub">
+                            <span class="material-icons">image</span>
+                            <p>Photo</p>
+                        </div>
+                    </label>
+
+                    <!-- <label id="custom-video-btn">
+                        <div class="group_preview_publication_sub">
+                            <span class="material-icons">videocam</span>
+                            <p>Vidéo</p>
+                        </div>
+                    </label> -->
+
+                    <div class="btn_send">
+                        <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
+                    </div>
+
+                </div>
+
+                <div id="publication_image">
+                    <button class="remove_btn"><span class="material-icons-round">close</span></button>
                 </div>
 
             </div>
+        <?php
+        }
+        ?>
 
-            <div id="publication_image">
-                <button class="remove_btn"><span class="material-icons-round">close</span></button>
-            </div>
-
-        </div>
-
-        <?php 
+        <?php
         [$posts1, $postCount] = $posts->fetchPublication($idPage, $connection);
         foreach ($posts1 as $post) :
-            [$idPublication, $description, $image, $usersPostsLikesCount, $count] = $posts->Publication($post, $connection);?>
+            [$idPublication, $description, $image, $usersPostsLikesCount, $count] = $posts->Publication($post, $connection); ?>
             <div class="publication">
 
                 <div class="publication_info">
@@ -208,72 +216,72 @@ $posts = new Posts();
                     [$postsComs, $postComCount] = $posts->fetchCommentary($idPublication, $connection);
                     foreach ($postsComs as $post) :
                         [$username, $profile_pic, $description, $idCommentaire, $timestamp] = $posts->Commentary($post, $connection);
-                        if ($username): ?>
-                    <div class="publication_comment">
+                        if ($username) : ?>
+                            <div class="publication_comment">
 
-                        <div class="publication_info">
-                            <div class="publication_pp_div">
-                            <img src=<?= $profile_pic ?> alt="">
-                        </div>
-                    </div>
-
-                        <div>
-                            <div class="publication_person_comment">
-                                <p class="publication_name"><?= $username ?></p>
-                                <p><?= $description ?></p>
-                            </div>
-
-                            <div class="publication_person_comment_options_reaction">
-                                <div class="publication_person_comment_options">
-                                    <p>J'aime</p>
-                                    <p>Répondre</p>
-                                    <p><?= $timestamp ?> h</p>
+                                <div class="publication_info">
+                                    <div class="publication_pp_div">
+                                        <img src=<?= $profile_pic ?> alt="">
+                                    </div>
                                 </div>
 
-                                <div class="publication_comment_reaction">
-                                    <span class="material-icons">thumb_up</span>
-                                    <p>1000</p>
-                                </div>
-                            </div>
+                                <div>
+                                    <div class="publication_person_comment">
+                                        <p class="publication_name"><?= $username ?></p>
+                                        <p><?= $description ?></p>
+                                    </div>
 
+                                    <div class="publication_person_comment_options_reaction">
+                                        <div class="publication_person_comment_options">
+                                            <p>J'aime</p>
+                                            <p>Répondre</p>
+                                            <p><?= $timestamp ?> h</p>
+                                        </div>
 
-                            <div>
-                                <?php [$postsComs2, $postComCount2] = $posts->fetchCommentary2($idCommentaire, $connection);
-                                foreach ($postsComs2 as $post):
-                                    [$username, $profile_pic, $description, $timestamp] = $posts->Commentary2($post, $connection); ?>
-                                <div class="publication_comment">
-                                    <div class="publication_info">
-                                        <div class="publication_pp_div">
-                                            <img src=<?= $profile_pic ?> alt="">
+                                        <div class="publication_comment_reaction">
+                                            <span class="material-icons">thumb_up</span>
+                                            <p>1000</p>
                                         </div>
                                     </div>
+
 
                                     <div>
-                                        <div class="publication_person_comment">
-                                            <p class="publication_name"><?= $username ?></p>
-                                            <p><?= $description ?></p>
-                                        </div>
+                                        <?php [$postsComs2, $postComCount2] = $posts->fetchCommentary2($idCommentaire, $connection);
+                                        foreach ($postsComs2 as $post) :
+                                            [$username, $profile_pic, $description, $timestamp] = $posts->Commentary2($post, $connection); ?>
+                                            <div class="publication_comment">
+                                                <div class="publication_info">
+                                                    <div class="publication_pp_div">
+                                                        <img src=<?= $profile_pic ?> alt="">
+                                                    </div>
+                                                </div>
 
-                                        <div class="publication_person_comment_options_reaction">
-                                            <div class="publication_person_comment_options">
-                                                <p>J'aime</p>
-                                                <p>Répondre</p>
-                                                <p><?= $timestamp ?> h</p>
-                                            </div>
+                                                <div>
+                                                    <div class="publication_person_comment">
+                                                        <p class="publication_name"><?= $username ?></p>
+                                                        <p><?= $description ?></p>
+                                                    </div>
 
-                                            <div class="publication_comment_reaction">
-                                                <span class="material-icons">thumb_up</span>
-                                                <p>1000</p>
+                                                    <div class="publication_person_comment_options_reaction">
+                                                        <div class="publication_person_comment_options">
+                                                            <p>J'aime</p>
+                                                            <p>Répondre</p>
+                                                            <p><?= $timestamp ?> h</p>
+                                                        </div>
+
+                                                        <div class="publication_comment_reaction">
+                                                            <span class="material-icons">thumb_up</span>
+                                                            <p>1000</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        <?php endforeach ?>
                                     </div>
-                                </div>
-                                <?php endforeach ?>
-                            </div>
 
-                        </div>
-                    </div>
-                    <?php endif ?>
+                                </div>
+                            </div>
+                        <?php endif ?>
                     <?php endforeach; ?>
                     <!-- écrire un commentaire -->
                 </div>

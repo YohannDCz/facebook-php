@@ -13,7 +13,16 @@ if (isset($_COOKIE["error"])) {
 
 <div class="login_signup_supercontainer">
     <div class="login_signup_container">
-        <h1>Connexion</h1>
+        <h1>
+            <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                echo "Connexion";
+            } else {
+                header('Location:' . 'http://' . $host . '/home');
+                exit();
+            }
+            ?>
+        </h1>
         <?php if ($error !== null) : ?>
             <div class="error" style="display: flex; justify-content: center; align-items: center; background-color:crimson; width: 100%; height: 40px;">
                 <p style="color: white">Identifiants invalides !</p>

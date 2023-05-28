@@ -184,14 +184,23 @@ function parametres($searchResults, $pagesObject, $connection)
             </a>
         </h4>
 
-        <h4 class="settings_category">
-            <span class="material-icons">library_add_check</span>
-            <a href=<?= "http://" . $host . "/page/pageList?groups=mygroups" ?> class="settings_links">
-                Vos pages
-            </a>
-        </h4>
+        <?php
+        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            // echo "Session Invité";
+        } else {
+        ?>
+            <h4 class="settings_category">
+                <span class="material-icons">library_add_check</span>
+                <a href=<?= "http://" . $host . "/page/pageList?groups=mygroups" ?> class="settings_links">
+                    Vos pages
+                </a>
+            </h4>
 
-        <p class="Submitbutton"><a href=<?= "http://" . $host . "/page/pageCreate" ?>>Créer une page</a></p>
+            <p class="Submitbutton"><a href=<?= "http://" . $host . "/page/pageCreate" ?>>Créer une page</a></p>
+
+        <?php
+        }
+        ?>
 
 
     </div>

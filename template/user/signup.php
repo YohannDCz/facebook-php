@@ -5,7 +5,16 @@
 
 
     <div class="login_signup_container">
-        <h1>Inscription</h1>
+        <h1>
+        <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+                echo "Inscription";
+            } else {
+                header('Location:' . 'http://' . $host . '/home');
+                exit();
+            }
+            ?>
+        </h1>
 
         <form class="login_signup" action=<?= "http://" . $host . "/functions/signUp" ?> method="POST">
             <div class="radiobox">

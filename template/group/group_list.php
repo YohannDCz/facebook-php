@@ -130,16 +130,22 @@ function parametres($host)
             </a>
         </h4>
 
-        <h4 class="settings_category">
-            <span class="material-icons">groups</span>
-            <a href=<?= "http://" . $host . "/group/List?groups=mygroups" ?> class="settings_links">
-                Vos groupes
-            </a>
-        </h4>
+        <?php
+        if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            // echo "Session Invité";
+        } else {
+        ?>
+            <h4 class="settings_category">
+                <span class="material-icons">groups</span>
+                <a href=<?= "http://" . $host . "/group/List?groups=mygroups" ?> class="settings_links">
+                    Vos groupes
+                </a>
+            </h4>
 
-        <p class="Submitbutton"><a href=<?= "http://" . $host . "/group/Create" ?>>Créer un groupe</a></p>
-
-
+            <p class="Submitbutton"><a href=<?= "http://" . $host . "/group/Create" ?>>Créer un groupe</a></p>
+        <?php
+        }
+        ?>
     </div>
 
 

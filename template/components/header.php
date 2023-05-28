@@ -33,16 +33,31 @@ global $host;
         </div>
 
         <div class="icons">
-            <a href=<?= "http://" . $host . "/user/friendsList" ?>><span class="material-icons-outlined md-40">group</span></a>
-            <a href=<?= "http://" . $host . "/user/notifications" ?>><span class="material-icons-outlined md-40 ">notifications</span></a>
-            <a href=<?= "http://" . $host . "/user/chat" ?>><span class="material-icons-outlined md-40 ">chat</span></a>
-            <div class="profilepicture">
-                <img src="../template/img/pp.png" id="image">
-            </div>
-            <ul id="menu" class="menu">
-                <li><a href=<?= "http://" . $host . "/user/settings" ?>><span class="material-icons-outlined">settings</span>Paramètres</a></li>
-                <li><a href=<?= "http://" . $host . "/functions/logout" ?>><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
-            </ul>
+            <?php
+            if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+            ?>
+                <p>
+                    <a href=<?= "http://" . $host . "/functions/logout" ?> style="display: flex; flex-direction:row; align-items:center; gap:10px">
+                        <span class="material-icons-outlined">login</span>Se connecter</a>
+                </p>
+                <?php
+            } else {
+                if (isset($_SESSION["last_name"]) && isset($_SESSION["first_name"])) {
+                ?>
+                    <a href=<?= "http://" . $host . "/user/friendsList" ?>><span class="material-icons-outlined md-40">group</span></a>
+                    <a href=<?= "http://" . $host . "/user/notifications" ?>><span class="material-icons-outlined md-40 ">notifications</span></a>
+                    <a href=<?= "http://" . $host . "/user/chat" ?>><span class="material-icons-outlined md-40 ">chat</span></a>
+                    <div class="profilepicture">
+                        <img src="../template/img/pp.png" id="image">
+                    </div>
+                    <ul id="menu" class="menu">
+                        <li><a href=<?= "http://" . $host . "/user/settings" ?>><span class="material-icons-outlined">settings</span>Paramètres</a></li>
+                        <li><a href=<?= "http://" . $host . "/functions/logout" ?>><span class="material-icons-outlined">logout</span>Déconnexion</a></li>
+                    </ul>
+            <?php
+                }
+            }
+            ?>
         </div>
 
     </header>
