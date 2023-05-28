@@ -20,7 +20,7 @@ $posts = new Posts();
 
 [$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $posts->setPage($name, $connection);
 
-$_SESSION['idPage'] = $idPage;
+$_SESSION['page_id'] = $idPage;
 
 // $posts = null;
 
