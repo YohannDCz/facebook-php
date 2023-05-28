@@ -212,7 +212,9 @@ class Pages
         // Fermeture de la connection
         $connection = null;
         
-        $result = getPageById($id);
+        $page = new Pages;
+
+        $result = $page->getPageById($id);
 
         return $result["name"];
     }
@@ -236,7 +238,9 @@ class Pages
         // Fermeture de la connection
         $connection = null;
 
-        $result = getPageById($id);
+        $page = new Pages;
+
+        $result = $page->getPageById($id);
 
         return $result["name"];
     }
