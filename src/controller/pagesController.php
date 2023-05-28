@@ -34,7 +34,7 @@ function addPage() {
 //  fonction pour modifier le chemin de l'image de profil
 function changePagePicture(){
     $page_id = $_POST["page_id"];
-    $new_picture_url = $_POST["$profile_picture_url"];
+    $new_picture_url = $_POST["profile_picture_url"];
 
     $page = new Pages;
 

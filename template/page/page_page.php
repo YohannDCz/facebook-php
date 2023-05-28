@@ -20,6 +20,8 @@ $posts = new Posts();
 
 [$page, $idPage, $namePage, $iconProfile, $bannerProfile] = $posts->setPage($name, $connection);
 
+$_SESSION['idPage'] = $idPage;
+
 // $posts = null;
 
 
@@ -37,13 +39,13 @@ $posts = new Posts();
         <li id="changePP">Changer votre photo de profil</li>
         <li id="changeBanner">Changer votre bannière</li>
     </ul>
-    <form action="" method="POST" id="changePPWindow">
-        <input type="text" name="" id="" placeholder="URL de votre photo de profil..." class="amisinput">
+    <form action=<?= "http://" . $host . "/functions/changePagePicture" ?> method="POST" id="changePPWindow">
+        <input type="text" name="profile_picture_url" placeholder="URL de votre photo de profil..." class="amisinput">
         <input type="submit" value="Changer votre photo de profil" class="Submitbutton2">
     </form>
 
-    <form action="" method="POST" id="changeBannerWindow">
-        <input type="text" name="" id="" placeholder="URL de votre image de bannière..." class="amisinput">
+    <form action=<?= "http://" . $host . "/functions/changePageBanner" ?> method="POST" id="changeBannerWindow">
+        <input type="text" name="profile_picture_url" placeholder="URL de votre image de bannière..." class="amisinput">
         <input type="submit" value="Changer votre image de bannière" class="Submitbutton2">
     </form>
 
@@ -58,13 +60,21 @@ $posts = new Posts();
     </div>
 </div>
 
-<form action="" method="POST" class="page_follow">
-    <input type="submit" value="S'abonner à la page" class="Submitbutton">
-</form>
+<?php
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    // echo "Session invité";
+} else {
+?>
+    <form action="" method="POST" class="page_follow">
+        <input type="submit" value="S'abonner à la page" class="Submitbutton">
+    </form>
 
-<form action="" method="POST" class="page_follow">
-    <input type="submit" value="Se désabonner" class="Submitbutton">
-</form>
+    <form action="" method="POST" class="page_follow">
+        <input type="submit" value="Se désabonner" class="Submitbutton">
+    </form>
+<?php
+}
+?>
 
 
 <div class="summary">
