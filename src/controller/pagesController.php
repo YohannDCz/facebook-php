@@ -68,7 +68,7 @@ function getUserRole(){
     if ($user_role){
         return $user_role['role'];
     }
-    return "visiteur";
+    return "visitor";
 }
 
 //  fonction pour envoyer un message sur un groupe
