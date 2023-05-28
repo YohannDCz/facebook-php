@@ -16,16 +16,17 @@ class Users {
         $connection = $db->getConnection();
 
         // Requêtes SQL
-        $request = $connection->query("SELECT * FROM user");
+        $request = $connection->query('SELECT * FROM "user"');
         $request->execute();
 
         $users = [];
         while (($row = $request->fetch())) {
             $user = [
+                "id"=>$row["id"],
                 "username"=> $row["username"],
                 "first_name"=> $row["first_name"],
                 "last_name"=> $row["last_name"],
-                "birthdate" => $row["birthdate"],
+                "is_online" => $row["is_online"],
                 "phone"=> $row["phone"],
                 "mail"=> $row["mail"],
                 "profile_icon"=> $row["profile_icon"],
