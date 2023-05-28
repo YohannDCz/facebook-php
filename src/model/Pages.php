@@ -155,11 +155,81 @@ class Pages {
         $request->bindParam(":content", $content);
 
         //Execution de la Query
-        $query->execute();
+        $request->execute();
 
         // Fermeture de la connection
         $connection = null;
    
         return $page_name;
+    }
+
+    //  fonction pour modifier le chemin vers la photo de profil d'une page
+    function    updateProfileIconPath($id, $picture_url){
+         //Connecter la BDD
+         $db = new Database();
+   
+         // Ouverture de la connection
+         $connection = $db->getConnection();
+ 
+         // Requêtes SQL
+         $request = $connection->prepare("UPDATE pages SET profile_icon = :picture_path WHERE id = :id");
+         $request->bindParam(":picture_path", $picture_url);
+         $request->bindParam(":id", $id);    
+         
+        //Execution de la Query
+        $request->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+        
+        $result = getPageById($id);
+
+        return $result["name"];
+    }
+
+    //  fonction pour modifier le chemin vers l'image de la bannière d'une page
+    function    updateProfileBannerPath($id, $banner_url){
+        //Connecter la BDD
+        $db = new Database();
+  
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $request = $connection->prepare("UPDATE pages SET profile_banner = :picture_path WHERE id = :id");
+        $request->bindParam(":picture_path", $banner_url);
+        $request->bindParam(":id", $id);    
+        
+        //Execution de la Query
+        $request->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+
+        $result = getPageById($id);
+
+        return $result["name"];
+    }
+
+    function getPageById($id){
+        //Connecter la BDD
+        $db = new Database();
+  
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $request = $connection->prepare("SELECT * FROM pages WHERE id = :id");
+        $request->bindParam(":id", $id);
+
+        //Execution de la Query
+        $request->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+        
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

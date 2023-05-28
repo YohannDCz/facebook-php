@@ -42,7 +42,17 @@ switch ($clean_url) {
     case 'createPage':
         //  fonction de création de groupe
         $page_name = addPage();
-        header('Location:' . 'http://' . $host . '/group/page?name=' . $page_name);
+        header('Location:' . 'http://' . $host . '/page/page?name=' . $page_name);
+        break;
+    case 'changePageBanner':
+        //  fonction de changement de bannière
+        $page_name = changePageBanner();
+        header('Location:' . 'http://' . $host . '/page/page?name=' . $page_name);
+        break;
+    case 'changePagePicture':
+        //  fonction de changement de bannière
+        $page_name = changePagePicture();
+        header('Location:' . 'http://' . $host . '/page/page?name=' . $page_name);
         break;
     default:
         header('Location:' . 'http://' . $host . '/home');

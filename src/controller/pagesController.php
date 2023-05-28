@@ -24,4 +24,28 @@ function addPage() {
 
     return $page_name;
 }
+
+//  fonction pour modifier le chemin de l'image de profil
+function changePagePicture(){
+    $page_id = $_POST["page_id"];
+    $new_picture_url = $_POST["$profile_picture_url"];
+
+    $page = new Pages;
+
+    $result = $page->updateProfileIconPath($page_id, $new_picture_url);
+
+    return $result;
+}
+
+//  fonction pour changer la bannière de la page, renvoie le nom de la page concéernée
+function changePageBanner(){
+    $page_id = $_POST["page_id"];
+    $new_picture_url = $_POST["$profile_banner_url"];
+
+    $page = new Pages;
+
+    $result = $page->updateProfileBannerPath($page_id, $new_picture_url);
+
+    return $result;
+}
 ?>
