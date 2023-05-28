@@ -8,12 +8,14 @@ require_once('./src/model/Pages.php');
 $pagesObject = new Pages();
 
 $db = new Database();
-        // Ouverture de la connection
+// Ouverture de la connection
 $connection = $db->getConnection();
 
 if (isset($_GET["searchPageName"])) {
     global $searchResults;
 }
+
+
 
 function affichage()
 {
@@ -40,40 +42,42 @@ function affichageResearch($searchResults)
     global $host;
 ?>
     <h3>Découvrir des pages</h3>
-    <h3>Résultat de vos recherches : </h3>
-    <!-- <h4>Pages qui pourraient vous intéresser.</h4> -->
-    <div class="groups_grid">
+    <h4>Résultat de vos recherches :</h4>
 
-        <?php foreach ($searchResults as $result) { ?>
-
-            <div class="groups_group_preview">
-                <img src=<?= $result["profile_banner"] ?> alt="" class="groups_group_banner">
-                <div class="groups_group_content">
-                    <p class="groups_group_name"><?= $result["name"] ?></p>
-                    <div class="pages_page_info">
-                        <p>Catégorie</p>
-                        <p>X personnes qui aiment la page</p>
+    <?php if (count($searchResults) === 0) { ?>
+        <p>Pas de page correspondante à votre recherche « <?= $_GET["searchPageName"] ?> ».</p>
+    <?php } else { ?>
+        <div class="groups_grid">
+            <?php foreach ($searchResults as $result) { ?>
+                <div class="groups_group_preview">
+                    <img src=<?= $result["profile_banner"] ?> alt="" class="groups_group_banner">
+                    <div class="groups_group_content">
+                        <p class="groups_group_name"><?= $result["name"] ?></p>
+                        <div class="pages_page_info">
+                            <p>Catégorie</p>
+                            <p>X personnes qui aiment la page</p>
+                        </div>
+                        <a href=<?= "http://" . $host . "/page/page?name=" . $result["name"] ?> class="groups_join">Voir la page</a>
                     </div>
-                    <a href=<?= "http://" . $host . "/page/page?name=" . $result["name"] ?> class="groups_join">Voir la page</a>
                 </div>
-            </div>
-
-        <?php } ?>
-    </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
 <?php
 }
+
 
 function affichageDiscover($pagesObject, $connection)
 {
 ?>
     <h3>Découvrir des pages</h3>
-    <!-- <h4>Pages qui pourraient vous intéresser.</h4> -->
+    <h4>Les pages qui pourraient vous intéresser.</h4>
     <div class="groups_grid">
 
         <?php $pages = $pagesObject->fetchPage($connection);
-        foreach ($pages as $page):
+        foreach ($pages as $page) :
             $name = $pagesObject->getPageName($page);
-         ?>
+        ?>
 
             <div class="groups_group_preview">
                 <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
@@ -151,7 +155,8 @@ function parametres($searchResults, $pagesObject, $connection)
         affichage();
         affichageResearch($searchResults);
     } else {
-        affichageGroups($pagesObject, $connection);
+        affichageDiscover($pagesObject, $connection);
+        // affichageGroups($pagesObject, $connection);
     }
 }
 
@@ -167,8 +172,8 @@ function parametres($searchResults, $pagesObject, $connection)
         </div>
 
         <h3 style="white-space: nowrap;">Pages</h3>
-        <form action="<?= "http://" . $host . "/page/pageList" ?>" method="GET" class="page_list_form">
-            <input type="text" name="searchPageName" placeholder="Rechercher une page..." class="group_input groups_mobile">
+        <form action="<?= "http://" . $host . "/page/pageList" ?>" method="GET" class="page_list_form" onsubmit="return validateSearchForm()">
+            <input type="text" name="searchPageName" placeholder="Rechercher une page..." class="group_input groups_mobile" id="searchPageNameInput" required>
             <input type="submit" class="Submitbutton" value="Valider">
         </form>
 
@@ -200,9 +205,23 @@ function parametres($searchResults, $pagesObject, $connection)
             </a>
         </div>
         <?php
-        parametres($host, $pagesObject, $connection);
+        if (isset($_GET["searchPageName"])) {
+            // $searchResults = $pagesObject->affichageResearch($_GET["searchPageName"]);
+            affichageResearch($searchResults);
+        } else {
+            parametres($host, $pagesObject, $connection);
+        }
         ?>
     </div>
 </div>
 
 <?php include 'template/components/footer.php' ?>
+
+<script>
+    function validateSearchForm() {
+        var searchInput = document.getElementById("searchPageNameInput").value.trim();
+        if (searchInput === "") {
+            return false; // Empêche la soumission du formulaire si le champ est vide
+        }
+    }
+</script>
