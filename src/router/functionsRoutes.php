@@ -23,8 +23,10 @@ switch ($clean_url) {
         break;
     case 'login':
         //fonction de login
-        login();
-        header('Location:' . 'http://' . $host . '/home');
+        if(login()) {
+            header('Location:' . 'http://' . $host . '/home');
+        }
+        header('Location:' . 'http://' . $host . '/user/login');
         break;
     case 'logout':
         //  fonction de logout
