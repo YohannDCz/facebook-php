@@ -12,6 +12,9 @@ $host = 'localhost:3000';
 // sépare l'url en plusieurs sections pour le routage
 $split_url = explode('/', $url);
 
+//  démarrage session
+session_start();
+
 //Router
 switch($split_url[1]){
     // Route utilisateur de l'API
