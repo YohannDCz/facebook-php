@@ -58,9 +58,4 @@ function deleteGroups() {
 
 }
 
-//  fonction pour envoyer un message sur un groupe
-function sendMessage(){
-    
-}
-
 ?>

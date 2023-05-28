@@ -67,4 +67,9 @@ function getUserRole(){
 
     return $user_role;
 }
+
+//  fonction pour envoyer un message sur un groupe
+function sendMessage(){
+    
+}
 ?>

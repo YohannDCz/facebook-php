@@ -263,7 +263,7 @@ class Pages
         $requestData = $request->fetch(PDO::FETCH_ASSOC);
         $user_id = $requestData['id'];
 
-        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE user_id = :user_id AND page_id = :page_id");
+        $request = $connection->prepare("SELECT * FROM users_page WHERE user_id = :user_id AND page_id = :page_id");
 
         $request->bindParam(":user_id", $user_id); 
         $request->bindParam(":page_id", $page_id); 
@@ -276,7 +276,7 @@ class Pages
 
         $result = $request->fetch(PDO::FETCH_ASSOC);
 
-        if ($result) {
+        if ($result['role']) {
             return $result;
         }
         return null;
