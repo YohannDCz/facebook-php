@@ -54,6 +54,10 @@ switch ($clean_url) {
         $page_name = changePagePicture();
         header('Location:' . 'http://' . $host . '/page/page?name=' . $page_name);
         break;
+    case 'createPublication':
+        $page_name = addPublication();
+        header('Location:' . 'http://' . $host . '/page/page?name=' . $page_name);
+        break;
     default:
         header('Location:' . 'http://' . $host . '/home');
         break;

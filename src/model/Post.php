@@ -25,8 +25,27 @@ class Posts {
         return false;
     }
 
+    function getPageNameByPostId($post_id){
+        //  Connecter la BDD
+        $db = new Database();
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+        
+        // Requêtes SQL
+            //requête d'insertion dans la table post
+        $request = $connection->prepare("SELECT  name FROM pages WHERE id = (SELECT author_id FROM post WHERE id = :id)");
+        
+        $request->bindParam(":id", $post_id);
+
+        $request->execute();
+
+        $page_name = $request->fetch(PDO::FETCH_ASSOC);
+
+        return $page_name['name'];
+    }
+
     //  fonction pour créer un post, commentaire ou non
-    function createPost($author_id, $author_type, $post_type, $timestamp, $content, $commented_post_id = null){
+    function createPost($author_id, $author_type, $post_type, $content, $commented_post_id = null){
 
         //  Connecter la BDD
         $db = new Database();
@@ -35,12 +54,11 @@ class Posts {
 
         // Requêtes SQL
             //requête d'insertion dans la table post
-        $request = $connection->prepare("INSERT INTO post (author_id, author_type, post_type, timestamp) VALUES (:author_id, :author_type, :post_type, :timestamp)");
+        $request = $connection->prepare("INSERT INTO post (author_id, author_type, post_type) VALUES (:author_id, :author_type, :post_type)");
 
         $request->bindParam(":author_id", $author_id);
         $request->bindParam(":author_type", $author_type);
         $request->bindParam(":post_type", $post_type);
-        $request->bindParam(":timestamp", $timestamp);
 
         //  vérification du fonctionnement de la requête
         if (!($request->execute())) {
@@ -48,11 +66,10 @@ class Posts {
         }
 
             //  requête pour récupérer l'ID du post créé  précedemment
-        $request = $connection->prepare("SELECT id FROM post WHERE author_id = :author_id AND author_type = :author_type AND timestamp = :timestamp");
+        $request = $connection->prepare("SELECT id FROM post WHERE author_id = :author_id AND author_type = :author_type ORDER BY timestamp");
         
         $request->bindParam(":author_id", $author_id);
         $request->bindParam(":author_type", $author_type);
-        $request->bindParam(":timestamp", $timestamp);
 
         //  vérification du fonctionnement de la requête
         if (!($request->execute())) {
@@ -68,6 +85,8 @@ class Posts {
             return false;
         }
 
+        $connection = null ;
+
         //  id du post créé auparavant
         $post_id = $request->fetch(PDO::FETCH_ASSOC);
 
@@ -75,12 +94,12 @@ class Posts {
         switch($post_type) {
             case "publication":
                 if (createPublication($post_id, $content, $connection)) {
-                    return true;
+                    return $post_id;
                 }
                 return false;
             case "commentary":
                 if (createCommentary($post_id, $commented_post_id, $content, $connection)) {
-                    return true;
+                    return $post_id;
                 }
                 return false;
             default :
