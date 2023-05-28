@@ -68,15 +68,17 @@ $user_role = getUserRole();
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     // echo "Session invité";
 } else {
+    if ($user_role != 'admin') {
 ?>
-    <form action="" method="POST" class="page_follow">
-        <input type="submit" value="S'abonner à la page" class="Submitbutton">
-    </form>
+        <form action="" method="POST" class="page_follow">
+            <input type="submit" value="S'abonner à la page" class="Submitbutton">
+        </form>
 
-    <form action="" method="POST" class="page_follow">
-        <input type="submit" value="Se désabonner" class="Submitbutton">
-    </form>
+        <!-- <form action="" method="POST" class="page_follow">
+            <input type="submit" value="Se désabonner" class="Submitbutton">
+        </form> -->
 <?php
+    }
 }
 ?>
 
@@ -177,44 +179,49 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             // echo "Session Invité";
         } else {
+            if ($user_role == 'admin') {
+
+
         ?>
-            <div class="profile_publication_post">
-                <div class="profile_publication_div_flex">
-                    <div class="publication_pp_div">
-                        <img src=<?= $iconProfile ?> alt="profile_picture">
-                    </div>
-                    <div class="profile_publication_div_post">
-                        <textarea class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
-                    </div>
-                </div>
-
-                <div class="group_preview_publication_image">
-                    <label id="custom-img-btn">
-                        <div class="group_preview_publication_sub">
-                            <span class="material-icons">image</span>
-                            <p>Photo</p>
+                <form class="profile_publication_post" action="" method="POST">
+                    <div class="profile_publication_div_flex">
+                        <div class="publication_pp_div">
+                            <img src=<?= $iconProfile ?> alt="profile_picture">
                         </div>
-                    </label>
-
-                    <!-- <label id="custom-video-btn">
-                        <div class="group_preview_publication_sub">
-                            <span class="material-icons">videocam</span>
-                            <p>Vidéo</p>
+                        <div class="profile_publication_div_post">
+                            <textarea name="page_publication" class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
                         </div>
-                    </label> -->
-
-                    <div class="btn_send">
-                        <a href="#" id="send"><span class="material-icons chat_send">send</span></a>
                     </div>
 
-                </div>
+                    <div class="group_preview_publication_image">
+                        <label id="custom-img-btn">
+                            <div class="group_preview_publication_sub">
+                                <span class="material-icons">image</span>
+                                <p>Photo</p>
+                            </div>
+                        </label>
 
-                <div id="publication_image">
-                    <button class="remove_btn"><span class="material-icons-round">close</span></button>
-                </div>
+                        <!-- <label id="custom-video-btn">
+                            <div class="group_preview_publication_sub">
+                                <span class="material-icons">videocam</span>
+                                <p>Vidéo</p>
+                            </div>
+                        </label> -->
 
-            </div>
+                        <div class="btn_send">
+                            <!-- <a href="#" id="send"><span class="material-icons chat_send">send</span></a> -->
+                            <input type="submit" value="Envoyer le poste" class="Submitbutton">
+                        </div>
+
+                    </div>
+
+                    <div id="publication_image">
+                        <button class="remove_btn"><span class="material-icons-round">close</span></button>
+                    </div>
+
+            </form>
         <?php
+            }
         }
         ?>
 
