@@ -154,8 +154,17 @@ function affichageProfil()
 
         <div>
             <h4>Désactivation du compte</h4>
+            <p>Vous pourrez à tout moment réactiver votre compte.</p>
             <form class="login_signup">
                 <input type="submit" class="Submitbutton desactivate" value="Désactiver votre compte">
+            </form>
+        </div>
+
+        <div>
+            <h4>Suppression du compte</h4>
+            <p>Supprimez votre compte sera irréversible, vous ne pourrez plus le récupérer une fois supprimé.</p>
+            <form class="login_signup">
+                <input type="submit" class="Submitbutton desactivate" value="Supprimer votre compte">
             </form>
         </div>
 

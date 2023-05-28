@@ -104,7 +104,7 @@ function parametres($host)
         affichage();
         affichageMyGroups($host);
     } else {
-        affichageGroups();
+        affichageDiscover();
     }
 }
 

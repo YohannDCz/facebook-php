@@ -405,6 +405,34 @@
 }
 
 
+ #changePPWindow, #changeBannerWindow{
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--bgcolor2);
+    border-radius: 12px;
+    align-items: flex-start;
+    height: fit-content;
+    position: absolute;
+    width: fit-content;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 50px;
+    z-index: 10;
+}
+
+.amisinput {
+    border: none;
+    border-bottom: solid 1px black;
+    padding: 10px;
+    width: 100%;
+    background-color: inherit;
+    color: var(--color);
+}
+
 @media (max-width: 1024px) {
 
     .box_main {
@@ -420,7 +448,7 @@
     }
 
     .summary {
-        /* display: none; */
+        display: none;
     }
 
     .list_publications {
@@ -447,7 +475,7 @@
         align-items: center;
     }
 
-    .Submitbutton {
+    .Submitbutton, .Submitbutton2 {
         margin: 0px;
         padding: 10px 15px;
     }

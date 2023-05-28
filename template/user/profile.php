@@ -5,11 +5,22 @@
 
 <div class="banner">
     <img class="banner-img" src="../template/img/blue-texture-marble.png">
-    <p class="Submitbutton" id="change_pp"><span class="material-icons-outlined md-20">photo_camera</span></p>
+    <p class="Submitbutton material-icons-outlined md-20" id="change_pp">photo_camera
+    </p>
     <ul class="menu_change_pp" id="menu_change_pp">
-        <li>Changer votre photo de profil</li>
-        <li>Changer votre bannière</li>
+        <li id="changePP">Changer votre photo de profil</li>
+        <li id="changeBanner">Changer votre bannière</li>
     </ul>
+    <form action="" method="POST" id="changePPWindow">
+        <input type="text" name="" id="" placeholder="URL de votre photo de profil..." class="amisinput">
+        <input type="submit" value="Changer votre photo de profil" class="Submitbutton2">
+    </form>
+
+    <form action="" method="POST" id="changeBannerWindow">
+        <input type="text" name="" id="" placeholder="URL de votre image de bannière..." class="amisinput">
+        <input type="submit" value="Changer votre image de bannière" class="Submitbutton2">
+    </form>
+
     <div class="profile-info">
         <div class="profile-img">
             <img src="../template/img/pp.png">
