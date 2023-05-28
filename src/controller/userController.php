@@ -61,6 +61,7 @@ function login() {
       $_SESSION["loggedin"] = true;
       $_SESSION["first_name"] = $userDb['first_name'];
       $_SESSION["last_name"] = $userDb['last_name'];
+      $_SESSION["user_id"] = $userDb['id'];
 
       return true;
     } else {

@@ -244,4 +244,32 @@ class Pages
 
         return $result["name"];
     }
+
+    //  fonction qui vérifie si un utilisateur est administrateur d'une page
+    function checkUserRole($user_id, $page_id){
+        //Connecter la BDD
+        $db = new Database();
+  
+        // Ouverture de la connection
+        $connection = $db->getConnection();
+
+        // Requêtes SQL
+        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE user_id = :user_id AND page_id = :page_id");
+
+        $request->bindParam(":user_id", $user_id); 
+        $request->bindParam(":page_id", $page_id); 
+
+        //Execution de la Query
+        $request->execute();
+
+        // Fermeture de la connection
+        $connection = null;
+
+        $result = $request->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return $result;
+        }
+        return null;
+    }
 }
