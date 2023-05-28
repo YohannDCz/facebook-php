@@ -30,6 +30,9 @@ function signup() {
       $_SESSION["username"] = $username;
       $_SESSION["email"] = $email;
       $_SESSION["birthdate"] = $birthdate;
+
+      $_SESSION["loggedin"] = true;
+      
       setcookie("username", $username);
       setcookie("first_name", $first_name);
       setcookie("last_name", $last_name);
