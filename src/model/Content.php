@@ -28,4 +28,4 @@ class Content {
       return false;
     }
 }
-?>!
+?>

@@ -109,10 +109,10 @@ class Users {
         $db = new Database();
         // Ouverture de la connection
         $connection = $db->getConnection();
-        
-        $sql = 'SELECT * FROM "users" WHERE mail = ?';
-        $query = $connection->query($sql);
-        $query->bindParam(1,$mail);
+
+        $sql = 'SELECT * FROM "user" WHERE mail = :mail';
+        $query = $connection->prepare($sql);
+        $query->bindParam(":mail",$mail);
 
         $query->execute();
 
@@ -484,5 +484,19 @@ class Users {
         $connection = null;
 
         return $friends;
+    }
+    // Change le status de l'utilisateur
+    function updateLoginStatus($status,$id) {
+        $db = new Database();
+        $connection = $db->getConnection();
+
+        $query = $connection->prepare('UPDATE "user" SET is_online = :loginStatus WHERE id = :id');
+        $query->bindParam(':loginStatus', $status);
+        $query->bindParam(':id', $id);
+        if($query->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
