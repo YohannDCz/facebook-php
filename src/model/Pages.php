@@ -262,7 +262,7 @@ class Pages
 
         $user_id = $request->fetch(PDO::FETCH_ASSOC);
 
-        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE user_id = :mail AND page_id = :page_id");
+        $request = $connection->prepare("SELECT users_page.role FROM users_page WHERE user_id = :user_id AND page_id = :page_id");
 
         $request->bindParam(":user_id", $user_id); 
         $request->bindParam(":page_id", $page_id); 
