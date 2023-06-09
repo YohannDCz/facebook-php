@@ -50,7 +50,7 @@ function affichageResearch($searchResults)
         <div class="groups_grid">
             <?php foreach ($searchResults as $result) { ?>
                 <div class="groups_group_preview">
-                    <img src=<?= $result["profile_banner"] ?> alt="" class="groups_group_banner">
+                    <img src=<?= $result["profile_banner"] ?> alt="profile_icon" class="groups_group_banner">
                     <div class="groups_group_content">
                         <p class="groups_group_name"><?= $result["name"] ?></p>
                         <div class="pages_page_info">
@@ -69,6 +69,7 @@ function affichageResearch($searchResults)
 
 function affichageDiscover($pagesObject, $connection)
 {
+    global $host;
 ?>
     <h3>Découvrir des pages</h3>
     <h4>Les pages qui pourraient vous intéresser.</h4>
@@ -80,14 +81,14 @@ function affichageDiscover($pagesObject, $connection)
         ?>
 
             <div class="groups_group_preview">
-                <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src=<?=$page["profile_icon"]?> alt="profile_icon" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name"><?= $name ?></p>
                     <div class="pages_page_info">
                         <p>Catégorie</p>
                         <p>X personnes qui aiment la page</p>
                     </div>
-                    <p class="groups_join">Suivre la page</p>
+                    <a href=<?= "http://" . $host . "/page/page?name=" . $name ?> class="groups_join">Voir la page</a>
                 </div>
             </div>
 
@@ -106,7 +107,7 @@ function affichageMyGroups()
         <?php for ($i = 1; $i <= 3; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="../template/img/blue-texture-marble.png" alt="profile_icon" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom de la page</p>
                     <div class="groups_group_info">
@@ -126,7 +127,7 @@ function affichageMyGroups()
         <?php for ($i = 1; $i <= 10; $i++) { ?>
 
             <div class="groups_group_preview">
-                <img src="../template/img/blue-texture-marble.png" alt="" class="groups_group_banner">
+                <img src="../template/img/blue-texture-marble.png" alt="profile_icon" class="groups_group_banner">
                 <div class="groups_group_content">
                     <p class="groups_group_name">Nom de la page</p>
                     <div class="pages_page_info">

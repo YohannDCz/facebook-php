@@ -181,15 +181,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         } else {
             if ($user_role == 'admin') {
 
-
         ?>
-                <form class="profile_publication_post" action="" method="POST">
+                <form class="profile_publication_post" action=<?= "http://" . $host . "/functions/createPublication" ?> method="POST">
                     <div class="profile_publication_div_flex">
                         <div class="publication_pp_div">
                             <img src=<?= $iconProfile ?> alt="profile_picture">
                         </div>
                         <div class="profile_publication_div_post">
-                            <textarea name="page_publication" class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
+                            <textarea name="publication_content" class="publication_person_comment_input" maxlength="500" placeholder="Que voulez-vous dire ?" oninput="autoResize(this)"></textarea>
                         </div>
                     </div>
 
@@ -208,10 +207,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                             </div>
                         </label> -->
 
-                        <div class="btn_send">
+                        <!-- <div class="btn_send"> -->
                             <!-- <a href="#" id="send"><span class="material-icons chat_send">send</span></a> -->
-                            <input type="submit" value="Envoyer le poste" class="Submitbutton">
-                        </div>
+                            <input type="submit" value="send" class="Submitbutton material-icons chat_send">
+                        <!-- </div> -->
 
                     </div>
 
