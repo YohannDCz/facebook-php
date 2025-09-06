@@ -5,10 +5,6 @@ ini_set('display_errors', 1);
 // récupérer la méthode et l'URL de la requête
 $method = $_SERVER['REQUEST_METHOD'];
 $url = $_SERVER['REQUEST_URI'];
-
-//  host
-$host = 'localhost:3000';
-
 // sépare l'url en plusieurs sections pour le routage
 $split_url = explode('/', $url);
 
