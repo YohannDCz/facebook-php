@@ -4,12 +4,12 @@ class Database {
     
     function getConnection () {
         
-        // variables de connection a la bdd
-        $host = "localhost";
-        $dbname = "socialNetwork";
-        $username = "postgres";
-        $password = "0000";
-        $port = 5432;
+        // variables de connection à la bdd
+        $host = getenv('DB_HOST') ?: 'localhost';
+        $dbname = getenv('DB_NAME') ?: 'socialNetwork';
+        $username = getenv('DB_USER') ?: 'postgres';
+        $password = getenv('DB_PASSWORD') ?: '0000';
+        $port = getenv('DB_PORT') ?: 5432;
 
         $connection = null;
         try {
